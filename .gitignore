@@ -1,0 +1,65 @@
+CMakeFiles
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+cmake_uninstall.cmake
+config.h
+tests/all_tests
+tools/fpgen
+tools/fpcollect
+*.exe
+*.dll
+*.so
+*.a
+tools/fpeval
+tools/learn_filters
+tools/decode
+tools/chromagram
+tools/resample
+libchromaprint.pc
+install_manifest.txt
+tools/spectrogram
+src/libchromaprint.so.*
+*.vcxproj
+*.vcxproj.*
+*.dir
+*.sln
+*.suo
+Debug
+src/Debug
+*.dll
+*.lib
+*.pdb
+*.dll.manifest
+*.exp
+*.dylib
+*.vcproj
+*.user
+*.ncb
+src/Release
+fpcalc
+fpcmp
+
+# Xcode
+#
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+## Build generated
+build/
+DerivedData/
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+## Other
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint

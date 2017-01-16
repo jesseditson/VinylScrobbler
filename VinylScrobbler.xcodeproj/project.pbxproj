@@ -14,6 +14,8 @@
 		F31F2CD41E2C4B710034F8F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F31F2CD31E2C4B710034F8F7 /* Assets.xcassets */; };
 		F31F2CD71E2C4B710034F8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31F2CD51E2C4B710034F8F7 /* LaunchScreen.storyboard */; };
 		F31F2CE21E2C4B710034F8F7 /* VinylScrobblerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F31F2CE11E2C4B710034F8F7 /* VinylScrobblerTests.m */; };
+		F31F2CFB1E2C4D5D0034F8F7 /* libchromaprint.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F31F2CF71E2C4B830034F8F7 /* libchromaprint.dylib */; };
+		F31F2CFE1E2C50E90034F8F7 /* libchromaprint_objs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F31F2CF91E2C4B830034F8F7 /* libchromaprint_objs.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,6 +25,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = F31F2CC31E2C4B710034F8F7;
 			remoteInfo = VinylScrobbler;
+		};
+		F31F2CF61E2C4B830034F8F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F31F2CEC1E2C4B830034F8F7 /* chromaprint.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D398DA2A084448B895D416B9;
+			remoteInfo = chromaprint;
+		};
+		F31F2CF81E2C4B830034F8F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F31F2CEC1E2C4B830034F8F7 /* chromaprint.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 757F4B205975418DA7F08AB7;
+			remoteInfo = chromaprint_objs;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -40,6 +56,7 @@
 		F31F2CDD1E2C4B710034F8F7 /* VinylScrobblerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VinylScrobblerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31F2CE11E2C4B710034F8F7 /* VinylScrobblerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VinylScrobblerTests.m; sourceTree = "<group>"; };
 		F31F2CE31E2C4B710034F8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F31F2CEC1E2C4B830034F8F7 /* chromaprint.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = chromaprint.xcodeproj; path = chromaprint/chromaprint.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F31F2CFE1E2C50E90034F8F7 /* libchromaprint_objs.a in Frameworks */,
+				F31F2CFB1E2C4D5D0034F8F7 /* libchromaprint.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +82,7 @@
 		F31F2CBB1E2C4B710034F8F7 = {
 			isa = PBXGroup;
 			children = (
+				F31F2CEC1E2C4B830034F8F7 /* chromaprint.xcodeproj */,
 				F31F2CC61E2C4B710034F8F7 /* VinylScrobbler */,
 				F31F2CE01E2C4B710034F8F7 /* VinylScrobblerTests */,
 				F31F2CC51E2C4B710034F8F7 /* Products */,
@@ -109,6 +129,15 @@
 				F31F2CE31E2C4B710034F8F7 /* Info.plist */,
 			);
 			path = VinylScrobblerTests;
+			sourceTree = "<group>";
+		};
+		F31F2CED1E2C4B830034F8F7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F31F2CF71E2C4B830034F8F7 /* libchromaprint.dylib */,
+				F31F2CF91E2C4B830034F8F7 /* libchromaprint_objs.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,6 +211,12 @@
 			mainGroup = F31F2CBB1E2C4B710034F8F7;
 			productRefGroup = F31F2CC51E2C4B710034F8F7 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F31F2CED1E2C4B830034F8F7 /* Products */;
+					ProjectRef = F31F2CEC1E2C4B830034F8F7 /* chromaprint.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				F31F2CC31E2C4B710034F8F7 /* VinylScrobbler */,
@@ -189,6 +224,24 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F31F2CF71E2C4B830034F8F7 /* libchromaprint.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = libchromaprint.dylib;
+			path = libchromaprint.1.4.2.dylib;
+			remoteRef = F31F2CF61E2C4B830034F8F7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F31F2CF91E2C4B830034F8F7 /* libchromaprint_objs.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libchromaprint_objs.a;
+			remoteRef = F31F2CF81E2C4B830034F8F7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		F31F2CC21E2C4B710034F8F7 /* Resources */ = {
@@ -263,6 +316,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -299,11 +353,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/Users/jesseditson/code/acoustid/chromaprint/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -311,6 +367,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -341,11 +398,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/Users/jesseditson/code/acoustid/chromaprint/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
