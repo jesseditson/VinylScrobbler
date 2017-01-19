@@ -14,8 +14,8 @@
 		F31F2CD41E2C4B710034F8F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F31F2CD31E2C4B710034F8F7 /* Assets.xcassets */; };
 		F31F2CD71E2C4B710034F8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31F2CD51E2C4B710034F8F7 /* LaunchScreen.storyboard */; };
 		F31F2CE21E2C4B710034F8F7 /* VinylScrobblerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F31F2CE11E2C4B710034F8F7 /* VinylScrobblerTests.m */; };
-		F31F2CFB1E2C4D5D0034F8F7 /* libchromaprint.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F31F2CF71E2C4B830034F8F7 /* libchromaprint.dylib */; };
-		F31F2CFE1E2C50E90034F8F7 /* libchromaprint_objs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F31F2CF91E2C4B830034F8F7 /* libchromaprint_objs.a */; };
+		F31F2D011E2C55EA0034F8F7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F31F2D001E2C55EA0034F8F7 /* AVFoundation.framework */; };
+		F31F2D221E2C72A30034F8F7 /* libchromaprint.1.4.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F31F2D211E2C72A30034F8F7 /* libchromaprint.1.4.2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,20 +25,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = F31F2CC31E2C4B710034F8F7;
 			remoteInfo = VinylScrobbler;
-		};
-		F31F2CF61E2C4B830034F8F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F31F2CEC1E2C4B830034F8F7 /* chromaprint.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D398DA2A084448B895D416B9;
-			remoteInfo = chromaprint;
-		};
-		F31F2CF81E2C4B830034F8F7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F31F2CEC1E2C4B830034F8F7 /* chromaprint.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 757F4B205975418DA7F08AB7;
-			remoteInfo = chromaprint_objs;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -56,7 +42,8 @@
 		F31F2CDD1E2C4B710034F8F7 /* VinylScrobblerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VinylScrobblerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31F2CE11E2C4B710034F8F7 /* VinylScrobblerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VinylScrobblerTests.m; sourceTree = "<group>"; };
 		F31F2CE31E2C4B710034F8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F31F2CEC1E2C4B830034F8F7 /* chromaprint.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = chromaprint.xcodeproj; path = chromaprint/chromaprint.xcodeproj; sourceTree = "<group>"; };
+		F31F2D001E2C55EA0034F8F7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F31F2D211E2C72A30034F8F7 /* libchromaprint.1.4.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libchromaprint.1.4.2.dylib; path = "chromaprint/src/Debug-iphoneos/libchromaprint.1.4.2.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F31F2CFE1E2C50E90034F8F7 /* libchromaprint_objs.a in Frameworks */,
-				F31F2CFB1E2C4D5D0034F8F7 /* libchromaprint.dylib in Frameworks */,
+				F31F2D221E2C72A30034F8F7 /* libchromaprint.1.4.2.dylib in Frameworks */,
+				F31F2D011E2C55EA0034F8F7 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,10 +69,10 @@
 		F31F2CBB1E2C4B710034F8F7 = {
 			isa = PBXGroup;
 			children = (
-				F31F2CEC1E2C4B830034F8F7 /* chromaprint.xcodeproj */,
 				F31F2CC61E2C4B710034F8F7 /* VinylScrobbler */,
 				F31F2CE01E2C4B710034F8F7 /* VinylScrobblerTests */,
 				F31F2CC51E2C4B710034F8F7 /* Products */,
+				F31F2CFF1E2C55EA0034F8F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,13 +118,13 @@
 			path = VinylScrobblerTests;
 			sourceTree = "<group>";
 		};
-		F31F2CED1E2C4B830034F8F7 /* Products */ = {
+		F31F2CFF1E2C55EA0034F8F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F31F2CF71E2C4B830034F8F7 /* libchromaprint.dylib */,
-				F31F2CF91E2C4B830034F8F7 /* libchromaprint_objs.a */,
+				F31F2D211E2C72A30034F8F7 /* libchromaprint.1.4.2.dylib */,
+				F31F2D001E2C55EA0034F8F7 /* AVFoundation.framework */,
 			);
-			name = Products;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +137,7 @@
 				F31F2CC01E2C4B710034F8F7 /* Sources */,
 				F31F2CC11E2C4B710034F8F7 /* Frameworks */,
 				F31F2CC21E2C4B710034F8F7 /* Resources */,
+				F31F2D281E2C75CC0034F8F7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -211,12 +199,6 @@
 			mainGroup = F31F2CBB1E2C4B710034F8F7;
 			productRefGroup = F31F2CC51E2C4B710034F8F7 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = F31F2CED1E2C4B830034F8F7 /* Products */;
-					ProjectRef = F31F2CEC1E2C4B830034F8F7 /* chromaprint.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				F31F2CC31E2C4B710034F8F7 /* VinylScrobbler */,
@@ -224,24 +206,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		F31F2CF71E2C4B830034F8F7 /* libchromaprint.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			name = libchromaprint.dylib;
-			path = libchromaprint.1.4.2.dylib;
-			remoteRef = F31F2CF61E2C4B830034F8F7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F31F2CF91E2C4B830034F8F7 /* libchromaprint_objs.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libchromaprint_objs.a;
-			remoteRef = F31F2CF81E2C4B830034F8F7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		F31F2CC21E2C4B710034F8F7 /* Resources */ = {
@@ -262,6 +226,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F31F2D281E2C75CC0034F8F7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export DYLIB=libchromaprint.1.dylib\n\nmkdir -p \"$TARGET_BUILD_DIR/$TARGET_NAME.app/Frameworks\"\n\ncp -f \"$SRCROOT/chromaprint/src/Debug-iphoneos/$DYLIB\" \"$TARGET_BUILD_DIR/$TARGET_NAME.app/Frameworks\"\n\ninstall_name_tool -change /Users/jesseditson/code/jesseditson/VinylScrobbler/chromaprint/src/Debug-iphoneos/$DYLIB @rpath/$DYLIB \"$TARGET_BUILD_DIR/$TARGET_NAME.app/$PRODUCT_NAME\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F31F2CC01E2C4B710034F8F7 /* Sources */ = {
@@ -415,6 +395,10 @@
 				DEVELOPMENT_TEAM = 9E22QU7D5A;
 				INFOPLIST_FILE = VinylScrobbler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/chromaprint/src/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jesseditson.VinylScrobbler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -427,6 +411,10 @@
 				DEVELOPMENT_TEAM = 9E22QU7D5A;
 				INFOPLIST_FILE = VinylScrobbler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/chromaprint/src/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jesseditson.VinylScrobbler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
