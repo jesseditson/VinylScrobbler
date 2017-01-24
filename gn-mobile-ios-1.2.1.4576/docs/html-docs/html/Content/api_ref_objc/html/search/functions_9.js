@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['label',['label',['../interface_gn_album.html#ae835245010ff59edb68b10af7a28d079',1,'GnAlbum']]],
+  ['language',['language',['../interface_gn_album.html#a878231868819488acc98690aae5a84ad',1,'GnAlbum::language()'],['../interface_gn_locale_info.html#a4042983905d818f3430fa907958853fc',1,'GnLocaleInfo::language()'],['../interface_gn_name.html#a4b88337afc3e2670f62ca7d7215e1a9e',1,'GnName::language()'],['../interface_gn_title.html#a37f48e650436050b82add0e48f1c5a20',1,'GnTitle::language()']]],
+  ['language_3a',['language:',['../interface_gn_list.html#a28fe267b2bb0ddfec371c0984dd68a0f',1,'GnList']]],
+  ['languagecode',['languageCode',['../interface_gn_album.html#a96b63a3cab4ff3919bc92057abbc6733',1,'GnAlbum::languageCode()'],['../interface_gn_name.html#acaef85dabfbb83129a201b7c5d951bfd',1,'GnName::languageCode()'],['../interface_gn_title.html#a4986559aa6bc36c1125800d0d236447e',1,'GnTitle::languageCode()']]],
+  ['layouttype_3a',['layoutType:',['../interface_gn_moodgrid_presentation.html#a168e6c972f0138a6f4968c5b5cfa2fd2',1,'GnMoodgridPresentation']]],
+  ['level_3a',['level:',['../interface_gn_list_element.html#a80c924a7c30e674121bc701f6ad12a2f',1,'GnListElement']]],
+  ['levelcount_3a',['levelCount:',['../interface_gn_list.html#aabb6b7ca12735d246f285f21ba1a22c4',1,'GnList']]],
+  ['listelements_3a',['listElements:',['../interface_gn_list.html#a1d4b12e009b3ec5cb0460a3557d6dbe0',1,'GnList']]],
+  ['listupdateneeded_3a',['listUpdateNeeded:',['../protocol_gn_system_events_delegate-p.html#a279e990e875696d154c99b32a2951f27',1,'GnSystemEventsDelegate-p']]],
+  ['loadserializeduser_3a',['loadSerializedUser:',['../protocol_gn_user_store_delegate-p.html#af678f53c0c3ae27706bd19589be603a3',1,'GnUserStoreDelegate-p']]],
+  ['loadwithcollectionname_3aerror_3a',['loadWithCollectionName:error:',['../interface_gn_playlist_storage.html#a532bf37aa56cbd660ddb3e5f6a057da9',1,'GnPlaylistStorage']]],
+  ['locale_3aerror_3a',['locale:error:',['../interface_gn_data_object.html#a6a578d03047be5ac4e123b9e125fed02',1,'GnDataObject']]],
+  ['localeinformation',['localeInformation',['../interface_gn_locale.html#a8dc982329078f32cbc13614eea6c5498',1,'GnLocale']]],
+  ['localesstore',['localesStore',['../interface_gn_manager.html#a0f693526a15adbb9a60d2fdd8480e2a6',1,'GnManager']]],
+  ['localeupdateneeded_3a',['localeUpdateNeeded:',['../protocol_gn_system_events_delegate-p.html#acc01c278f3f65da9541b4337145947cb',1,'GnSystemEventsDelegate-p']]],
+  ['location_3aerror_3a',['location:error:',['../interface_gn_playlist_storage.html#a10d8c2195a0398c1ee91b949c5a7164a',1,'GnPlaylistStorage::location:error:()'],['../interface_gn_store_ops.html#ac21ec9b2a4d27be491bc28a04569bf2a',1,'GnStoreOps::location:error:()']]],
+  ['logmessage_3amessagetype_3aerrorcode_3amessage_3a',['logMessage:messageType:errorCode:message:',['../protocol_gn_log_events_delegate-p.html#a9fb3334956789f9d92b476768eb006cf',1,'GnLogEventsDelegate-p']]],
+  ['lookupdata_3abenable_3aerror_3a',['lookupData:bEnable:error:',['../interface_gn_music_id_options.html#a7afdd0c45cc2f64e1309d0a1b38cd8de',1,'GnMusicIdOptions']]],
+  ['lookupdata_3aenable_3aerror_3a',['lookupData:enable:error:',['../interface_gn_music_id_file_options.html#a1753e80f25fbbb1cf774c3d17fbdf772',1,'GnMusicIdFileOptions::lookupData:enable:error:()'],['../interface_gn_music_id_stream_options.html#a22c3a411f0dffe382af4f2334a13b53b',1,'GnMusicIdStreamOptions::lookupData:enable:error:()']]],
+  ['lookupmode_3aerror_3a',['lookupMode:error:',['../interface_gn_music_id_file_options.html#a0ceb7a253985150c80e35971a1edc347',1,'GnMusicIdFileOptions::lookupMode:error:()'],['../interface_gn_music_id_options.html#af06719801ae755699ad8e6718825caa3',1,'GnMusicIdOptions::lookupMode:error:()'],['../interface_gn_music_id_stream_options.html#add106b88b076b7625e8e716d7c0dccef',1,'GnMusicIdStreamOptions::lookupMode:error:()'],['../interface_gn_user_options.html#a8cbc5c166c5131fb984003e14409010c',1,'GnUserOptions::lookupMode:error:()']]]
+];

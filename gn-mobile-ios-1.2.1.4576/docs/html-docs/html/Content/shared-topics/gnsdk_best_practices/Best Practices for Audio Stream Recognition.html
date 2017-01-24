@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Implementing Applications (All Platforms)|Best Practices and Design Requirements">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>UI Best Practices for Audio Stream Recognition</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Resources/Stylesheets/BookStyles.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../index.html#shared-topics/gnsdk_best_practices/Best Practices for Audio Stream Recognition.html">Open topic with navigation</a>
+        </p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Implementing Applications (All Platforms)</span><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Best Practices and Design Requirements.html">Best Practices and Design Requirements</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Audio Stream Recognition</span>
+        </div>
+        <h1><a name="kanchor515"></a>UI Best Practices for Audio Stream Recognition</h1>
+        <p><a name="kanchor516"></a>The following are recommended best practices for applications that recognize streaming audio. Gracenote periodically conducts analysis on its <MadCap:conditionalText data-mc-conditions="Default.ProdMobileAnyPlatform,Default.ProdEntourageAnyPlatform,Default.ProdDesktop"><a name="kanchor517"></a>MusicID-Stream </MadCap:conditionalText> product to evaluate its usage and determine if there are ways we can make it even better. Part of this analysis is determining why some  recognition queries do not find a match.</p>
+        <p>Consistently Gracenote finds that the majority of failing queries contain an audio sample of silence, talking, humming, singing, whistling or live music. These queries fail because the Gracenote <MadCap:conditionalText data-mc-conditions="Default.ProdMobileAnyPlatform,Default.ProdEntourageAnyPlatform,Default.ProdDesktop">MusicID-Stream </MadCap:conditionalText> service can only match commercially released music.</p>
+        <p>Such queries are shown to usually originate from applications that do not provide good end user instructions on how to correctly use the <MadCap:conditionalText data-mc-conditions="Default.ProdMobileAnyPlatform,Default.ProdEntourageAnyPlatform,Default.ProdDesktop">MusicID-Stream </MadCap:conditionalText> service. Therefore Gracenote recommends application developers consider incorporating end user instructions into their applications from the beginning of the design phase. This section describes the Gracenote recommendations for instructing end users on how to use the <MadCap:conditionalText data-mc-conditions="Default.ProdMobileAnyPlatform,Default.ProdEntourageAnyPlatform,Default.ProdDesktop">MusicID-Stream </MadCap:conditionalText> service in order to maximize recognition rates and have a more satisfied user base.</p>
+        <p>This section is specifically targeted to applications running on a user's cellular handset, tablet computer, or similar portable device, although end user instructions should be considered for all applications using <MadCap:conditionalText data-mc-conditions="Default.ProdMobileAnyPlatform,Default.ProdEntourageAnyPlatform,Default.ProdDesktop">MusicID-Stream </MadCap:conditionalText>. Not all recommendations listed here are feasible for every application. Consider them options for improving your application and the experience of your end users.</p>
+        <h2>Provide Clear and Accessible Instructions</h2>
+        <p>Most failed recognitions are due to incorrect operation by the user. Provide clear and concise instructions to help the user correctly operate the application to result in a higher match rate and a better user experience.For example:</p>
+        <ul>
+            <li value="1">Use pictures instead of text</li>
+            <li value="2">Provide a section in the device user manual (where applicable)</li>
+            <li value="3">Provide a help section within the application</li>
+            <li value="4">Include interactive instructions embedded within the flow of the application. For example, prompt the user to hold the device to the audio source.</li>
+            <li value="5"> Use universal street sign images with written instructions to guide the user.</li>
+        </ul>
+        <h2>Provide a Demo Animation</h2>
+        <p>Provide a small, simple animation that communicates how to use the application. Make this animation accessible at all times from the Help section.</p>
+        <h2 data-mc-conditions="">Display a Progress Indicator During Recognition</h2>
+        <p data-mc-conditions="">When listening to audio, the application can receive status updates. The status updates indicate what percentage of the recording is completed. Use this information to display a progress bar (indicator) to notify the user. </p>
+        <h2>Use Animations During Recognition</h2>
+        <p>Display a simple image or animation that shows how to properly perform audio recognition, such as holding the device near the audio source if applicable.</p>
+        <h2>Using Vibration, Tone, or Both to Indicate Recognition Complete</h2>
+        <p>The user may not see visual notifications if they are holding the recording device up to an audio source. Also, the user may pull the device away from an audio source to check if recording has completed. This may result in a poor quality recording. </p>
+        <h2>Display Help Messages for Failed Recognitions</h2>
+        <p>When a recognition attempt fails, display a help message with a hint or tip on how to best use the <MadCap:conditionalText data-mc-conditions="Default.ProdMobileAnyPlatform,Default.ProdEntourageAnyPlatform,Default.ProdDesktop">MusicID-Stream </MadCap:conditionalText> service. A concise, useful tip can persuade a user to try again. Have a selection of help messages available; show one per failed recognition attempt, but rotate which message is displayed. </p>
+        <h2><a name="kanchor518"></a>Allow the User to Provide Feedback</h2>
+        <p>When a recognition attempt fails, allow the user to submit a hint with information about what they are looking for. Based on the response, the application could return a targeted help message about the correct use of audio recognition.</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Implementing Applications (All Platforms)</span><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Best Practices and Design Requirements.html">Best Practices and Design Requirements</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Audio Stream Recognition</span>
+        </div>
+        <p class="onlineFooter"><a name="kanchor519"></a>© 2000 to present. Gracenote, Inc. All rights reserved.</p>
+        <p><a href="mailto:doc_feedback@gracenote.com?subject=Gracenote Documentation Feedback" target="_blank" title="Send comments about this topic to Gracenote Technical Publications." alt="Send comments about this topic to Gracenote Technical Publications.">How can we improve this documentation?</a>
+        </p>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkBottom"><a href="../../../index.html#shared-topics/gnsdk_best_practices/Best Practices for Audio Stream Recognition.html">Open topic with navigation</a>
+        </p>
+    </body>
+</html>

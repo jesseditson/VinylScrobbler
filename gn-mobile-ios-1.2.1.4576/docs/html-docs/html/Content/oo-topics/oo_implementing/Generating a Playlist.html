@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Implementing Applications (All Platforms)|Discovery Features">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Generating a Playlist</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Resources/Stylesheets/BookStyles.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../index.html#oo-topics/oo_implementing/Generating a Playlist.html">Open topic with navigation</a>
+        </p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Implementing Applications (All Platforms)</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbsSelf">Discovery Features</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Generating a Playlist</span>
+        </div>
+        <h1><a name="kanchor451"></a>Generating a Playlist</h1>
+        <p>You can easily integrate the <a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">Playlist<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>A set of tracks from a user’s music collection, generated according to the criteria and limits defined by a playlist generator.</span></a> SDK into your media management application. Note that your application should already have identifiers for all its media and its own metadata database. The Playlist module allows your application to create Playlists—sets of related media—from larger collections. <b><i><a name="kanchor452"></a>Collection Summaries</i></b>, that you create, are the basis for generating playlists. Collection Summaries contain attribute data about a given set of media. For Playlist operations—create, populate, store, delete, and so on.—use the <code>GnPlaylistCollection</code> class. The GNSDK supports multiple user collections and therefore multiple Collection
+Summaries.</p>
+        <p><b>To generate a Playlist:</b>
+        </p>
+        <ol>
+            <li value="1">Create a Collection Summary</li>
+            <li value="2"><a name="kanchor453"></a>Populate the Collection Summary with media objects, most likely returned from Gracenote queries</li>
+            <li value="3">(Optional) Store the Collection Summary</li>
+            <li value="4">(Optional) Load the stored Collection Summary into memory in preparation for Playlist results generation</li>
+            <li value="5"><a name="kanchor454"></a>Generate a Playlist from a Collection Summary using either the More Like This functionality or with a Playlist Description Language (PDL) statement (see the Playlist PDL Specification).</li>
+            <li value="6">Access and display Playlist results.</li>
+        </ol>
+        <h2>Creating a Collection Summary</h2>
+        <p>To create a Collection Summary, your application needs to instantiate a <code>GnPlaylistCollection</code> object:</p>
+        <p><b>C++</b>
+        </p><pre>playlist::GnPlaylistCollection myCollection;
+myCollection= playlist::GnPlaylistCollection("MyCollection");</pre>
+        <p><b>C#</b>
+        </p><pre>GnPlaylistCollection playlistCollection;
+playlistCollection = GnPlaylist.CollectionCreate("sample_collection");</pre>
+        <p><b>Java</b>
+        </p><pre>GnPlaylistCollection myCollection = new GnPlaylistCollection();</pre>
+        <p>This call creates a new, empty Collection Summary. The next step is to populate it with media items that you can use to generate Playlists.</p>
+        <p class="note"><b>Note</b>: Each new Collection Summary that you create must have a unique name. Although it is possible to create more than one Collection Summary with the same name, if these Collection Summaries are then saved to local storage, one Collection will override the other. To avoid this, ensure that Collection Summary names are unique.</p>
+        <h2><a name="PopCS"></a>Populating a Collection Summary</h2>
+        <p>To build a Collection Summary, your application needs to provide data for each media item you want it to contain. To add an item, and provide data, use the <code>GnPlaylistCollection</code>'s <code>Add</code><a name="kanchor455"></a> method. This API takes a media identifier (any application-determined unique string) and an album, track, or contributor match object. The match object should come from a recognition event using MusicID, MusicID-File, or other GNSDK module.</p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>C++</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre><a name="kanchor456"></a>
+/* Create a unique identifier for every track that is added to the playlist.
+   Ideally the ident allows for the identification of which track it is.
+   for example path/filename.ext , or an id that can be externally looked up.
+*/
+ss.str("");
+ss &lt;&lt; index &lt;&lt; "_" &lt;&lt; ntrack;
+
+/*
+    Add the the Album and Track GDO for the same ident so that we can
+    query the Playlist Collection with both track and album level attributes.
+*/
+std::string result = ss.str();
+collection.Add(result.c_str(), album);     /* Add the album*/
+collection.Add(result.c_str(), *itr);      /* Add the track*/</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>C#</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre><a name="kanchor457"></a>/* Create a unique identifier for every track that is added to the playlist.
+   Ideally, the identifier allows for the identification of which track it is.
+   for example path/filename.ext , or an id that can be externally looked up.
+*/
+string uniqueIdent = countOrdinal + "_" + trackOrdinal;playlistCollection.Add(uniqueIdent, album);
+					
+/*
+   Add the the Album and Track GDO for the same identifier so we can
+   query the Playlist Collection with both track and album level attributes.
+*/
+playlistCollection.Add(uniqueIdent, album);
+playlistCollection.Add(uniqueIdent, track);</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>Java</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre><a name="kanchor458"></a>String uniqueIdent = "";
+uniqueIdent = String.valueOf(index).concat("_").concat(String.valueOf(ntrack));
+
+/*
+ * Add the the Album and Track GDO for the same identifier so we can
+ * query the Playlist Collection with both track and album level attributes.
+ */
+gnPlaylistCollection.add(uniqueIdent, gnAlbum);
+gnPlaylistCollection.add(uniqueIdent, gnTrack);</pre>
+            </div>
+        </div>
+        <h3>Retrieving Playlist Attributes in Queries</h3>
+        <p><a name="kanchor459"></a>When creating a MusicID or MusicID-File query to populate a playlist, you must set the following query options to ensure that the appropriate Playlist attributes are returned (depending on the type of query):</p>
+        <ul>
+            <li value="1"><code>GnLookupData.kLookupDataSonicData</code>
+            </li>
+            <li value="2"><code>GnLookupData.kLookupDataPlaylist</code>
+            </li>
+        </ul>
+        <p><b>C++</b>
+        </p><pre>musicId.Options().LookupData(kLookupDataSonicData, true);
+musicId.Options().LookupData(kLookupDataPlaylist, true);</pre>
+        <h2>How Playlist Gathers Data</h2>
+        <p>When given an album match object, Playlist extracts necessary album data,  traverses to the matched track, and extracts necessary track data. Playlist stores this data for the given identifier. If the album object does not contain the matched track , no track data is collected. Playlist also gathers data from both the album and track contributors as detailed below.</p>
+        <p>When given a track match object, Playlist gathers any necessary data from the track, but it is not able to gather any album-related data (such as album title). Playlist also gathers data from the track contributors as detailed below.</p>
+        <p>When given a contributor match object (or traversing into one from an album or track), Playlist gathers the necessary data from the contributor. If the contributor is a collaboration, data from both child contributors is gathered as well.</p>
+        <p class="note">In some cases an audio track may not contain enough information to match it with a single <code>GnTrack</code> object, in such caes you application can use the available information to add it to the Collection Summary. For example if only album title or artist name information is available <code>GnMusicId</code> could be used to match a <code>GnAlbum</code> or <code>GnContributor</code> object which can then be added. Similarly if only genre information is available the Lists's subsystem could be used tomatch a <code>GnListElement</code> object which can then be added.</p>
+        <h2><a name="kanchor460"></a>Working with Local Storage</h2>
+        <p>Playlist Collection Summaries are stored entirely in heap memory. To avoid re-creating them every time your application starts you should store them persistently. You can store and manage Collection Summaries in local storage with the <code>GnPlaylistStorage</code>'s <code>Store</code> method, which takes a <code>GnPlaylistCollection</code> object. <b><a name="kanchor461"></a>Prior to doing this, your application should enable a storage solution such as SQLite.</b> Alternatively, a Collection Summary can be serialized into a string that your
+application can store persistently and later use to reconstitute a Collection Summary in memory.</p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>C++</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre><a name="kanchor462"></a>/* Instantiate SQLite module to use as our database engine*/
+GnStorageSqlite storageSqlite;
+
+/* This module defaults to use the current folder when initialized, 
+** but we set it manually here to demonstrate the option.
+ */
+storageSqlite.Options().StorageLocation(".");
+
+/* Initialize Storage for storing Playlist Collections */
+playlist::GnPlaylistStorage plStorage;
+plStorage.Store(myCollection);</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>C#</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre><a name="kanchor463"></a>/* Initialize Storage for storing Playlist Collections */
+playlist::GnPlaylistStorage plStorage;
+gnStorage.StorageFolder = "../../../sample_db";
+playlist.StoreCollection(playlistCollection);</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>Java</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre>// Initialize Storage for storing Playlist Collections
+GnStorageSqlite storage = new GnStorageSqlite();
+GnPlaylistStorage plStorage = GnPlaylist.collectionStorage();
+plStorage.store(myCollection);</pre>
+            </div>
+        </div>
+        <p>Other <code>GnPlaylistStorage</code> methods include:</p>
+        <ul>
+            <li value="1"><code>Location</code>—Setting a storage location specifically for playlist collections</li>
+            <li value="2"><code>Remove</code>—Removing a collection from storage</li>
+            <li value="3"><code>Load</code>—Loading a collection from storage</li>
+            <li value="4"><code>Names</code>—Getting an iterator for names of stored collections</li>
+            <li value="5"><code>Compact</code>—Compacting storage</li>
+        </ul>
+        <h2>Generating a Playlist Using More Like This</h2>
+        <p>To streamline your Playlist implementation, you can use the <code>GnPlaylistCollection</code>'s <code>GenerateMoreLikeThis</code><a name="kanchor464"></a> method, which uses the "More Like This" algorithm to obtain results, eliminating the need to use Playlist Definition Language (PDL) statements.</p>
+        <p>You can use the <code>GnPlaylistMoreLikeThisOptions</code> class to set the following options when generating a More Like This Playlist. Please note that these options are not serialized or stored. </p>
+        <table>
+            <thead>
+                <tr style="background-color:#D3D3D3; text-align:center;">
+                    <td>Option Method</td>
+                    <td>Description</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>MaxTracks</code>
+                    </td>
+                    <td>
+                        <p>Maximum number of tracks returned in a 'More Like This' playlist. Must evaluate to a number greater than 0.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>MaxPerArtist</code>
+                    </td>
+                    <td>
+                        <p>Maximum number of tracks per artist returned in a 'More Like This' playlist. Must evaluate to a number greater than 0.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>MaxPerAlbum</code>
+                    </td>
+                    <td>
+                        <p>Maximum number of results per album returned. Must evaluate to a number greater than 0.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>RandomSeed</code>
+                    </td>
+                    <td>
+                        <p>Randomization seed value used in calculating a More Like This playlist. Must evaluate to a number greater than 0. To re-create a playlist, use the same number - different numbers create different playlists. If "0", using a random seed is disabled.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <p><a name="kanchor465"></a>A More Like This playlist can be generated from a seed, which can be any Gracenote data object. For example, you can use <code>GnMusicId</code> to perform a text search for a specific track and receive a <code>GnAlbum</code> object. Your application can provide the <code>GnAlbum</code> object as the seed.</p>
+            <p class="note">Do not use the <code>GnTrack</code> object as the seed, Playlist will use the "matched" <code>GnTrack</code> object to determine which track on the album to use.</p><b>C++</b>
+        </p><pre>/* Change the possible result set to be a maximum of 30 tracks. */
+collection.MoreLikeThisOptions().MaxTracks(30);
+			
+/* Change the max per artist to be 20 */
+collection.MoreLikeThisOptions().MaxPerArtist(20);
+			
+/* Change the max per album to be 5 */
+collection.MoreLikeThisOptions().MaxPerAlbum(5);</pre>
+        <p>To generate a More Like This playlist, call the <code>GnPlaylistCollection</code>'s <code>GenerateMoreLikeThis</code> method with a user object handle and a Gracenote data object, such as the object of the track that is currently playing.</p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>C++</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre>
+/* Generating more like this Playlist */
+/* Create seed data to generate more like this playlist*/
+/*
+ * A seed gdo can be any recognized media gdo.
+ * In this example, we are using a gdo from a track in the playlist collection summary,
+ * randomly selecting the 5th element
+ */
+playlist::GnPlaylistIdentifier ident      = collection.MediaIdentifiers().at(4).next();
+playlist::GnPlaylistMetadata   seed_album = collection.<a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">Metadata<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>Data about data. For example, metadata such as the artist, title, and other information about a piece of digital audio such as a song recording. </span></a>(user, ident);
+playlist::GnPlaylistResult resultMoreLikeThis = collection.GenerateMoreLikeThis(user, seed_album, topColl));
+</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>C#</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre>/*
+ * A seed gdo can be any recognized media gdo.
+ * In this example we are using the a gdo from a random track in the playlist collection summary
+ */
+GnPlaylistIdentifier identifier = playlistCollection.MediaIdentifiers.at(3).Current;
+GnPlaylistMetadata data = playlistCollection.Metadata(user, identifier);
+playlistCollection.MoreLikeThisOptionSet(GnPlaylistCollection.GenerateMoreLikeThisOption.kMoreLikeThisMaxPerAlbum, 5);
+GnPlaylistResult playlistResult = playlistCollection.GenerateMoreLikeThis(user, data);
+</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>Java</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre>GnPlaylistMetadata getSeedData( GnUser gnUser, GnPlaylistCollection collection ) throws GnException
+{
+   // Create seed data to generate more like this playlist
+   // A seed gdo can be any recognized media gdo.
+   // In this example we are using the a gdo from a track in the playlist collection summary
+   // In this case , randomly selecting the 5th element
+   GnPlaylistIdentifier ident      = collection.mediaIdentifiers().at(4).next();
+   GnPlaylistMetadata   seedAlbum  = collection.metadata( gnUser, ident );
+   return seedAlbum;
+}
+					
+//...
+					
+// Set options
+collection.options().moreLikeThis( GnPlaylistMoreLikeThisOption.kMoreLikeThisMaxTracks, 30 );
+collection.options().moreLikeThis( GnPlaylistMoreLikeThisOption.kMoreLikeThisMaxPerArtist, 10 );
+collection.options().moreLikeThis( GnPlaylistMoreLikeThisOption.kMoreLikeThisMaxPerAlbum, 5 );
+									
+GnPlaylistResult resultCustomMoreLikeThis = collection.generateMoreLikeThis( gnUser, getSeedData( gnUser, collection ) );</pre>
+            </div>
+        </div>
+        <h2><a name="kanchor466"></a>Generating a Playlist Using PDL (Playlist Description Language)</h2>
+        <p><a name="kanchor467"></a>The GNSDK Playlist Definition Language (PDL) is a query syntax, similar to Structured Query Language (SQL), that enables flexible custom playlist generation using human-readable text strings. PDL allows developers to dynamically create custom playlists. By storing individual PDL statements, applications can create and manage multiple preset and user playlists for later use.</p>
+        <p>PDL statements express the playlist definitions an application uses to determine what items are included in resulting playlists. PDL supports logic operators, operator precedence, and in-line arithmetic. PDL is based on Structured Query Language (SQL). This section assumes you understand SQL and can write SQL statements.</p>
+        <p class="note"><b>Note</b>: Before using PDL statements, carefully consider if the provided More Like This functionality meets your design requirements. More Like This functionality eliminates the need to create and validate PDL statements.</p>
+        <p>To generate a playlist using PDL, you can use the <code>GnPlaylistCollections</code>'s <code>GeneratePlaylist</code> method which takes a PDL statement as a string and returns <code>GnPlaylistResult</code> objects.</p>
+        <p>To understand how to create a PDL statement, see the <i>Playlist PDL Specification</i> article.</p>
+        <h2><a name="kanchor468"></a>Accessing Playlist Results</h2>
+        <p>When you generate a Playlist from a Collection Summary, using either More Like This or executing a PDL statement, results are returned in a <code>GnPlaylistResult</code> object.</p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>C++</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre><a name="kanchor469"></a>/*-----------------------------------------------------------------------------
+ *  display_playlist_results
+ */
+void display_playlist_results(GnUser&amp; user, playlist::GnPlaylistCollection&amp; collection, playlist::GnPlaylistResult&amp; result)
+{
+   /* Generated playlist count */
+   int resultCount = result.Identifiers().count();
+
+   printf("Generated Playlist: %d\n", resultCount);
+   playlist::result_iterator itr = result.Identifiers().begin();
+
+   for (; itr != result.Identifiers().end(); ++itr)
+   {
+      playlist::GnPlaylistMetadata data = collection.Metadata(user, *itr);
+
+      printf("Ident '%s' from Collection '%s':\n"
+             "\tGN_AlbumName  : %s\n"
+             "\tGN_ArtistName : %s\n"
+             "\tGN_Era        : %s\n"
+             "\tGN_<a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">Genre<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>A categorization of a musical composition characterized by a particular style.</span></a>      : %s\n"
+             "\tGN_Origin     : %s\n"
+             "\tGN_<a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">Mood<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>Track-level perceptual descriptor of a piece of music, using emotional terminology that a typical listener might use to describe the audio track; includes hierarchical categories of increasing granularity. See Sonic Attributes.</span></a>       : %s\n"
+             "\tGN_<a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">Tempo<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>Track-level descriptor of the overall perceived speed or pace of the music; includes hierarchical categories of increasing granularity. See Sonic Attributes.</span></a>      : %s\n",
+             (*itr).MediaIdentifier(),
+             (*itr).CollectionName(),
+              data.AlbumName(),
+              data.ArtistName(),
+              data.Era(),
+              data.Genre(),
+              data.Origin(),
+              data.Mood(),
+              data.Tempo()
+       );
+   }
+}</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>C#</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre><a name="kanchor470"></a>private static void
+EnumeratePlaylistResults(GnUser user, GnPlaylistCollection playlistCollection, GnPlaylistResult playlistResult)
+{
+    GnPlaylistMetadata gdoAttr = null;
+    string ident = null;
+    string collectionName = null;
+    uint countOrdinal = 0;
+    uint resultsCount = 0;
+    GnPlaylistCollection tempCollection = null;
+
+    resultsCount = playlistResult.Identifiers.count();
+
+    Console.WriteLine("Generated Playlist: " + resultsCount);
+
+    GnPlaylistResultIdentEnumerable playlistResultIdentEnumerable = playlistResult.Identifiers;
+    foreach (GnPlaylistIdentifier playlistIdentifier in playlistResultIdentEnumerable)
+    {
+        collectionName = playlistIdentifier.CollectionName;
+        ident = playlistIdentifier.MediaIdentifier;
+
+        Console.Write("    " + ++countOrdinal + ": " + ident + " Collection Name:" + collectionName);
+
+        /* The following illustrates how to get a collection handle
+           from the collection name string in the results enum function call.
+           It ensures that Joined collections as well as non joined collections will work with minimal overhead.
+        */
+        tempCollection = playlistCollection.JoinSearchByName(collectionName);
+
+        gdoAttr = tempCollection.Metadata(user, playlistIdentifier);
+
+        PlaylistGetAttributeValue(gdoAttr);
+
+    }
+}
+					
+private static void
+PlaylistGetAttributeValue(GnPlaylistMetadata gdoAttr)
+{
+    /* Album name */
+    if (gdoAttr.AlbumName != "")
+        Console.WriteLine("\n\t\tGN_AlbumName:" + gdoAttr.AlbumName);
+
+    /* Artist name */
+    if (gdoAttr.ArtistName != "")
+        Console.WriteLine("\t\tGN_ArtistName:" + gdoAttr.ArtistName);
+
+    /* Artist Type */
+    if (gdoAttr.ArtistType != "")
+        Console.WriteLine("\t\tGN_ArtistType:" + gdoAttr.ArtistType);
+
+    /*Artist Era */
+    if (gdoAttr.Era != "")
+        Console.WriteLine("\t\tGN_Era:" + gdoAttr.Era);
+
+    /*Artist Origin */
+    if (gdoAttr.Origin != "")
+        Console.WriteLine("\t\tGN_Origin:" + gdoAttr.Origin);
+
+    /* Mood */
+    if (gdoAttr.Mood != "")
+        Console.WriteLine("\t\tGN_Mood:" + gdoAttr.Mood);
+
+    /*Tempo*/
+    if (gdoAttr.Tempo != "")
+        Console.WriteLine("\t\tGN_Tempo:" + gdoAttr.Tempo);
+}</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>Java</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre><a name="kanchor471"></a>private static void enumeratePlaylistResults(
+    GnUser user,
+    GnPlaylistCollection playlistCollection,
+    GnPlaylistResult playlistResult
+) throws GnException {
+    int countOrdinal = 0;
+    GnPlaylistMetadata data = null;
+    GnPlaylistCollection tempCollection = null;
+    String collectionName = null;
+    System.out.println("Generated Playlist: " + playlistResult.identifiers().count());
+
+    GnPlaylistResultIdentIterator gnPlaylistResultIdentIterator = playlistResult.identifiers().begin();
+
+    /* Iterate through results */
+	while (gnPlaylistResultIdentIterator.hasNext()) {
+        GnPlaylistIdentifier playlistIdentifier = gnPlaylistResultIdentIterator.next();
+			
+        collectionName = playlistIdentifier.collectionName();
+			
+        System.out.println("    "+ ++countOrdinal +": "+playlistIdentifier.mediaIdentifier()+
+                                " Collection Name:"+playlistIdentifier.collectionName());
+			
+        /* The following illustrates how to get a collection handle
+           from the collection name string in the results enum function call.
+           It ensures that Joined collections as well as non joined collections will work with minimal overhead.
+        */
+        tempCollection = playlistCollection.joinSearchByName(collectionName);
+
+        data = tempCollection.metadata(user, playlistIdentifier);
+			
+        playlistGetAttributeValue(data);
+    }
+}
+					
+private static void playlistGetAttributeValue(GnPlaylistMetadata data) {
+		
+    /* Album name */
+    if (data.albumName() != "" &amp;&amp; data.albumName() != null)
+        System.out.println("\t\tGN_AlbumName:" + data.albumName());
+
+    /* Artist name */
+    if (data.artistName() != "" &amp;&amp; data.artistName() != null)
+        System.out.println("\t\tGN_ArtistName:" + data.artistName());
+
+    /* Artist Type */
+    if (data.artistType() != "" &amp;&amp; data.artistType() != null)
+        System.out.println("\t\tGN_ArtistType:" + data.artistType());
+
+    /*Artist Era */
+    if (data.era() != "" &amp;&amp; data.era() != null)
+        System.out.println("\t\tGN_Era:" + data.era());
+
+    /*Artist Origin */
+    if (data.origin() != "" &amp;&amp; data.origin() != null)
+        System.out.println("\t\tGN_Origin:" + data.origin());
+
+    /* Mood */
+    if (data.mood() != "" &amp;&amp; data.mood() != null)
+        System.out.println("\t\tGN_Mood:" + data.mood());
+
+    /*Tempo*/
+    if (data.tempo() != "" &amp;&amp; data.tempo() != null)
+        System.out.println("\t\tGN_Tempo:" + data.tempo());
+}</pre>
+            </div>
+        </div>
+        <h2>Working with Multiple Collection Summaries</h2>
+        <p>Creating a playlist across multiple collections can be accomplished by using joins. Joins allow you to combine multiple collection summaries at run-time, so that they can be treated as one collection by the playlist generation functions. Joined collections can be used to generate More Like This and PDL-based playlists.</p>
+        <p>For example, if your application has created a playlist based on one device (collection 1), and another device is plugged into the system (collection 2), you might want to create a playlist based on both of these collections. This can be accomplished using one of the <code>GnPlaylistCollection</code> join methods.</p>
+        <p class="note">Joins are run-time constructs for playlist generation that support seamless identifier enumeration across all contained collections. They do not directly support the addition or removal of data objects, synchronization, or serialization across all collections in a join. To perform any of these operations, you can use the join management functions to access the individual collections and operate on them separately.</p>
+        <p>To remove a collection from a join, call the <code>GnPlaylistCollection</code>'s <code>JoinRemove</code> method.</p>
+        <h3><a name="kanchor472"></a>Join Performance and Best Practices</h3>
+        <p>Creating a join is very efficient and has minimal CPU and memory requirements. When collections are joined, GNSDK internally sets references between them, rather than recreating them. Creating, deleting, and recreating joined collections when needed can be an effective and high-performing way to manage collections.</p>
+        <p>The original handles for the individual collections remain functional, and you can continue to operate on them in tandem with the joined collection, if needed. If you release an original handle for a collection that has been entered into a joined collection, the joined collections will continue to be functional as long as the collection handle representing the join remains valid.</p>
+        <p>A good practice for managing the joining of collections is to create a new collection handle that represents the join, and then join all existing collections into this handle. This helps remove ambiguity as to which original collection is the parent collection representing the join.</p>
+        <h2>Synchronizing Collection Summaries</h2>
+        <p>Collection summaries must be refreshed whenever items in the user's media collection are modified. For example, if you've created a collection summary based on the media on a particular device, and the media on that device changes, your application must synchronize the Collection Summary.</p>
+        <p>To synchronize a collection summary to physical media:</p>
+        <ol>
+            <li value="1"><b>Iterate the physical media</b> — Add all existing (current and new) unique identifiers, using the <code>GnPlaylistCollection</code>'s <code>SyncProcessAdd</code> method. This can be done in a loop.</li>
+            <li value="2"><b>Process the collection</b> — Call the <code>GnPlaylistCollection</code>'s <code>SyncProcessExecute</code> method to process the current and new identifiers and using the callback function to add or remove identifiers to or from the Collection Summary.</li>
+        </ol>
+        <h3><a name="kanchor473"></a>Iterating the Physical Media</h3>
+        <p>The first step in synchronizing is to iterate through the physical media, calling the <code>GnPlaylistCollection</code>'s <code>SyncProcessAdd</code> method for each media item. For each media item, pass the unique identifier associated with the item to the method. The unique identifiers used must match the identifiers that were used to create the Collection Summary initially.</p>
+        <h3>Processing the Collection</h3>
+        <p>After preparing a Collection Summary for synchronization using the <code>GnPlaylistCollection</code>'s <code>SyncProcessAdd</code> method, call the <code>GnPlaylistCollection</code>'s <code>SyncProcessExecute</code> method to synchronize the Collection Summary's data. During processing, the callback function will be called for each difference between the physical media and the collection summary. This means the callback function will be called once for each new media item, and once for each media item that has been deleted from the collection. The callback function should add new identifiers or delete missing identifiers from the Collection Summary. For more information on adding items, see <a href="#PopCS">Populating a Collection Summary</a>. To remove items, use the <code>GnPlaylistCollection</code>'s <code>Remove</code> method.</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Implementing Applications (All Platforms)</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbsSelf">Discovery Features</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Generating a Playlist</span>
+        </div>
+        <p class="onlineFooter"><a name="kanchor474"></a>© 2000 to present. Gracenote, Inc. All rights reserved.</p>
+        <p><a href="mailto:doc_feedback@gracenote.com?subject=Gracenote Documentation Feedback" target="_blank" title="Send comments about this topic to Gracenote Technical Publications." alt="Send comments about this topic to Gracenote Technical Publications.">How can we improve this documentation?</a>
+        </p>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkBottom"><a href="../../../index.html#oo-topics/oo_implementing/Generating a Playlist.html">Open topic with navigation</a>
+        </p>
+    </body>
+</html>

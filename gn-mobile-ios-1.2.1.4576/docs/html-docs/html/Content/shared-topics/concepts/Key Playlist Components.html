@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Concepts|Discovery Features|Playlists">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Key Playlist Components</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Resources/Stylesheets/BookStyles.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../index.html#shared-topics/concepts/Key Playlist Components.html">Open topic with navigation</a>
+        </p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Concepts</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbsSelf">Discovery Features</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbsSelf">Playlists</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Key Components</span>
+        </div>
+        <h1><a name="kanchor164"></a>Key Playlist Components</h1>
+        <p><a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">Playlist<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>A set of tracks from a user’s music collection, generated according to the criteria and limits defined by a playlist generator.</span></a> operates on several key components. The <span class="GNVariablesProductName"><a name="kanchor165"></a>GNSDK for Mobile</span> Playlist module provides functions to implement and manage the following key components within your application.</p>
+        <h2><a name="kanchor166"></a>Media metadata: Metadata of the media items (or files)</h2>
+        <p>The media may be on MP3s on a device, or a virtual collection hosted on a server. Each media item must have a unique identifier, which is application-defined.</p>
+        <p>Playlist requires recognition results from <span class="GNVariablesProductName">GNSDK for Mobile</span> for operation, and consequently must be implemented with one or both of <span class="GNVariablesProductName">GNSDK for Mobile</span><a name="kanchor167"></a>'s music identification modules, MusicID and MusicID-File.</p>
+        <h2><a name="kanchor168"></a>Attributes: Characteristics of a media item, such as Mood or Tempo</h2>
+        <p><a name="kanchor169"></a>Attributes are Gracenote-delivered string data that an application can display; for example, the <a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">Mood<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>Track-level perceptual descriptor of a piece of music, using emotional terminology that a typical listener might use to describe the audio track; includes hierarchical categories of increasing granularity. See Sonic Attributes.</span></a> attribute Soulful Blues.</p>
+        <p>When doing recognition queries, if the results will be used with Playlist, set the ‘enable playlist’ query option to ensure proper data is retrieved for the result (GNSDK_MUSICID_OPTION_ENABLE_PLAYLIST or GNSDK_MUSICIDFILE_OPTION_ENABLE_PLAYLIST).</p>
+        <h2><a name="Unique"></a><a name="kanchor170"></a>Unique Identifiers</h2>
+        <p><a name="kanchor171"></a>When adding media to a collection summary, an application provides a unique identifier and a GDO which contains the metadata for the identifier.</p>
+        <p class="note">For object-oriented applications, for example, those written in C++, GDOs are the same thing as GnDataObjects. All object-oriented response objects are derived from GnDataObject.</p>
+        <p><a name="kanchor172"></a>The identifier is a value that allows the application to identify the physical media being referenced. The identifier is not interpreted by Playlist; it is only returned to the application in Playlist results. An identifier is generally application-dependent. For example, a desktop application typically uses a full path to a file name for an identifier, while an online application typically uses a database key. The media GDO should contain relevant metadata for the media referenced by the identifier. In most cases the GDO comes from a recognition event for the respective media (such as from MusicID). Playlist will take whatever metadata is relevant for playlist generation from the given GDO. For best results, Gracenote recommends giving Album Type GDOs that have matched tracks to this function; Track Type GDOs also work well. Other GDOs are supported, but most other types lack information for good Playlist generation.</p>
+        <h2><a name="kanchor173"></a>Collection Summary</h2>
+        <p>A collection summary contains the distilled information <span class="GNVariablesProductName">GNSDK for Mobile</span> Playlist uses to generate playlists for a set of media.</p>
+        <p>Collection summaries must be created and populated before Playlist can use them for playlist generation. Populating collection summaries involves passing a GDO from another <span class="GNVariablesProductName">GNSDK for Mobile</span> identification event (for example, from MusicID)  along with a unique identifier to Playlist. Collection Summaries can be stored so they do not need to be reconstructed before every use.</p>
+        <h2><a name="kanchor174"></a>Storage</h2>
+        <p>The application can store and manage collection summaries in local storage.</p>
+        <h2><a name="kanchor175"></a>Seed</h2>
+        <p><a name="kanchor176"></a>A seed is the GDO of a media item in the collection summary used as input criteria for playlist generation. A seed is used to generate More Like This results, or in custom PDL statements. For example, the seed could be the GDO of a particular track that you'd like to use to generate More Like This results.</p>
+        <h2>Playlist generation</h2>
+        <p><span class="GNVariablesProductName">GNSDK for Mobile</span> provides two Playlist generation functions: a general function for generating any playlist, gnsdk_playlist_generate_playlist(), and a specific function for generating a playlist that uses the Gracenote More Like This algorithm, gnsdk_playlist_generate_morelikethis().</p>
+        <p class="note"><span class="note">Note:</span> Gracenote recommends streamlining your Playlist implementation by using the provided More Like This™ function, gnsdk_playlist_generate_morelikethis(), which uses the More Like This algorithm to generate optimal playlist results and eliminates the need to create and validate PDL statements.</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Concepts</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbsSelf">Discovery Features</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbsSelf">Playlists</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Key Components</span>
+        </div>
+        <p class="onlineFooter"><a name="kanchor177"></a>© 2000 to present. Gracenote, Inc. All rights reserved.</p>
+        <p><a href="mailto:doc_feedback@gracenote.com?subject=Gracenote Documentation Feedback" target="_blank" title="Send comments about this topic to Gracenote Technical Publications." alt="Send comments about this topic to Gracenote Technical Publications.">How can we improve this documentation?</a>
+        </p>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkBottom"><a href="../../../index.html#shared-topics/concepts/Key Playlist Components.html">Open topic with navigation</a>
+        </p>
+    </body>
+</html>

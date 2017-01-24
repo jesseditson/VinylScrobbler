@@ -1,0 +1,934 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="BookStyles.css">
+
+<style type="text/css">
+table { border:1px solid #CCC; padding:5px; background-color:#D8D8D8;}
+th {background-color : #F0F0F0; color:#003366; padding:10px; text-align:center;}
+tbody tr td { padding:10px; color:#666; background-color : #fafafb; text-align:left;}
+.pad0 { padding-left:30px;}
+.pad1 { padding-left:60px;}
+.pad2 { padding-left:90px;}
+.pad3 { padding-left:120px;}
+.pad4 { padding-left:150px;}
+.pad5 { padding-left:180px;}
+.pad6 { padding-left:210px;}
+
+code {
+   font-size: 12px;
+   font-family: "Courier New", Courier;
+
+ }
+
+code.object {
+  border: 1px solid #CCCCCC;
+  white-space:pre-wrap;
+  padding:0px;
+  font-family: "Courier New", Courier;
+  background-color: #F1EDB6;
+  color:black;
+ }
+
+ tbody tr:nth-child(odd) {
+   background-color: salmon;
+}
+</style>
+<script language="javascript">
+
+var aryTop = ['acrTop', 'acrTop1', 'acrTop2', 'acrTop3', 'acrTop4'];
+var aryAd = ['ad1', 'ad2', 'ad3', 'ad4', 'ad5', 'ad6', 'ad7'];
+
+<!-- GnVideoAlbum -->
+var aryAlb = ['alb1', 'alb2', 'alb3', 'alb4', 'alb5', 'alb6', 'alb7' , 'alb8', 'alb9', 'alb10', 'alb11', 'alb12', 'alb13', 'alb14', 'alb15', 'alb16', 'alb17', 'alb18', 'alb19', 'alb20', 'alb21', 'alb22', 'alb23', 'alb24', 'alb25', 'alb26', 'alb27', 'alb28', 'alb29', 'alb30', 'alb31', 'alb32', 'alb33', 'alb34'];
+
+<!-- GnTrack -->
+var aryTrk = ['trk1', 'trk2', 'trk3', 'trk4', 'trk6', 'trk7' , 'trk8', 'trk9', 'trk10', 'trk11', 'trk12', 'trk13', 'trk14', 'trk15', 'trk16', 'trk17', 'trk18', 'trk19', 'trk20', 'trk21', 'trk22', 'trk23', 'trk24', 'trk25', 'trk26', 'trk27', 'trk28', 'trk29', 'trk30', 'trk31', 'trk32'];
+
+<!-- GnArtist -->
+var aryArt = ['art1', 'art2'];
+
+<!-- GnRole -->
+var aryRole = ['role1', 'role2'];
+
+<!-- GnAudioWork -->
+var aryAW = ['aw1', 'aw2', 'aw3', 'aw4', 'aw5', 'aw6', 'aw7', 'aw8', 'aw9', 'aw10', 'aw11', 'aw12'];
+
+<!-- GnCredit -->
+var aryCr = ['cr1', 'cr2', 'cr3'];
+
+var ary1 = ['acrF1', 'acrF2', 'acrF3', 'acrF4', 'acrF5', 'acrF6', 'acrF7', 'acrF8', 'acrF9', 'acrF10', 'acrF11'];
+
+
+
+var ary3 = ['vcF1', 'vcF2', 'vcF3', 'vcF4', 'vcF5', 'vcF6', 'vcF7', 'vcF8', 'vcF9', 'vcF10', 'vcF11', 'vcF12', 'vcF13', 'vcF14'];
+
+<!-- GnContributor -->
+var ary4 = ['vcoF1', 'vcoF2', 'vcoF3', 'vcoF4', 'vcoF5', 'vcoF6', 'vcoF7', 'vcoF8', 'vcoF9', 'vcoF10', 'vcoF11', 'vcoF12', 'vcoF13', 'vcoF14', 'vcoF15', 'vcoF21', 'vcoF22', 'vcoF23', 'vcoF24', 'vcoF25', 'vcoF26', 'vcoF27', 'vcoF28', 'vcoF29', 'vcoF31'];
+var ary6 = ['eiF1', 'eiF2', 'eiF3'];
+
+var ary8 = ['vsF1', 'vsF2', 'vsF3', 'vsF4', 'vsF5', 'vsF6', 'vsF7', 'vsF8', 'vsF9', 'vsF10', 'vsF11', 'vsF12', 'vsF16', 'vsF17', 'vsF18', 'vsF19', 'vsF20', 'vsF21', 'vsF22', 'vsF23', 'vsF24', 'vsF25', 'vsF26', 'vsF27', 'vsF28', 'vsF29', 'vsF30', 'vsF31', 'vsF32', 'vsF33', 'vsF34', 'vsF35', 'vsF36', 'vsF37', 'vsF38', 'vsF39', 'vsF40', 'vsF41', 'vsF42', 'vsF43'];
+var ary9 = ['tvaF1', 'tvaF2', 'tvaF3', 'tvaF4', 'tvaF5', 'tvaF6', 'tvaF7', 'tvaF8', 'tvaF9', 'tvaF10'];
+var ary10 = ['tvcF1', 'tvcF2', 'tvcF3', 'tvcF4', 'tvcF5', 'tvcF6', 'tvcF7', 'tvcF8', 'tvcF9', 'tvcF10', 'tvcF11', 'tvcF12', 'tvcF13', 'tvcF14', 'tvcF15'];
+var ary11 = ['tvpF1', 'tvpF2', 'tvpF3', 'tvpF4', 'tvpF5', 'tvpF6', 'tvpF7', 'tvpF8', 'tvpF9', 'tvpF10', 'tvpF11', 'tvpF12', 'tvpF13', 'tvpF14','tvpF15','tvpF16','tvpF17','tvpF18','tvpF19'];
+var ary13 = ['ratF1', 'ratF2', 'ratF3', 'ratF4', 'ratF5', 'ratF6', 'ratF7', 'ratF8', 'ratF9', 'ratF10', 'ratF11', 'ratF12', 'ratF13', 'ratF14', 'ratF15', 'ratF16', 'ratF17', 'ratF18', 'ratF19', 'ratF20', 'ratF21', 'ratF22', 'ratF23', 'ratF24', 'ratF25'];
+
+<!-- GnTitle -->
+var ary15 = ['vtF1', 'vtF2', 'vtF3', 'vtF4', 'vtF5', 'vtF6', 'vtF7', 'vtF8'];
+
+var ary16 = ['vsrF1', 'vsrF2', 'vsrF3', 'vsrF4', 'vsrF5', 'vsrF6', 'vsrF7', 'vsrF8', 'vsrF9', 'vsrF10', 'vsrF11', 'vsrF12',  'vsrF16', 'vsrF17', 'vsrF18', 'vsrF19', 'vsrF20', 'vsrF21', 'vsrF22', 'vsrF23', 'vsrF24', 'vsrF25', 'vsrF26', 'vsrF27', 'vsrF28', 'vsrF29', 'vsrF30', 'vsrF31', 'vsrF32', 'vsrF33', 'vsrF34', 'vsrF35', 'vsrF36', 'vsrF37', 'vsrF38', 'vsrF39', 'vsrF40', 'vsrF41', 'vsrF42', 'vsrF43'];
+
+<!-- GnVideoProduct -->
+var ary17 = ['prF1', 'prF2', 'prF3', 'prF4', 'prF5', 'prF6', 'prF7', 'prF8', 'prF9', 'prF10', 'prF11', 'prF12', 'prF13', 'prF14','prF15', 'prF16', 'prF17', 'prF18', 'prF19', 'prF20', 'prF21', 'prF22', 'prF23', 'prF24'];
+
+var ary23 = ['cd1', 'cd2'];
+
+<!-- GnName -->
+var ary25 = ['b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'b9'];
+
+<!-- GnContent -->
+var ary26 = ['co1', 'co2', 'co3', 'co4'];
+
+<!-- GnAsset -->
+var ary27 = ['as1', 'as2', 'as3', 'as4'];
+
+var hide=1;
+var notHide = 0;
+
+function toggle3(ary, linkID, text, override)
+{
+   var link = document.getElementById(linkID);
+   var ele  = document.getElementById(ary[0]);
+   if (override || ele.style.display == "table-row")
+   {
+      // Collapse
+
+      // display expand object icon
+     link.innerHTML = "<img src='expandFolderIcon2.jpg'><code class='object'>"+text+"</code>";
+
+
+      // hide all rows
+      for (var i = 0; i < ary.length; i++)
+      {
+  ele = document.getElementById(ary[i]);
+          ele.style.display = "none";
+      }
+
+   } // if
+   else // Expand
+   {
+       // display collapse object icon
+       link.innerHTML = "<img src='collapseFolderIcon2.jpg    '><code class='object'>"+text+"</code>";
+
+       // show all rows
+       for (var i = 0; i < ary.length; i++)
+       {
+          ele = document.getElementById(ary[i]);
+          ele.style.display = "table-row";
+       }
+
+   } // else
+ } // toggle3
+
+</script>
+</head>
+
+<body>
+
+<table id="gnresult">
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tbody>
+
+<tr style="display:table-row;" id="acrTop4">
+<td id="album" ><i<code class="object">GnAlbum</code></td>
+<td><code>Object</code></td>
+<td>Album matches. Collection of audio recordings. Provides access to album cover art when received from a query object with content enabled in lookup data. </td>
+</tr>
+<tr id="alb1" style="display:table-row;">
+<td  class="pad0" onClick="javascript:toggle3(aryArt, 'artist', 'artist', notHide);toggle3(ary25, 'name', 'name', hide);toggle3(ary4, 'contributor', 'contributor', hide);" id="artist" ><img src="expandFolderIcon2.jpg"><code class="object">artist</code></td>
+<td><code>GnArtist</code></td>
+<td>Album's artist</td>
+</tr>
+
+<tr id="art1" style="display:none;">
+<td  class="pad1" style="width:120px;" onClick="javascript:toggle3(ary4, 'contributor', 'contributor', notHide);toggle3(ary25, 'name', 'name', hide);" id="contributor" ><code> contributor</code></td>
+<td><code>GnContributor</code></td>
+<td>A Contributor refers to any person who plays a role in a Work. Actors, Directors, Producers, Narrators, and Crew are all considered a Contributor. Popular recurring Characters such as Batman, Harry Potter, or Spider-man are also considered Contributors </td>
+</tr>
+
+<tr id="vcoF21" style="display:none;">
+<td  class="pad2"><code>artistType</code></td>
+<td><code>String</code></td>
+<td>Contributor's artist type.</td>
+</tr>
+
+<tr id="vcoF1" style="display:none;">
+<td  class="pad2"><code>biography</code></td>
+<td><code>GnContent</code></td>
+<td>Contributor's biography content object. See <code>GnAlbum > content</code> for object properties.</td>
+</tr>
+
+<tr id="vcoF2" style="display:none;">
+<td  class="pad2"><code>biographyVideo</code></td>
+<td><code>String</code></td>
+<td>Contributor's biography when received from a video response.</td>
+</tr>
+
+ <tr id="vcoF3" style="display:none;">
+<td  class="pad2"><code>birthDate</code></td>
+<td><code>String</code></td>
+<td>The contributor's birth date in UTC format.</td>
+</tr>
+
+<tr id="vcoF4" style="display:none;">
+<td  class="pad2"><code>birthPlace</code></td>
+<td><code>String</code></td>
+<td>The contributor's birth place.</td>
+</tr>
+
+<tr id="vcoF22" style="display:none;">
+<td  class="pad2"><code class="object">collaborator</code></td>
+<td><code>GnContributor</code></td>
+<td>Contributor that collaborated with this contributor in the context of the returned result.  See <code>GnAlbum &gt; artist &gt; contributor</code> for object properties.</td>
+</tr>
+
+<tr id="vcoF23" style="display:none;">
+<td  class="pad2"><code>collaboratorResult</code></td>
+<td><code>Boolean</code></td>
+<td>Flag indicating if this is a collaborator result</td>
+</tr>
+
+<tr id="vcoF24" style="display:none;">
+<td  class="pad2"><code class="object">contents</code></td>
+<td><code>GnContent<br>Enumerator</code></td>
+<td>Content objects. See <code>GnAlbum > content</code> for object properties.</td>
+</tr>
+
+
+
+<tr id="vcoF5" style="display:none;">
+<td  class="pad2"><code>deathDate</code></td>
+<td><code>String</code></td>
+<td>The contributor's date of death in UTC format.</td>
+</tr>
+
+<tr id="vcoF6" style="display:none;">
+<td  class="pad2"><code>deathPlace</code></td>
+<td><code>String</code></td>
+<td>The place where the contributor died.</td>
+</tr>
+<tr id="vcoF25" style="display:none;">
+<td  class="pad2"><code>era(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Contributor's era</td>
+</tr>
+<tr id="vcoF15" style="display:none;">
+<td  class="pad2"><code class="object">externalIds</code></td>
+<td><code>GnExternalId<br>Enumerator</code></td>
+<td>External ID objects. External IDs are 3rd party IDs used to cross link this metadata to 3rd party services.
+See <code>GnAlbum > externalIDs</code> for object property descriptions.</td>
+</tr>
+<tr id="vcoF26" style="display:none;">
+<td  class="pad2"><code>genre(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Contributor's genre</td>
+</tr>
+
+<tr id="vcoF27" style="display:none;">
+<td  class="pad2"><code>gnId</code></td>
+<td><code>String</code></td>
+<td>Gracenote identifier</td>
+</tr>
+<tr id="vcoF28" style="display:none;">
+<td  class="pad2"><code>gnUId</code></td>
+<td><code>String</code></td>
+<td>Contributor's Gracenote unique Id</td>
+</tr>
+
+<tr id="vcoF29" style="display:none;">
+<td  class="pad2"><code class="object">image</code></td>
+<td><code>GnContent</code></td>
+<td>Contributor's image content object. See <code>GnAlbum > content</code> for object properties.</td>
+</tr>
+
+<tr id="vcoF14" style="display:none;">
+<td  class="pad2"><code>isFullResult</code></td>
+<td><code>Boolean</code></td>
+<td>Indicates if this is a partial or full metadata result.</td>
+</tr>
+
+
+
+<tr id="vcoF7" style="display:none;">
+<td  class="pad2"><code>mediaSpace</code></td>
+<td><code>String</code></td>
+<td>The kind of media, such as VIDEO.</td>
+</tr>
+
+
+<tr id="vcoF9" style="display:none;">
+<td  class="pad2"><code class="object">name</code></td>
+<td><code>GnName</code></td>
+<td>Contributor name object. See <code>GnAlbum &gt; artist &gt; name</code> for object properties</td>
+</tr>
+
+
+
+<tr id="vcoF10" style="display:none;">
+<td  class="pad2"><code class="object">namesOfficial</code></td>
+<td><code>GnName<br>Enumerator</code> </td>
+<td>Official name objects. See <code>GnAlbum &gt; artist &gt; name</code> for object properties</td>
+</tr>
+
+<tr id="vcoF11" style="display:none;">
+<td  class="pad2"><code class="object">namesRegional</code></td>
+<td><code>GnName<br>Enumerator</code></td>
+<td>Regional name objects. See <code>GnAlbum &gt; artist &gt; name</code> for object properties</td>
+</tr>
+
+<tr id="vcoF31" style="display:none;">
+<td  class="pad2"><code>origin(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Contributor's origin, e.g., New York City</td>
+</tr>
+
+<tr id="vcoF8" style="display:none;">
+<td  class="pad2"><code>productId</code></td>
+<td><code>String</code></td>
+<td>Product ID.</td>
+</tr>
+
+<tr id="vcoF12" style="display:none;">
+<td  class="pad2"><code>tui</code></td>
+<td><code>String</code></td>
+<td>A Gracenote acronym for  "title unique identifier". For example: "267348592". This and <code>tuiTag</code> are used for unique identification within the Gracenote service.</td>
+</tr>
+
+<tr id="vcoF13" style="display:none;">
+<td  class="pad2"><code>tuiTag</code></td>
+<td><code>String</code></td>
+<td>FA hashed representation of the <code>tui</code> property. For example: "343DFA0AAF615988C9F4AB1ECB383D00".</td>
+</tr>
+
+
+
+<tr id="art2" style="display:none;">
+<td  class="pad1" onClick="javascript:toggle3(ary25, 'name', 'name', notHide);" id="name" ><img src="expandFolderIcon2.jpg"><code class="object">name</code></td>
+<td><code>GnName</code></td>
+<td>Artist's name object.</td>
+</tr>
+
+<tr id="b1" style="display:none;">
+<td  class="pad2"><code>display</code></td>
+<td><code>String</code></td>
+<td>Display name </td>
+</tr>
+
+<tr id="b5" style="display:none;">
+<td  class="pad2"><code>family</code></td>
+<td><code>String</code></td>
+<td>Family name</td>
+</tr>
+
+<tr id="b6" style="display:none;">
+<td  class="pad2"><code>given</code></td>
+<td><code>String</code></td>
+<td>Given name</td>
+</tr>
+
+<tr id="b7" style="display:none;">
+<td  class="pad2"><code>globalId</code></td>
+<td><code>String</code></td>
+<td>Name global ID - used for transcriptions</td>
+</tr>
+
+<tr id="b8" style="display:none;">
+<td  class="pad2"><code>language</code></td>
+<td><code>String</code></td>
+<td>Name display language</td>
+</tr>
+
+<tr id="b9" style="display:none;">
+<td  class="pad2"><code>languageCode</code></td>
+<td><code>String</code></td>
+<td>Name display language 3 letter ISO code</td>
+</tr>
+
+<tr id="b2" style="display:none;">
+<td  class="pad2"><code>prefix</code></td>
+<td><code>String</code></td>
+<td>Name prefix, e.g., "The".</td>
+</tr>
+
+<tr id="b3" style="display:none;">
+<td  class="pad2"><code>sortable</code></td>
+<td><code>String</code></td>
+<td>Sortable title</td>
+</tr>
+
+<tr id="b4" style="display:none;">
+<td  class="pad2"><code>sortableScheme</code></td>
+<td><code>String</code></td>
+<td>Sortable title scheme</td>
+</tr>
+
+
+
+
+
+
+<tr id="alb2" style="display:table-row;">
+<td  class="pad0"><code>compilation</code></td>
+<td><code>String</code></td>
+<td>Album's compilation value</td>
+</tr>
+
+
+<tr id="alb3" style="display:table-row;">
+<td  class="pad0"  style="width:180px;" onClick="javascript:toggle3(ary26, 'contents', 'content(GnContentType contentType)', notHide);toggle3(ary27, 'assets', 'assets', hide);" id="contents"><img src="expandFolderIcon2.jpg"><code class="object">content(GnContentType contentType)</code></td>
+<td><code>GnContent</code></td>
+<td>Content (cover art, biography, review, etc.) object. </td>
+</tr>
+
+<tr id="co4" style="display:none;">
+<td   class="pad1" onClick="javascript:toggle3(ary27, 'assets', 'assets', notHide);" id="assets"><code class="object">assets</code></td>
+<td><code>GnAsset<br> Enumerator</code></td>
+<td>Asset objects.</td>
+</tr>
+
+<tr id="as1" style="display:none;">
+<td   class="pad2"><code>bytes</code></td>
+<td><code>Int</code></td>
+<td>Number of asset bytes</td>
+</tr>
+<tr id="as2" style="display:none;">
+<td  class="pad2"><code>dimension</code></td>
+<td><code>String</code></td>
+<td>Asset dimension</td>
+</tr>
+
+<tr id="as4" style="display:none;">
+<td   class="pad2"><code>size</code></td>
+<td><code>GnImageSize</code></td>
+<td><code>GnImageSize</code> enum. Asset pixel image size of asset, e.g., <code>kImageSize110</code> (110x110)</td>
+</tr>
+
+<tr id="as3" style="display:none;">
+<td   class="pad2"><code>url</code></td>
+<td><code>String</code></td>
+<td> URL that can be used to retrieve asset from Gracenote</td>
+</tr>
+
+<tr id="co2" style="display:none;">
+<td   class="pad1"><code class="object">contentType</code></td>
+<td><code>GnContentType</code></td>
+<td>Content type - cover art, biography, etc. </td>
+</tr>
+
+<tr id="co1" style="display:none;">
+<td   class="pad1"><code>Id</code></td>
+<td><code>String</code></td>
+<td>Identifier</td>
+</tr>
+
+<tr id="co3" style="display:none;">
+<td   class="pad1"><code>mimeType</code></td>
+<td><code>String</code></td>
+<td>Content's mime type</td>
+</tr>
+
+
+
+<tr id="alb4" style="display:table-row;">
+<td  class="pad0"><code class="object">contents</code></td>
+<td><code>GnContent<br>Enumerator</code></td>
+<td>Content (cover art, biography, review, etc.) objects. See <code>GnAlbum > content</code> for object properties.</td>
+</tr>
+<tr id="alb5" style="display:table-row;">
+<td  class="pad0"><code class="object">coverArt</code></td>
+<td><code>GnContent</code></td>
+<td>Cover art content object. See <code>GnAlbum > content</code> for object properties.</td>
+</tr>
+
+<tr id="alb34" style="display:table-row;">
+<td class="pad0" onClick="javascript:toggle3(aryCr, 'credit', 'credits', notHide);toggle3(aryRole, 'role', 'role', hide);" id="credit" ><img src="expandFolderIcon2.jpg"><code class="object">credits</code></td>
+<td><code>GnCredit<br>Enumerator<code></td>
+<td>Album credit objects.</td>
+</tr>
+
+<tr id="cr1" style="display:none;">
+<td  class="pad1"><code class="object">contributor</code></td>
+<td><code>GnContributor</code></td>
+<td>Credit's contributor.  See <code>GnAlbum &gt; artist &gt; contributor</code> for object properties.</td>
+</tr>
+<tr id="cr2" style="display:none;">
+<td  class="pad1"><code class="object">name</code></td>
+<td><code>GnName</code></td>
+<td>Credit's name, e.g., the person or company's name. See <code>GnAlbum &gt; artist &gt; name</code> for object properties.</td>
+</tr>
+<tr id="cr3" style="display:none;">
+<td  class="pad1" onClick="javascript:toggle3(aryRole, 'role', 'role', notHide);" id="role" ><img src="expandFolderIcon2.jpg"><code class="object">role</code></td>
+<td><code>GnRole</code></td>
+<td>Credit's role.  Represents the role that a contributor played in a music or video production; for example, singing, playing an instrument, acting, directing, and so on.
+For music credits, the absence of a role for a person indicates that person is the primary artist, who may have performed multiple roles. </td>
+</tr>
+
+<tr id="role1" style="display:none;">
+<td  class="pad2"><code>category</code></td>
+<td><code>String</code></td>
+<td>Role category, such as string instruments or brass instruments.</td>
+</tr>
+
+<tr id="role2" style="display:none;">
+<td  class="pad2"><code>role</code></td>
+<td><code>String</code></td>
+<td>Role's display string</td>
+</tr>
+
+
+<tr id="alb6" style="display:table-row;">
+<td  class="pad0"><code>discInSet</code></td>
+<td><code>Long</code></td>
+<td>Album's volume number in a multi-volume set.</td>
+</tr>
+<tr id="alb7" style="display:table-row;">
+<td  class="pad0" onClick="javascript:toggle3(ary6, 'extIDs', 'externalIDs', notHide);" id="extIDs" ><img src="expandFolderIcon2.jpg"><code class="object">externalIds</code></td>
+<td><code>GnExternalId<br>Enumerator</code></td>
+<td>External ID objects. External IDs are 3rd party IDs used to cross link this metadata to 3rd party services.</td>
+</tr>
+
+<tr id="eiF1" style="display:none;">
+<td  class="pad1"><code>source</code></td>
+<td><code>String</code></td>
+<td>External ID source (e.g., Amazon)</td>
+</tr>
+
+<tr id="eiF2" style="display:none;">
+<td  class="pad1"><code>type</code></td>
+<td><code>String</code></td>
+<td>External ID type, such as a UPC (Univeral Product Code)</td>
+</tr>
+
+<tr id="eiF3" style="display:none;">
+<td  class="pad1"><code>value</code></td>
+<td><code>String</code></td>
+<td>External ID value.</td>
+</tr>
+
+<tr id="alb8" style="display:table-row;">
+<td  class="pad0"><code>genre(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Album's genre, e.g., punk rock. A list/locale dependent, multi-level field. </td>
+</tr>
+<tr id="alb9" style="display:table-row;">
+<td  class="pad0"><code>globalId</code></td>
+<td><code>String</code></td>
+<td>Album's global identifier (used for transcriptions).</td>
+</tr>
+<tr id="alb10" style="display:table-row;">
+<td  class="pad0"><code>gnId</code></td>
+<td><code>String</code></td>
+<td>Album's Gracenote identifier.</td>
+</tr>
+<tr id="alb11" style="display:table-row;">
+<td  class="pad0"><code>gnUId</code></td>
+<td><code>String</code></td>
+<td>Album's Gracenote unique identifier.</td>
+</tr>
+<tr id="alb12" style="display:table-row;">
+<td  class="pad0"><code>isClassical</code></td>
+<td><code>Boolean</code></td>
+<td>Flag indicating if enhanced classical music data exists for this album.</td>
+</tr>
+<tr id="alb13" style="display:table-row;">
+<td  class="pad0"><code>isFullResult</code></td>
+<td><code>Boolean</code></td>
+<td>Flag indicating if response contains full (true) or partial (false) metadata.</td>
+</tr>
+<tr id="alb14" style="display:table-row;">
+<td  class="pad0"><code>label</code></td>
+<td><code>String</code></td>
+<td> Album's label - record company that released the album, e.g., Atlantic.</td>
+</tr>
+<tr id="alb15" style="display:table-row;">
+<td  class="pad0"><code>language</code></td>
+<td><code>String</code></td>
+<td>Display language</td>
+</tr>
+<tr id="alb16" style="display:table-row;">
+<td  class="pad0"><code>languageCode</code></td>
+<td><code>String</code></td>
+<td>Display langauge's 3-letter ISO code</td>
+</tr>
+<tr id="alb17" style="display:table-row;">
+<td  class="pad0"><code>matchScore</code></td>
+<td><code>Long</code></td>
+<td> Match confidence score for top-level match</td>
+</tr>
+<tr id="alb18" style="display:table-row;">
+<td  class="pad0"><code class="object">review</code></td>
+<td><code>GnContent</code></td>
+<td>The album's review content object.  See <code>GnAlbum > content</code> for object properties.</td>
+</tr>
+<tr id="alb19" style="display:table-row;">
+<td  class="pad0"><code>script</code></td>
+<td><code>String</code></td>
+<td>Script used by the display values as ISO 15924 code</td>
+</tr>
+<tr id="alb20" style="display:table-row;">
+<td  class="pad0"><code>tagId</code></td>
+<td><code>String</code></td>
+<td>Album's Gracenote Tag identifier (Tag ID is same as Product ID)</td>
+</tr>
+
+
+<tr id="alb21" style="display:table-row;">
+<td  class="pad0" onClick="javascript:toggle3(ary15, 'title', 'title', notHide);" id="title" ><img src="expandFolderIcon2.jpg"><code class="object">title</code></td>
+<td><code>GnTitle</code></td>
+<td>Title object of the matched result.</td>
+</tr>
+
+<tr id="vtF1" style="display:none;">
+<td  class="pad1"><code>display</code></td>
+<td><code>String</code></td>
+<td>Title display string. The title of the matched content, e.g. "Sienfeld" or "The Office" </td>
+</tr>
+
+<tr id="vtF5" style="display:none;">
+<td  class="pad1"><code>edition</code></td>
+<td><code>String</code></td>
+<td>Title edition</td>
+</tr>
+
+<tr id="vtF6" style="display:none;">
+<td  class="pad1"><code>language</code></td>
+<td><code>String</code></td>
+<td>Title display language</td>
+</tr>
+
+<tr id="vtF7" style="display:none;">
+<td  class="pad1"><code>languageCode</code></td>
+<td><code>String</code></td>
+<td>Title display language 3 letter ISO code</td>
+</tr>
+
+<tr id="vtF4" style="display:none;">
+<td  class="pad1"><code>mainTitle</code></td>
+<td><code>String</code></td>
+<td>Main title</td>
+</tr>
+
+<tr id="vtF2" style="display:none;">
+<td  class="pad1"><code>prefix</code></td>
+<td><code>String</code></td>
+<td>Video title prefix, e.g., "The".</td>
+</tr>
+
+<tr id="vtF3" style="display:none;">
+<td  class="pad1"><code>sortable</code></td>
+<td><code>String</code></td>
+<td>Sortable title</td>
+</tr>
+
+<tr id="vtF8" style="display:none;">
+<td  class="pad1"><code>sortableScheme</code></td>
+<td><code>String</code></td>
+<td>Sortable title scheme</td>
+</tr>
+
+
+<tr id="alb22" style="display:table-row;">
+<td  class="pad0"><code class="object">titleClassical</code></td>
+<td><code>GnTitle</code></td>
+<td>Title presented using Gracenote's Three Line Solution for classical track (composer/work title/movement title).  See <code>GnAlbum &gt; title</code> for object properties.</td>
+</tr>
+<tr id="alb23" style="display:table-row;">
+<td  class="pad0"><code class="object">titleRegional</code></td>
+<td><code>GnTitle</code></td>
+<td>Regional title - list/locale dependent field. See <code>GnAlbum &gt; title</code> for object properties.</td>
+</tr>
+<tr id="alb24" style="display:table-row;">
+<td  class="pad0"><code class="object">titleRegionalLocale</code></td>
+<td><code>GnTitle</code></td>
+<td>Regional locale title - list/locale dependent field. See <code>GnAlbum &gt; title</code> for object properties.</td>
+</tr>
+<tr id="alb25" style="display:table-row;">
+<td  class="pad0"><code>totalInSet</code></td>
+<td><code>Long</code></td>
+<td>Total number of volumes in album's multi-volume set.</td>
+</tr>
+<tr id="alb26" style="display:table-row;">
+<td  class="pad0" onClick="javascript:toggle3(aryTrk, 'track', 'track', notHide);toggle3(aryCr, 'credit', 'credits', hide);toggle3(aryRole, 'role', 'role', hide);toggle3(aryAW, 'awork', 'work', hide);" id="track" ><img src="expandFolderIcon2.jpg"><code class="object">track</code></td>
+<td><code>GnTrack</code></td>
+<td>Album track using the track number. A track is a song or instrumental recording. </td>
+</tr>
+<tr id="trk1" style="display:none;">
+<td  class="pad1"><code class="object">artist</code></td>
+<td><code>GnArtist</code></td>
+<td>Album's artist. See <code>GnAlbum &gt; artist</code> for object properties</td>
+</tr>
+<tr id="trk2" style="display:none;">
+<td  class="pad1"><code class="object">content(GnContentType contentType) </code></td>
+<td><code>GnContent</code></td>
+<td> Track's content, e.g., cover image, artist image, biography etc. See <code>GnAlbum > content</code> for object properties.</td>
+</tr>
+<tr id="trk3" style="display:none;">
+<td  class="pad1"><code class="object">contents</code></td>
+<td><code>GnContent<br>Enumerator</code></td>
+<td>Content (cover art, biography, review, etc.) objects. See <code>GnAlbum > content</code> for object properties.</td>
+</tr>
+<tr id="trk4" style="display:none;">
+<td  class="pad1"><code class="object">credits</code></td>
+<td><code>GnCredit<br>Enumerator<code></td>
+<td>Track credit objects. See <code>GnAlbum > credits</code> for object properties.</td>
+</tr>
+
+<tr id="trk6" style="display:none;">
+<td  class="pad1"><code>currentPosition</code></td>
+<td><code>Long</code></td>
+<td>Current position in milliseconds of the matched track.</td>
+</tr>
+<tr id="trk7" style="display:none;">
+<td  class="pad1"><code>duration</code></td>
+<td><code>Long</code></td>
+<td>Duration in milliseconds of the track (only available if this is the matched track).</td>
+</tr>
+<tr id="trk8" style="display:none;">
+<td  class="pad1"><code class="object">externalIds</code></td>
+<td><code>GnExternalId<br>Enumerator</code></td>
+<td>External ID objects. External IDs are 3rd party IDs used to cross link this metadata to 3rd party services. See <code>GnAlbum > externalIDs</code> for object property descriptions.</td>
+</tr>
+<tr id="trk9" style="display:none;">
+<td  class="pad1"><code>genre</code></td>
+<td><code>String</code></td>
+<td>Album's genre, e.g., punk rock.</td>
+</tr>
+<tr id="trk10" style="display:none;">
+<td  class="pad1"><code>gnId</code></td>
+<td><code>String</code></td>
+<td>Album's Gracenote identifier.</td>
+</tr>
+<tr id="trk11" style="display:none;">
+<td  class="pad1"><code>gnUId</code></td>
+<td><code>String</code></td>
+<td>Album's Gracenote unique identifier.</td>
+</tr>
+<tr id="trk12" style="display:none;">
+<td  class="pad1"><code>isFullResult</code></td>
+<td><code>Boolean</code></td>
+<td>Flag indicating if response contains full (true) or partial (false) metadata.</td>
+</tr>
+<tr id="trk13" style="display:none;">
+<td  class="pad1"><code>matchConfidence</code></td>
+<td><code>Long</code></td>
+<td>Confidence score (0-100) for match</td>
+</tr>
+<tr id="trk14" style="display:none;">
+<td  class="pad1"><code>matchDuration</code></td>
+<td><code>Long</code></td>
+<td>For MusicID-Stream fingerprint matches, this is the length of matched reference audio in milliseconds.</td>
+</tr>
+<tr id="trk15" style="display:none;">
+<td  class="pad1"><code>matched</code></td>
+<td><code>Boolean</code></td>
+<td>Flag indicating if this is the matched track (true)</td>
+</tr>
+<tr id="trk16" style="display:none;">
+<td  class="pad1"><code>matchedIdents</code></td>
+<td><code>GnString<br>Enumerator</code></td>
+<td>String objects.</td>
+</tr>
+<tr id="trk17" style="display:none;">
+<td  class="pad1"><code>matchLookupType</code></td>
+<td><code>String</code></td>
+<td>Track's match type - the most authoritative matching type for a given file info object.</td>
+</tr>
+<tr id="trk18" style="display:none;">
+<td  class="pad1"><code>matchPosition</code></td>
+<td><code>Long</code></td>
+<td>Position in milliseconds of where we matched in the track</td>
+</tr>
+<tr id="trk19" style="display:none;">
+<td  class="pad1"><code>matchScore</code></td>
+<td><code>Long</code></td>
+<td>Track's match score - correlation between input text and matched track</td>
+</tr>
+<tr id="trk20" style="display:none;">
+<td  class="pad1"><code>mood(GnDataLevel level) </code></td>
+<td><code>String</code></td>
+<td>Track's mood, e.g., Playful.</td>
+</tr>
+<tr id="trk21" style="display:none;">
+<td  class="pad1"><code class="object">review</code></td>
+<td><code>GnContent</code></td>
+<td>The album's review content object.  See <code>GnAlbum > content</code> for object properties.</td>
+</tr>
+<tr id="trk22" style="display:none;">
+<td  class="pad1"><code>tagId</code></td>
+<td><code>String</code></td>
+<td>Album's Gracenote Tag identifier (Tag ID is same as Product ID)</td>
+</tr>
+
+<tr id="trk32" style="display:none;">
+<td  class="pad1"><code>tempo(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Track's tempo.</td>
+</tr>
+
+<tr id="trk23" style="display:none;">
+<td  class="pad1"><code class="object">title</code></td>
+<td><code>GnTitle</code></td>
+<td>Track's official title. See <code>GnAlbum &gt; title</code> for object properties.</td>
+</tr>
+<tr id="trk24" style="display:none;">
+<td  class="pad1"><code class="object">titleClassical</code></td>
+<td><code>GnTitle</code></td>
+<td>Title presented using Gracenote's Three Line Solution for classical track (composer/work title/movement title).  See <code>GnAlbum &gt; title</code> for object properties.</td>
+</tr>
+<tr id="trk25" style="display:none;">
+<td  class="pad1"><code class="object">titleRegional</code></td>
+<td><code>GnTitle</code></td>
+<td>Regional title - list/locale dependent field. See <code>GnAlbum &gt; title</code> for object properties.</td>
+</tr>
+<tr id="trk26" style="display:none;">
+<td  class="pad1"><code class="object">titleRegionalLocale</code></td>
+<td><code>GnTitle</code></td>
+<td>Regional locale title - list/locale dependent field. See <code>GnAlbum &gt; title</code> for object properties.</td>
+</tr>
+<tr id="trk27" style="display:none;">
+<td  class="pad1"><code>trackNumber</code></td>
+<td><code>String</code></td>
+<td>Track's ordinal number on album.</td>
+</tr>
+<tr id="trk28" style="display:none;">
+<td  class="pad1"><code>tui</code></td>
+<td><code>String</code></td>
+<td> Album's Gracenote TUI. TUI is a Gracenote acronym for "title unique identifier". For example: "267348592". This and <code>tuiTag</code> are used for unique identification within the Gracenote service.</td>
+</tr>
+<tr id="trk29" style="display:none;">
+<td  class="pad1"><code>tuiTag</code></td>
+<td><code>String</code></td>
+<td>Album's Gracenote Tui Tag. A hashed representation of the <code>tui</code> property. For example: "343DFA0AAF615988C9F4AB1ECB383D00".</td>
+</tr>
+<tr id="trk30" style="display:none;">
+<td  class="pad1" onClick="javascript:toggle3(aryAW, 'awork', 'work', notHide);" id="awork" ><img src="expandFolderIcon2.jpg"><code class="object">work</code></td>
+<td><code>GnAudioWork</code></td>
+<td>Track's audio work.</td>
+</tr>
+
+<tr id="aw1" style="display:none;">
+<td  class="pad2"><code>compositionForm</code></td>
+<td><code>String</code></td>
+<td> Audio work's classical music composition form value (e.g., Symphony).</td>
+</tr>
+<tr id="aw2" style="display:none;">
+<td  class="pad2"><code class="object">credit</code></td>
+<td><code>GnCredit</code></td>
+<td>Credit object for this audio work. See <code>GnAlbum &gt; credits</code> for object properties</td>
+</tr>
+
+<tr id="aw3" style="display:none;">
+<td  class="pad2"><code>era(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Audio work's era.</td>
+</tr>
+<tr id="aw4" style="display:none;">
+<td  class="pad2"><code>genre(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Audio work's genre.</td>
+</tr>
+<tr id="aw5" style="display:none;">
+<td  class="pad2"><code>gnId</code></td>
+<td><code>String</code></td>
+<td>Audio work's Gracenote identifier</td>
+</tr>
+<tr id="aw6" style="display:none;">
+<td  class="pad2"><code>gnUId</code></td>
+<td><code>String</code></td>
+<td>Audio work's unique Gracenote identifier</td>
+</tr>
+<tr id="aw7" style="display:none;">
+<td  class="pad2"><code>origin(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Audio work's origin.</td>
+</tr>
+<tr id="aw8" style="display:none;">
+<td  class="pad2"><code>productId</code></td>
+<td><code>String</code></td>
+<td>Audio work's product ID (aka Tag ID).</td>
+</tr>
+<tr id="aw9" style="display:none;">
+<td  class="pad2"><code>tagId</code></td>
+<td><code>String</code></td>
+<td>Gracenote Tag identifier for this audio work (Tag ID is same as Product ID)</td>
+</tr>
+<tr id="aw10" style="display:none;">
+<td  class="pad2"><code class="object">title</code></td>
+<td><code>GnTitle</code></td>
+<td>Audio work's official title. See <code>GnAlbum &gt; title</code> for object properties.</td>
+</tr>
+<tr id="aw11" style="display:none;">
+<td  class="pad2"><code>tui</code></td>
+<td><code>String</code></td>
+<td>Gracenote TUI for this audio work. TUI is a Gracenote acronym for "title unique identifier". For example: "267348592". This and <code>tuiTag</code> are used for unique identification within the Gracenote service.</td>
+</tr>
+<tr id="aw12" style="display:none;">
+<td  class="pad2"><code>tuiTag</code></td>
+<td><code>String</code></td>
+<td>Gracenote TUI Tag for this audio work. A hashed representation of the <code>tui</code> property. For example: "343DFA0AAF615988C9F4AB1ECB383D00".</td>
+</tr>
+
+
+
+<tr id="trk31" style="display:none;">
+<td  class="pad1"><code>year</code></td>
+<td><code>String</code></td>
+<td>Year the album was released</td>
+</tr>
+
+<tr id="alb27" style="display:table-row;">
+<td  class="pad0"><code>trackCount</code></td>
+<td><code>Long</code></td>
+<td>Total number of tracks on this album.</td>
+</tr>
+<tr id="alb28" style="display:table-row;">
+<td  class="pad0"><code class="object">trackMatched</code></td>
+<td><code>GnTrack</code></td>
+<td>Matched track. See <code>GnAlbum > track</code> for object properties.</td>
+</tr>
+<tr id="alb29" style="display:table-row;">
+<td  class="pad0"><code>trackMatchNumber</code></td>
+<td><code>Long</code></td>
+<td>Track number on album for matching track</td>
+</tr>
+<tr id="alb30" style="display:table-row;">
+<td  class="pad0"><code class="object">tracks</code></td>
+<td><code>GnTrack<br>Enumerator</code></td>
+<td>Album track objects. See <code>GnAlbum > track</code> for object properties.</td>
+</tr>
+<tr id="alb31" style="display:table-row;">
+<td  class="pad0"><code>tui</code></td>
+<td><code>String</code></td>
+<td> Album's Gracenote TUI. TUI is a Gracenote acronym for "title unique identifier". For example: "267348592". This and <code>tuiTag</code> are used for unique identification within the Gracenote service.</td>
+</tr>
+<tr id="alb32" style="display:table-row;">
+<td  class="pad0"><code>tuiTag</code></td>
+<td><code>String</code></td>
+<td>Album's Gracenote TUI Tag. A hashed representation of the <code>tui</code> property. For example: "343DFA0AAF615988C9F4AB1ECB383D00".</td>
+</tr>
+<tr id="alb33" style="display:table-row;">
+<td  class="pad0"><code>year</code></td>
+<td><code>String</code></td>
+<td>Year the album was released</td>
+</tr>
+
+
+</tbody>
+</table>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+

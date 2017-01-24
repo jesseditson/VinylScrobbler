@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Implementing Applications (All Platforms)|Identifying Music">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Identifying Music Using a CD-TOC, Text, or Fingerprints (MusicID)</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Resources/Stylesheets/BookStyles.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../index.html#oo-topics/oo_implementing/Identifying Music Using a CD-TOC, Text, or Fingerprints.html">Open topic with navigation</a>
+        </p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Implementing Applications (All Platforms)</span><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Identifying Music.html">Identifying Music</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Identifying Music Using a CD-TOC, Text, or Fingerprints (MusicID)</span>
+        </div>
+        <h1><a name="kanchor361"></a>Identifying Music Using a CD-TOC, Text, or Fingerprints (MusicID)</h1>
+        <p><a name="kanchor362"></a>The MusicID module is the GNSDK component that handles recognition of non-streaming music though a CD <a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">TOC<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>Table of Contents. An area on CDs, DVDs, and Blu-ray discs that describes the unique track layout of the disc.</span></a>, audio source, fingerprint or search text. MusicID is implemented using the <code>GnMusicId</code><a name="kanchor363"></a> class. The MusicID-File module is the GNSDK component that handles audio file recognition, implemented through the <code>GnMusicIdFile</code> class. For information on identifying audio files and using the  <code>GnMusicIdFile</code> class, see <a href="Identifying Audio Files.html" class="MCXref xref">"Identifying Audio Files (MusicID-File)"</a>. </p>
+        <p class="note"><a name="kanchor364"></a>You must be licensed to use MusicID. Contact your Gracenote support representative with questions about product licensing and entitlement.</p>
+        <h3>MusicID Queries</h3>
+        <p>The <code>GnMusicId</code> class provides the following query methods:</p>
+        <ul>
+            <li value="1">
+                <p><code><b>FindAlbums</b></code><a name="kanchor365"></a>—Call this with an album or track identifier such as a CD TOC string, an audio source, a fingerprint, or identifying text (album title, track title, artist name, track artist name or composer name). This method returns a <code>GnResponseAlbums</code> object for each matching album.</p>
+            </li>
+            <li value="2">
+                <p><code><b>FindMatches</b></code>—Call this method with identifying text.  The method returns a <code>GnResponseDataMatches</code> object for each match, which could identify an album or a contributor.</p>
+            </li>
+        </ul>
+        <p><b>Notes:</b>
+        </p>
+        <ul>
+            <li value="1">
+                <p>A <code>GnMusicId</code> object's life time is scoped to a single recognition event and your application should create a new one for each event. </p>
+            </li>
+            <li value="2">
+                <p>During a recognition event, status events can be received via a delegate object that implements <code>IGnStatusEvents</code> (<code>GnStatusEventsDelegate</code> in Objective-C). </p>
+            </li>
+            <li value="3">
+                <p>A recognition event can be cancelled by the <code>GnMusicId</code> cancel method or by the "canceller" provided in each events delegate method. </p>
+            </li>
+            <li value="4">
+                <p><code>GnMusicId</code> recognition events are performed synchronously, with the response object
+returned to your application.</p>
+            </li>
+        </ul>
+        <h3>Options for MusicID Queries</h3>
+        <p>The <code>GnMusicId</code>'s <code>Options</code> class allows you to set the following options:</p>
+        <ul>
+            <li value="1"><code><b>LookupData</b></code>—Set <code>GnLookupData</code> options to enable what data can be returned, for example, classical data, mood and tempo data, playlist, external IDs, and so on.</li>
+            <li value="2"><code><b>LookupMode</b></code>—Set a lookup option with one of the <code>GnLookupMode</code> enums. These include ones for local only, online only, online nocache, and so on.</li>
+            <li value="3"><code><b>PreferResultLanguage</b></code>—Use one of the <code>GnLanguage</code> enums to set the preferred language for results.</li>
+            <li value="4"><code><b>PreferResultExternalId</b></code>—Set external ID for results from external provider. External IDs are 3rd party IDs used to cross link this metadata to 3rd party services.</li>
+            <li value="5"><code><b>PreferResultCoverart</b></code>—Specifies preference for results that have cover art associated.</li>
+            <li value="6"><code><b>ResultSingle</b></code>—Specifies whether a response must return only the single best result. Default is <code>true</code>.</li>
+            <li value="7"><code><b>ResultRangeStart</b></code>— Specifies result range start value.</li>
+            <li value="8"><code><b>ResultCount</b></code>— Specifies maximum number of returned results.</li>
+        </ul>
+        <h3>Identifying Music Using a CD TOC</h3>
+        <p>MusicID-CD is the component of GNSDK that handles recognition of audio CDs and delivery of information including artist, title, and track names. The application provides GNSDK with the TOC from an audio CD and MusicID-CD will identify the CD and provide album and track information.</p>
+        <p><b>To identify music using a CD-TOC:</b>
+        </p>
+        <ul>
+            <li value="1"><a name="kanchor366"></a>Instantiate a <code>GnMusicId</code> object with your user handle.</li>
+            <li value="2">Set a string with your TOC values</li>
+            <li value="3">Call the <code>GnMusicId</code>'s <code>FindAlbums</code> method with your TOC string.</li>
+            <li value="4"><a name="kanchor367"></a>Process the <code>GnResponseAlbum</code> metadata result objects returned.</li>
+        </ul>
+        <p><a name="kanchor368"></a>The code samples below illustrates a simple TOC lookup for local and online systems. The code for the local and online lookups is the same, except for two areas. If you are performing a local lookup, you must initialize the SQLite and Local Lookup libraries, in addition to the other GNSDK libraries:</p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>C++</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre>gnsdk_cstr_t toc= "150 14112 25007 41402 54705 69572 87335 98945 112902 131902 144055 157985 176900 189260 203342";
+GnMusicId music_id(user);
+
+music_id.Options().LookupData(kLookupDataContent);
+GnResponseAlbums response = music_id.FindAlbums(toc);
+</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_" name="kanchor369"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>Java and Android Java</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre>GnMusicId GnMusicId = new GnMusicId(user);
+String toc = "150 14112 25007 41402 54705 69572 87335 98945 112902 131902 144055 157985 176900 189260 203342";
+GnResponseAlbums responseAlbums = GnMusicId.findAlbums(toc);</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>Objective-C</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre>Under construction</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_" name="kanchor370"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>C# and Windows Phone C#</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre>string toc = "150 14112 25007 41402 54705 69572 87335 98945 112902 131902 144055 157985 176900 189260 203342";
+try
+{
+    using (GnStatusEventsDelegate midEvents = new MusicIdEvents())
+    {
+         GnMusicId GnMusicId = new GnMusicId(user, midEvents);
+         GnResponseAlbums gnResponse = GnMusicId.FindAlbums(toc);
+    }
+}</pre>
+            </div>
+        </div>
+        <h3><a name="kanchor371"></a>Identifying Music Using Text</h3>
+        <p>Using the GNSDK's MusicID module, your application can identify music using a lookup based on text strings. Besides user-inputted text, text strings can be extracted from an audio track’s file path name and from text data embedded within a file, such as mp3 tags. You can provide the following types of input strings:</p>
+        <ul>
+            <li value="1">Album title</li>
+            <li value="2"><a name="kanchor372"></a>Track title</li>
+            <li value="3">Album artist</li>
+            <li value="4">Track artist</li>
+            <li value="5">Track composer</li>
+        </ul>
+        <p>Text-based lookup attempts to match these attributes with known albums, artists, and composers. The text lookup first tries to match an album. If that is not possible, it next tries to match an artist. If that does not succeed, a composer match is tried. Adding as many input strings as possible to the lookup improves the results.</p>
+        <p>Text-based lookup returns “best-fit” objects, which means that depending on what your input text matched, you might get back album matches or contributor matches.</p>
+        <p>Identifying music using text is done using the <code>GnMusicId</code> class that has numerous methods for finding albums, tracks, and matches</p>
+        <p><b>To identify music using text:</b>
+        </p>
+        <ol>
+            <li value="1">Code an events handler object callbacks for status events (optional).</li>
+            <li value="2">Instantiate a <code>GnMusicId</code><a name="kanchor373"></a> object with your User object and events handler object. Note that the events handler is optional. </li>
+            <li value="3">Call the <code>GnMusicId</code>'s <code>FindAlbums</code> method with your text search string(s).</li>
+            <li value="4">Process metadata results returned</li>
+        </ol>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>C++</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre>/* Set the input text as album title, artist name, track title and perform the query */
+GnResponseAlbums response = music_id.FindAlbums("Supernatural", "Africa Bamba", "Santana", GNSDK_NULL, GNSDK_NULL);
+				</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>Android Java and Java</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre>GnMusicId musicId = new GnMusicId( gnUser, new StatusEvents() );
+GnResponseAlbums result = musicId.findAlbums( album, track, artist, null, null );</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>Objective-C</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre xml:space="preserve">
+musicId = [[GnMusicId alloc] initWithGnUser: self.gnUser statusEventsDelegate: self];
+
+[self.cancellableObjects addObject: musicId];
+
+[[musicId options] lookupData:kLookupDataContent bEnable:YES error:&amp;amp;error];
+
+self.queryBeginTimeInterval = [[NSDate date] timeIntervalSince1970];
+
+[self enableOrDisableControls:NO];
+
+dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+         NSError *textSearchOperationError = nil;
+         GnResponseAlbums *responseAlbums = [musicId findAlbumsWithAlbumTitle: albumTitle
+                                                     trackTitle: trackTitle
+                                                     albumArtistName: artistName
+                                                     trackArtistName: artistName
+                                                     composerName: nil
+                                                     error: &amp;amp;textSearchOperationError];
+        });
+}</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>C# and Windows Phone C#</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre xml:space="preserve">/* Set the input text as album title, artist name, track title and perfor the query */
+GnResponseAlbums gnResponse = musicID.FindAlbums("Supernatural", "Africa Bamba", "Santana");</pre>
+            </div>
+        </div>
+        <h3>Identifying Music Using Fingerprints</h3>
+        <p>You can identify music using an audio fingerprint. An audio fingerprint is data that uniquely identifies an audio track based on the audio waveform. You can use MusicID or MusicID-File to identify music using an audio fingerprint. The online Gracenote Media Service uses audio fingerprints to match the audio from a client application to the Gracenote Music Database. For more information, see <i><a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">Fingerprint<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>A unique representation of a sample of audio that can be used to identify a track.</span></a>-Based Recognition</i>.</p>
+        <p> Generating fingerprints is preferred when a device cannot immediately perform recognition, perhaps because it is temporarily disconnected from the Internet, and wishes to do so later. Fingerprint data is much smaller that raw audio, putting less demand on storage resources.</p>
+        <h4><a name="kanchor374"></a>PCM Audio Format Recommendations</h4>
+        <p>GNSDK fingerprinting supports the following PCM audio formats:</p>
+        <ul>
+            <li value="1"><b>Sample Sizes</b>—16-bit</li>
+            <li value="2"><b>Channels</b>—1 or 2 (mono or stereo)</li>
+            <li value="3"><b>Sample Rates</b>—11025 Hz, 16000 Hz, 22050 Hz, 24000 Hz, 32000 Hz, 44100 Hz, 48000 Hz</li>
+        </ul>
+        <p>Applications should use the highest quality audio possible to ensure the best results. Lower quality audio will result in less accurate fingerprint matches. Gracenote recommends at least 16-bit, stereo, 22050 Hz.</p>
+        <p class="warning">Do not resample or downsample audio to target these frequencies. Send the best quality audio that you have available.</p>
+        <h4>MusicID Fingerprinting</h4>
+        <p>The MusicID fingerprinting APIs give your application the ability to provide audio data as an identification mechanism. Note that if you want to do recognition using fingerprints and metadata together, and possibily have many files to do at once, then MusicID-File fingerprinting is probably the better solution. See <i><a href="Identifying Audio Files.html" class="MCXref xref">"Identifying Audio Files (MusicID-File)"</a></i></p>
+        <p>There are four <code>GnMusicId</code> fingerprinting methods:</p>
+        <ul>
+            <li value="1"><code><b>FingerprintFromSource</b></code>—Generates a fingerprint from a provided audio source. <b>Gracenote recommends using this</b>, as it encapsulates the below three calls (and additionally required code) into one.</li>
+            <li value="2"><code><b>FingerprintBegin</b></code><a name="kanchor375"></a>—Initialize fingerprint generation.</li>
+            <li value="3"><code><b>FingerprintWrite</b></code>—Provides uncompressed audio data for fingerprint generation. You can call this after <code>FingerprintBegin</code> to generate a native Gracenote Fingerprint Extraction (GNFPX) or Cantametrix (CMX) fingerprint.</li>
+            <li value="4"><code><b>FingerprintEnd</b></code>—Finalizes fingerprint generation. </li>
+        </ul>
+        <p>Identifying music using MusicID fingerprinting examples:</p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>C++</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre xml:space="preserve">/*-----------------------------------------------------------------------------
+ *  GatherFingerprint
+ */
+virtual void
+GatherFingerprint(GnMusicIdFileInfo&amp; fileInfo, gnsdk_uint32_t currentFile, gnsdk_uint32_t totalFiles, IGnCancellable&amp; canceller)
+{
+    char         pcmAudio[2048] = {0};
+    gnsdk_bool_t complete       = GNSDK_FALSE;
+    gnsdk_cstr_t file;
+
+    GNSDK_UNUSED(currentFile);
+    GNSDK_UNUSED(totalFiles);
+    GNSDK_UNUSED(canceller);
+
+     try
+     {
+          file = fileInfo.FileName();
+
+          std::ifstream audioFile(file, std::ios::in | std::ios::binary);
+          if ( audioFile.is_open() )
+          {
+              /* skip the wave header (first 44 bytes). the format of the sample files is known,
+               * but please be aware that many wav file headers are larger then 44 bytes!
+               */
+               audioFile.seekg(44);
+               if ( audioFile.good() )
+               {
+                   /* initialize the fingerprinter
+                    * Note: The sample files are non-standard 11025 Hz 16-bit mono to save on file size
+                    */
+                    fileInfo.FingerprintBegin(11025, 16, 1);
+
+                    do
+                    {
+                        audioFile.read(pcmAudio, 2048);
+                        complete = fileInfo.FingerprintWrite(
+                            (gnsdk_byte_t*)pcmAudio,
+                            (gnsdk_size_t)audioFile.gcount()
+                         );
+
+                        /* does the fingerprinter have enough audio? */
+                        if (GNSDK_TRUE == complete)
+                        {
+                            break;
+                        }
+                    }
+                    while ( audioFile.good() );
+
+                    if (GNSDK_TRUE != complete)
+                    {
+                         /* Fingerprinter doesn't have enough data to generate a fingerprint.
+                            Note that the sample data does include one track that is too short to fingerprint. */
+                        std::cout &lt;&lt; "Warning: input file does contain enough data to generate a fingerprint:\n" &lt;&lt; file &lt;&lt;"\n";
+                        fileInfo.FingerprintEnd();
+                    }
+                }
+                else
+                {
+                    std::cout &lt;&lt; "\n\nError: Failed to skip wav file header: " &lt;&lt; file &lt;&lt;"\n\n";
+                }
+            }
+            else
+            {
+                std::cout &lt;&lt; "\n\nError: Failed to open input file: " &lt;&lt; file &lt;&lt; "\n\n";
+            }
+        }
+        catch (GnError&amp; e)
+        {
+            std::cout &lt;&lt; e.ErrorAPI() &lt;&lt; "\t" &lt;&lt; std::hex &lt;&lt; e.ErrorCode() &lt;&lt; "\t" &lt;&lt;  e.ErrorDescription() &lt;&lt; std::endl;
+     }
+}</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>Java</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre>@Override 
+public void
+gatherFingerprint( GnMusicIdFileInfo fileInfo, long currentFile, long totalFiles, IGnCancellable canceller) {
+            
+    boolean complete = false;
+        
+    try {
+                
+            File audioFile = new File( fileInfo.fileName() );
+                
+            if (audioFile.exists()) {
+                    
+                FileInputStream audioFileInputStream = null;
+                DataInputStream audioDataInputStream = null;
+    
+                audioFileInputStream = new FileInputStream(audioFile);
+                    
+                // skip the wave header (first 44 bytes). the format of the sample files is known,
+                // but please be aware that many wav file headers are larger then 44 bytes!
+               audioFileInputStream.skip(44);
+
+               // initialize the fingerprinter
+               // Note: The sample files are non-standard 11025 Hz 16-bit mono to save on file size
+              fileInfo.fingerprintBegin(11025, 16, 1);
+                    
+              audioDataInputStream = new DataInputStream(audioFileInputStream);
+
+              byte[] audioBuffer = new byte[BUFFER_READ_SIZE];
+              int readSize = 0;
+              do {
+
+                     // read data, check for -1 to see if we are at end of file
+                     readSize = audioDataInputStream.read( audioBuffer );
+                     if ( readSize == -1) {
+                            break;
+                     }
+                        
+                     complete = fileInfo.fingerprintWrite( audioBuffer, readSize );
+                        
+                     // does the fingerprinter have enough audio?
+                     if (complete) {
+                            break;
+                     }
+                        
+                 }
+                 while ( (readSize &gt; 0) &amp;&amp; (complete == false) );
+                    
+                 audioDataInputStream.close();
+                    
+                 fileInfo.fingerprintEnd();
+                    
+                 if (!complete){
+                        // Fingerprinter doesn't have enough data to generate a fingerprint.
+                        // Note that the sample data does include one track that is too short to fingerprint.
+                        System.out.println("Warning: input file does not contain enough data to generate a fingerprint:\n" + audioFile.getPath());
+                 }
+                    
+            }
+                
+        } catch ( GnException gnException ) {
+                System.out.println("GnException \t" + gnException.getMessage());
+        } catch ( IOException e ){
+                System.out.println( "Execption reading audio file" + e.getMessage() );
+    }            
+}</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>Objective-C</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre>-(void) gatherFingerprint: (GnMusicIdFileInfo*)fileInfo currentFile: (NSUInteger)currentFile totalFiles: (NSUInteger)totalFiles cancellableDelegate: (id &lt;GnCancellableDelegate&gt;)canceller
+{
+    (void)currentFile;
+    (void)totalFiles;
+    (void)canceller;
+
+    NSString* file = [fileInfo fileName:nil];
+    bool complete = false;
+
+    if( file )
+    {
+
+        NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:file];
+        if( fileHandle != nil )
+        {
+            /* skip the wave header (first 44 bytes). the format of the sample files is known,
+             * but please be aware that many wav file headers are larger then 44 bytes!
+             */
+            unsigned long long offset = 44;
+            [fileHandle seekToFileOffset:offset];
+
+            /* initialize the fingerprinter
+             * Note: The sample files are non-standard 11025 Hz 16-bit mono to save on file size
+             */
+            [fileInfo fingerprintBegin:11025 audioSampleSize:16 audioChannels:1 error:nil];
+
+            NSData* fileData = nil;
+            do
+            {
+                fileData = [fileHandle readDataOfLength:2048];
+                if( nil != [fileData bytes])
+                {
+                    complete = [fileInfo fingerprintWrite:[fileData bytes] audioDataSize:2048 error:nil];
+
+                    if( complete )
+                    {
+                        break;
+                    }
+                }
+
+            }
+            while ( nil != [fileData bytes] );
+
+            if ( false == complete )
+            {
+                NSLog(@"Warning: input file does contain enough data to generate a fingerprint:%@",file);
+            }
+
+            [fileInfo fingerprintEnd:nil];
+
+            [fileHandle closeFile];
+        }
+        else
+        {
+            NSLog(@"Error: Failed to open input file:%@",file);
+        }
+    }
+}</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>C#</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre><a name="kanchor376"></a>/*-----------------------------------------------------------------------------
+*  SetFingerprintBeginWriteEnd
+*/
+private static void
+SetFingerprintBeginWriteEnd(GnMusicId GnMusicId)
+{
+    bool complete = false;
+
+    FileInfo file = new FileInfo(@"..\..\..\data\05-Hummingbird-sample.wav");
+
+    using (BinaryReader b = new BinaryReader(File.Open(file.FullName, FileMode.Open, FileAccess.Read)))
+    {
+                b.BaseStream.Position = 0;
+
+                /* skip the wave header (first 44 bytes). we know the format of our sample files*/
+                b.BaseStream.Seek(44, SeekOrigin.Begin);
+
+                byte[] audioData = b.ReadBytes(2048);
+
+                GnMusicId.FingerprintBegin(GnFingerprintType.kFingerprintTypeGNFPX, 44100, 16, 2);
+
+                while (audioData.Length &gt; 0)
+                {
+                    complete = GnMusicId.FingerprintWrite(audioData, (uint)audioData.Length);
+                    if (true == complete)
+                        break;
+                    else
+                        audioData = b.ReadBytes(2048);
+                }
+
+                GnMusicId.FingerprintEnd();
+
+                if (false == complete)
+                {
+                    /* Fingerprinter doesn't have enough data to generate a fingerprint.
+                        Note that the sample data does include one track that is too short to fingerprint. */
+                    Console.WriteLine("\nWarning: input file does contain enough data to generate a fingerprint :" + file.FullName);
+                }
+    }
+}
+
+/*-----------------------------------------------------------------------------
+*  MusicidFingerprintAlbum
+*/
+private static void
+MusicidFingerprintAlbum(GnUser user)
+{
+    Console.WriteLine("\n*****Sample MID-Stream Query*****");
+
+    try
+    {
+        GnMusicId GnMusicId = new GnMusicId(user);
+
+        /* Set the input fingerprint */
+        SetFingerprintBeginWriteEnd(GnMusicId);
+
+        /* Perform the search */
+        GnResponseAlbums response = GnMusicId.FindAlbums(GnMusicId.FingerprintDataGet(), GnFingerprintType.kFingerprintTypeGNFPX);
+
+        DisplayFindAlbumResutlsByFingerprint(response);
+
+    }
+    catch (GnException e)
+    {
+    }
+}    </pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_" name="kanchor377"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>Python</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre>try:
+    wave_file = open(key_path, "rb")
+    # Skip past header. Note: the header may be different size on your files.
+    wave_file.seek(44)
+    file_info.fingerprint_begin(11025, 16, 1)
+    pcm_audio = bytearray(wave_file.read(1024))
+    complete = False
+    while len(pcm_audio) and not complete:
+        pcm_data_buff = gnsdk.byte_buffer(len(pcm_audio))
+        for i, pcm_audio_byte in enumerate(pcm_audio):
+            pcm_data_buff[i] = pcm_audio_byte
+        complete = file_info.fingerprint_write(pcm_data_buff, len(pcm_audio))
+        pcm_audio = bytearray(wave_file.read(1024))
+        file_info.fingerprint_end()
+            
+        except IOError as e:
+            print 'Exception reading audio file' + e.ErrorDescription() 
+        except gnsdk.GnError as e:
+        print "Error in reading audio file: " + e.ErrorDescription()
+        exit(1)
+            
+        if not complete :
+           print 'Warning: input file does contain enough data to generate a fingerprint:\n' , key_path</pre>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="MCMiniTocBox_0">
+            <p class="MiniTOC1_0"><a class="MiniTOC1" href="Best Practices for MusicID Text Searches.html">Best Practices for MusicID Text Match Queries</a>
+            </p>
+        </div>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Implementing Applications (All Platforms)</span><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Identifying Music.html">Identifying Music</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Identifying Music Using a CD-TOC, Text, or Fingerprints (MusicID)</span>
+        </div>
+        <p class="onlineFooter"><a name="kanchor378"></a>© 2000 to present. Gracenote, Inc. All rights reserved.</p>
+        <p><a href="mailto:doc_feedback@gracenote.com?subject=Gracenote Documentation Feedback" target="_blank" title="Send comments about this topic to Gracenote Technical Publications." alt="Send comments about this topic to Gracenote Technical Publications.">How can we improve this documentation?</a>
+        </p>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkBottom"><a href="../../../index.html#oo-topics/oo_implementing/Identifying Music Using a CD-TOC, Text, or Fingerprints.html">Open topic with navigation</a>
+        </p>
+    </body>
+</html>

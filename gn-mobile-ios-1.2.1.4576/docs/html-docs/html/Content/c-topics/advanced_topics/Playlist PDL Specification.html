@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Playlist PDL Specification</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Resources/Stylesheets/BookStyles.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../index.html#c-topics/advanced_topics/Playlist PDL Specification.html">Open topic with navigation</a>
+        </p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbs">Playlist PDL Specification</span>
+        </div>
+        <h1><a name="kanchor475"></a>Playlist PDL Specification</h1>
+        <p>The <span class="GNVariablesProductName"><a name="kanchor476"></a>GNSDK for Mobile</span><a name="kanchor477"></a> <a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">Playlist<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>A set of tracks from a user’s music collection, generated according to the criteria and limits defined by a playlist generator.</span></a> Definition Language (PDL) is a query syntax, similar to Structured Query Language (SQL), that enables flexible custom playlist generation using human-readable text strings. PDL allows developers to dynamically create custom playlists. By storing individual PDL statements, applications can create and manage multiple preset and user playlists for later use.<br /></p>
+        <p><a name="kanchor478"></a>PDL statements express the playlist definitions an application uses to determine what items are included in resulting playlists. PDL supports logic operators, operator precedence and in-line arithmetic. PDL is based on Search Query Language (SQL). This section assumes you understand SQL and can write SQL statements.</p>
+        <p class="note"><span class="note">Note:</span> Before implementing PDL statement functionality for your application, carefully consider if the provided More Like This function, gnsdk_playlist_generate_morelikethis( ) meets your design requirements. Using the More Like This function eliminates the need to create and validate PDL statements.</p>
+        <h2>PDL Syntax</h2>
+        <p>This topic discusses PDL keywords, operators, literals, attributes, and functions.</p>
+        <p>Note: Not all keywords support all operators. Use gnsdk_playlist_statement_validate() to check a PDL Statement, which generates an error for invalid operator usage.</p>
+        <h3>Keywords</h3>
+        <p>PDL supports these keywords:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <p>Keyword</p>
+                    </th>
+                    <th>
+                        <p>Description</p>
+                    </th>
+                    <th>
+                        <p>Required or Optional</p>
+                    </th>
+                    <th>
+                        <p><a name="kanchor479"></a>PDL Statement Order</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>GENERATE PLAYLIST</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                        <p>All PDL statements must begin with either GENERATE PLAYLIST or its abbreviation,</p>
+                        <p>GENPL</p>
+                    </td>
+                    <td>
+                        <p>Required</p>
+                    </td>
+                    <td>
+                        <p>1</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>WHERE</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                        <p>Specifies the attributes and threshold criteria used to generate the playlist.</p>
+                        <p>If a PDL statement does not include the WHERE keyword, Playlist</p>
+                        <p>operates on the entire collection.</p>
+                    </td>
+                    <td>
+                        <p>Optional</p>
+                    </td>
+                    <td>
+                        <p>2</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>ORDER</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                        <p>Specifies the criteria used to order the results' display.</p>
+                        <p>If a PDL statement does not include the ORDER keyword, Playlist</p>
+                        <p>returns results in random order.</p>
+                        <p>Example: Display results in based on a calculated similarity value; tracks having greater similarity values to input criteria display higher in the results.</p>
+                        <p>The expression format is: &lt;identifier&gt; &lt;operator&gt; &lt;identifier&gt;</p>
+                    </td>
+                    <td>
+                        <p>Optional</p>
+                    </td>
+                    <td>
+                        <p>3</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>LIMIT</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                        <p>Specifies criteria used to restrict the number of returned results.</p>
+                        <p>Also uses the keywords RESULT and PER.</p>
+                        <p>Example: Limiting the number of tracks displayed in a playlist to 30 results with a maximum of two tracks per artist.</p>
+                        <p>The expression format is: &lt;identifier&gt; &lt;operator&gt; &lt;identifier&gt;</p>
+                    </td>
+                    <td>
+                        <p>Optional</p>
+                    </td>
+                    <td>
+                        <p>4</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>SEED</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                        <p><a name="kanchor480"></a>Specifies input data criteria from one or more idents. Typically, a Seed is the This in a More Like This playlist request.</p>
+                        <p>Example: Using a Seed of Norah Jones' track Don't Know Why to generate a playlist of female artists of a similar genre.</p>
+                        <p>The expression format is: &lt;identifier&gt; &lt;operator&gt; &lt;identifier&gt;</p>
+                    </td>
+                    <td>
+                        <p>Optional</p>
+                    </td>
+                    <td>
+                        <p>NA</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h4 class="example">Example: Keyword Syntax</h4>
+        <p>This PDL statement example shows the syntax for each keyword. In addition to &lt;att_imp&gt;, &lt;expr&gt;, and &lt;score&gt; discussed above, this example shows:</p>
+        <ul>
+            <li value="1">&lt;math_op&gt; is one of the valid PDL mathematical operators.</li>
+            <li value="2">&lt;number&gt; is positive value.</li>
+            <li value="3"><a name="kanchor481"></a>&lt;attr_name&gt; is a valid attribute, either a Gracenote-delivered attribute or an implementation-specific attribute.</li>
+        </ul><pre xml:space="preserve">GENERATE PLAYLIST<br /> WHERE &lt;att_imp&gt; [&lt;math_op&gt; &lt;score&gt;][ AND|OR &lt;att_imp&gt;]<br />ORDER &lt;expr&gt;[ &lt;math_op&gt; &lt;expr&gt;]<br /> LIMIT [number RESULT | PER &lt;attr_name&gt;][,number [ RESULT | PER &lt;attr_name&gt;]]</pre>
+        <h3>Operators</h3>
+        <p>PDL supports these operators:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <p>Operator Type</p>
+                    </th>
+                    <th>
+                        <p>Available Operators</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>Comparison</p>
+                    </td>
+                    <td>
+                        <p>&gt;, &gt;=, &lt;, &lt;=, ==, !=, LIKE</p>
+                        <p>LIKE is for fuzzy matching, best used with strings; see PDL Examples</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Logical</p>
+                    </td>
+                    <td>
+                        <p>AND, OR</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Mathematical</p>
+                    </td>
+                    <td>
+                        <p>+, -, *, /</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <h3><a name="kanchor482"></a>Literals</h3>
+        <p>PDL supports the use of single (') and double (") quotes, as shown:</p>
+        <ul>
+            <li value="1">Single quotes: 'value one'</li>
+            <li value="2">Double quotes: "value two"</li>
+            <li value="3">Single quotes surrounded by double quotes: "'value three'"</li>
+        </ul>
+        <p class="info">You must enclose a literal in quotes or Playlist evaluates it as an attribute.</p>
+        <h3>Attributes</h3>
+        <p><a name="kanchor483"></a>Most attributes require a Gracenote-defined numeric identifier value or GDO (GnDataObject in object-oriented languages) for Seed.</p>
+        <ul>
+            <li value="1">Identifier: Gracenote-defined numeric identifier value is typically a 5-digit value; for example, the genre identifier 24045 for Rock. These identifiers are maintained in lists in Gracenote Service; download the lists using <span class="GNVariablesProductName">GNSDK for Mobile</span><a name="kanchor484"></a> Manager's Lists and List Types APIs</li>
+            <li value="2">GDO Seed: Use GNSDK Manager's GDO APIs to access XML strings for Seed input.</li>
+        </ul>
+        <p><a name="kanchor485"></a>The following table shows the supported system attributes and their respective required input. The first four attributes are the GOET attributes.</p>
+        <p class="info">The delivered attributes have the prefix GN_ to denote they are Gracenote standard attributes. You can extend the attribute functionality in your application by implementing custom attributes; however, do not use the prefix GN_.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <p>Name</p>
+                    </th>
+                    <th>
+                        <p>Attribute</p>
+                    </th>
+                    <th>
+                        <p>Required Input</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p><a name="kanchor486"></a><a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">Genre<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>A categorization of a musical composition characterized by a particular style.</span></a> Origin Era</p>
+                        <p><a name="kanchor487"></a>Artist Type <a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">Mood<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>Track-level perceptual descriptor of a piece of music, using emotional terminology that a typical listener might use to describe the audio track; includes hierarchical categories of increasing granularity. See Sonic Attributes.</span></a> <a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">Tempo<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>Track-level descriptor of the overall perceived speed or pace of the music; includes hierarchical categories of increasing granularity. See Sonic Attributes.</span></a></p>
+                    </td>
+                    <td>
+                        <p><a name="kanchor488"></a>GN_Genre GN_Origin GN_Era GN_ArtistType GN_Mood GN_Tempo</p>
+                    </td>
+                    <td>
+                        <p>&#160;</p>
+                        <p>Gracenote-defined numeric identifier value</p>
+                        <p>GDO Seed XML string</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><a name="kanchor489"></a>Artist Name</p>
+                        <p><a name="kanchor490"></a>Album Name</p>
+                    </td>
+                    <td>
+                        <p>GN_ArtistName</p>
+                        <p>GN_AlbumName</p>
+                    </td>
+                    <td>
+                        <p><a name="kanchor491"></a>Text string</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <h3>Functions</h3>
+        <p>PDL supports these functions:</p>
+        <ul>
+            <li value="1">RAND(max value)</li>
+            <li value="2">RAND(max value, seed)</li>
+        </ul>
+        <h3>PDL Statements</h3>
+        <p>This topic discusses PDL statements and their components.</p>
+        <h4>Attribute Implementation &lt;att_imp&gt;</h4>
+        <p>A PDL statement is comprised of one or more attribute implementations that contain attributes, operators, and literals. The general statement format is:</p>
+        <p>"GENERATE PLAYLIST WHERE &lt;attribute&gt; &lt;operator&gt; &lt;criteria&gt;"</p>
+        <p>You can write attribute implementations in any order, as shown:</p>
+        <p>GN_ArtistName == "ACDC"</p>
+        <p>or</p>
+        <p>"ACDC" == GN_ArtistName</p>
+        <p>WHERE and ORDER statements can evaluate to a score; for example:</p>
+        <p>"GENERATE PLAYLIST WHERE LIKE SEED &gt; 500"</p>
+        <p>WHERE statements that evaluate to a non-zero score determine what idents are in the playlist results. ORDER statements that evaluate to a non-zero score determine how idents display in the playlist results.</p>
+        <h4>Expression &lt;expr&gt;</h4>
+        <p>An expression performs a mathematical operation on the score evaluated from a attribute implementation.</p>
+        <p>[&lt;number&gt; &lt;math_op&gt;] &lt;att_imp&gt;</p>
+        <p>For example:</p>
+        <p><a name="kanchor492"></a>3 * (GN_Era LIKE SEED)</p>
+        <h4><a name="kanchor493"></a>Score &lt;score&gt;</h4>
+        <p>Scores can range between -1000 and 1000.</p>
+        <p>For boolean evaluation, True equals 1000 and False equals 0.</p>
+        <p>Note: For more complex statement scoring, concatenate attribute implementations and add weights to a PDL statement.</p>
+        <h2 class="example">Example:&#160;PDL Statements</h2>
+        <p>The following PDL example generates results that have a genre similar to and on the same level as the seed input. For example, if the Seed genre is a Level 2: Classic R&amp;B/Soul, the matching results will include similar Level 2 genres, such as Neo-Soul.</p><pre> "GENERATE PLAYLIST WHERE GN_Genre LIKE SEED"</pre>
+        <p>This PDL example generates results that span a 20-year period. Matching results will have an era value from the years 1980 to 2000.</p><pre> "GENERATE PLAYLIST WHERE GN_Era &gt;= 1980 AND GN_Era &lt; 2000"</pre>
+        <p>This PDL example performs fuzzy matching with Playlist, by using the term LIKE and enclosing a string value in single (') or double (") quotes (or both, if needed). It generates results where the artist name may be a variation of the term ACDC, such as:</p>
+        <ul>
+            <li value="1">ACDC</li>
+            <li value="2">AC/DC</li>
+            <li value="3">AC*DC</li>
+        </ul><pre> "GENERATE PLAYLIST WHERE (GN_ArtistName LIKE 'ACDC')"</pre>
+        <p>The following PDL example generates results where:</p>
+        <ul>
+            <li value="1">The tempo value must be less than 120 BPM.</li>
+            <li value="2">The ordering displays in descending order value, from greatest to least (119, 118, 117, and so on).</li>
+            <li value="3">The genre is similar to the Seed input.</li>
+        </ul><pre><a name="kanchor494"></a> "GENERATE PLAYLIST WHERE GN_Tempo &gt; 120 ORDER GN_Genre LIKE SEED"</pre>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbs">Playlist PDL Specification</span>
+        </div>
+        <p class="onlineFooter"><a name="kanchor495"></a>© 2000 to present. Gracenote, Inc. All rights reserved.</p>
+        <p><a href="mailto:doc_feedback@gracenote.com?subject=Gracenote Documentation Feedback" target="_blank" title="Send comments about this topic to Gracenote Technical Publications." alt="Send comments about this topic to Gracenote Technical Publications.">How can we improve this documentation?</a>
+        </p>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkBottom"><a href="../../../index.html#c-topics/advanced_topics/Playlist PDL Specification.html">Open topic with navigation</a>
+        </p>
+    </body>
+</html>

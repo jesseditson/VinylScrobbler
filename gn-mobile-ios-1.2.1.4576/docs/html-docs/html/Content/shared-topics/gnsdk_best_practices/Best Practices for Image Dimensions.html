@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Implementing Applications (All Platforms)|Best Practices and Design Requirements">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Best Practices for Image Dimensions</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Resources/Stylesheets/BookStyles.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../index.html#shared-topics/gnsdk_best_practices/Best Practices for Image Dimensions.html">Open topic with navigation</a>
+        </p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Implementing Applications (All Platforms)</span><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Best Practices and Design Requirements.html">Best Practices and Design Requirements</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Image Best Practices</span>
+        </div>
+        <h1 class="Heading1"><a name="kanchor512"></a>Image Best Practices</h1>
+        <p><a name="kanchor513"></a>Gracenote images – in the form of cover art, artist images and more – are integral features in many online music services, as well as home, automotive and mobile entertainment devices. Gracenote maintains a comprehensive database of images in dimensions to accommodate all popular applications, including a growing catalog of high-resolution (HD) images. </p>
+        <p>Gracenote carefully curates images to ensure application and device developers are provided with consistently formatted, high quality images – helping streamline integration and optimize the end-user experience. This topic describes concepts and guidelines for Gracenote  images including changes to and support for existing image specifications.</p>
+        <h2 class="Heading2" data-mc-conditions="Default.ProdAuto,Default.ProdDesktop,Default.ProdMobileAnyPlatform">Image Resizing Guidelines</h2>
+        <p data-mc-conditions="Default.ProdAuto,Default.ProdDesktop,Default.ProdMobileAnyPlatform">Gracenote images are designed to fi</p>
+        <p data-mc-conditions="Default.ProdAuto,Default.ProdDesktop,Default.ProdMobileAnyPlatform">t within squares as defined by the available image dimensions. This allows developers to present images in a fixed area within application or device user interfaces. Gracenote recommends applications center images horizontally and vertically within the predefined square dimensions, and that the square be transparent such that the background shows through. This results in a consistent presentation despite variation in the image dimensions. To ensure optimum image quality for end-users, Gracenote recommends that applications use Gracenote images in their provided pixel dimensions without stretching or resizing.</p>
+        <p data-mc-conditions="Default.ProdAuto,Default.ProdDesktop,Default.ProdMobileAnyPlatform">Gracenote resizes images based on the following guidelines:</p>
+        <ul start="1" class="ol_1">
+            <li value="1" data-mc-conditions="Default.ProdAuto,Default.ProdDesktop,Default.ProdMobileAnyPlatform"><b>Fit-to-square</b>: images will be proportionally resized to ensure their largest dimension (if not square) will fit within the limits of the next lowest available image size.</li>
+            <li value="2" data-mc-conditions="Default.ProdAuto,Default.ProdDesktop,Default.ProdMobileAnyPlatform"><b>Proportional resizing</b>: images will always be proportionally resized, never stretched.</li>
+            <li value="3" data-mc-conditions="Default.ProdAuto,Default.ProdDesktop,Default.ProdMobileAnyPlatform"><b>Always downscale</b>: smaller images will always be generated using larger images to ensure the highest possible image quality</li>
+        </ul>
+        <p data-mc-conditions="Default.ProdAuto,Default.ProdDesktop,Default.ProdMobileAnyPlatform">Following these guidelines, all resized images will remain as rectangles retaining the same proportions as the original source images. Resized images will fit into squares defined by the available dimensions, but are not themselves necessarily square images.</p>
+        <p data-mc-conditions="Default.ProdAuto,Default.ProdDesktop,Default.ProdMobileAnyPlatform">
+            <img src="../../Resources/Images/03000001_395x238.png" style="width: 395;height: 238;" class="img_1" />
+        </p>
+        <p class="info" data-mc-conditions="Default.ProdAuto,Default.ProdDesktop,Default.ProdMobileAnyPlatform">For Tribune Media Services (TMS) video images only, Gracenote will upsize images from their native size (288 x 432) to the closest legacy video size (300 x 450) – adhering to the fit-to-square rule for the 450 x 450 image size. Native TMS images are significantly closer to 300 x 450. In certain situations, downsizing TMS images to the next lowest legacy video size (160 x 240) can result in significant quality degradation when such downsized images are later displayed in applications or devices.</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Implementing Applications (All Platforms)</span><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Best Practices and Design Requirements.html">Best Practices and Design Requirements</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Image Best Practices</span>
+        </div>
+        <p class="onlineFooter"><a name="kanchor514"></a>© 2000 to present. Gracenote, Inc. All rights reserved.</p>
+        <p><a href="mailto:doc_feedback@gracenote.com?subject=Gracenote Documentation Feedback" target="_blank" title="Send comments about this topic to Gracenote Technical Publications." alt="Send comments about this topic to Gracenote Technical Publications.">How can we improve this documentation?</a>
+        </p>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkBottom"><a href="../../../index.html#shared-topics/gnsdk_best_practices/Best Practices for Image Dimensions.html">Open topic with navigation</a>
+        </p>
+    </body>
+</html>

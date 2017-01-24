@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Concepts|Gracenote MetaData">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Classical Music Metadata</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Resources/Stylesheets/BookStyles.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../index.html#shared-topics/concepts/Classical Music Metadata.html">Open topic with navigation</a>
+        </p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Concepts</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbsSelf">Gracenote MetaData</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Classical Music Metadata</span>
+        </div>
+        <h1><a name="kanchor62"></a>Classical Music Metadata</h1>
+        <p>&#160;</p>
+        <p><a name="kanchor63"></a>Gracenote also supports classical music metadata, which is typically more complex than non-classical music. Gracenote uses a Three-Line Solution (<a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">TLS<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>See Three-Line-Solution.</span></a>) to map classical metadata to an AUDIO_WORK Track, Artist, and Album media elements. The tables below show this mapping.</p>
+        <p style="font-weight: bold;"><a name="kanchor64"></a>Classical Music Three-Line Solution <a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup" style="font-weight: bold;">Metadata<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>Data about data. For example, metadata such as the artist, title, and other information about a piece of digital audio such as a song recording. </span></a> Mapping</p>
+        <table>
+            <col style="width: 104px;" />
+            <col />
+            <thead>
+                <tr>
+                    <th>
+                        <p>Retrieved AUDIO_WORK Element </p>
+                    </th>
+                    <th>
+                        <p>Returned Classical Music Metadata</p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p><a name="kanchor65"></a>Track
+  </p>
+                    </td>
+                    <td>
+                        <p><a name="kanchor66"></a>[Composer
+ Short Name]: [Work Title] In {Key}, {Opus}, {Cat#}, {“Nickname”} –
+ [Movement#]. [M. Name]</p>
+                        <p>Example:</p>
+                        <p>Dvořák:
+ Symphony #9 In E Minor, Op. 95, B 178, "From The New World" – 1.
+ Adagio</p>
+                        <p><a name="kanchor67"></a>Dvořák [Composer Short Name]: Symphony
+ #9 [Work Title] In E Minor {Key}, Op. 95 {Opus}, B 178 {Catalog #},
+ "From The New World" {Nickname} – 1. Adagio [Movement #] [M Name]</p>
+                        <p>&#160;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><a name="kanchor68"></a>Artist
+  </p>
+                    </td>
+                    <td>
+                        <p>{Soloist(s)},
+ {Conductor}; {Ensemble #1}, {Ensemble #2, Etc.}</p>
+                        <p>Example:</p>
+                        <p>Anton
+ Dermota, Cesare Siepi, Etc.; Josef Krips: Vienna Philharmonic Orchestra,
+ Vienna State Opera Chorus</p>
+                        <p>Anton
+ Dermota (Soloist), Cesare Siepi (Soloist), Etc. (indicates additional
+ soloists)); Josef Krips (Conductor): Vienna Philharmonic Orchestra (Ensemble
+ #1), Vienna State Opera Chorus (Ensemble #2)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><a name="kanchor69"></a>Album</p>
+                    </td>
+                    <td>
+                        <p>Name printed on the spine of the
+ physical CD, if available.</p>
+                        <p><a name="kanchor70"></a>Example:  Music
+ Of The Gothic Era [Disc 1]</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-weight: bold;">AUDIO_WORK Metadata Definitions</p>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>Album Name</p>
+                    </td>
+                    <td>
+                        <p>In most cases, a classical album’s title is comprised of
+ the composer(s) and work(s) that are featured on the product, which yields a
+ single entity in the album name display. However, for albums that have formal
+ titles (unlike composers and works), the title is listed as it is on the
+ product. </p>
+                        <ul>
+                            <li value="1">General title example: Beethoven: Violin
+ Concerto  </li>
+                            <li value="2">
+  Formal title example: The Best Of Baroque
+ Music</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><a name="kanchor71"></a>Artist Name</p>
+                    </td>
+                    <td>
+                        <p>A consistent format is used for listing a recording
+ artist(s): by soloist(s), conductor, and ensemble(s), which yields a single
+ entity in the artist name display. </p>
+                        <p>Example: Hilary Hahn; David Zinman: Baltimore Symphony
+ Orchestra</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Catalog # </p>
+                    </td>
+                    <td>
+                        <p><a name="kanchor72"></a>The chronological number of a work as designated by a
+ generally acknowledged scholar of a composer’s work if it is a formal part of
+ the Work Title. This is usually  comprised of an upper-case letter and a number. The letter indicates
+ either the last initial of the scholar/compiler of the composer’s catalog.
+ For Mozart, this would be “K” for Ludwig Ritter von Köchel) or the title of
+ the scholar’s catalog of the composer’s works (for Bach, this would be “BWV”
+ for “Bach-Werke-Verzeichnis (Bach Works List).”</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Composer</p>
+                    </td>
+                    <td>
+                        <p>The composer(s) that are featured on an album are listed
+ by their last name in the album title (where applicable)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Key </p>
+                    </td>
+                    <td>
+                        <p>The key signature of the work. It is included in a TLS
+ data string if it is a formal part of the Work Title, such as Beethoven:
+ Violin Concerto in D. </p>
+                        <p>If it is not part of the title (Debussy: Syrinx), it is
+ not included in the data string. TLS exclusively uses the traditional key
+ designations (A, B. C, D, etc.) as opposed to other versions (H-Moll, etc.)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Movement</p>
+                    </td>
+                    <td>
+                        <p>A constituent part or subsection of a work. A movement can
+ be contained within a single track, or can comprise multiple tracks, but will
+ always share the formal title of the parent work. Movements can, themselves,
+ be subdivided into separate sections delineated by Act, Scene, Part,
+ Variation, etc.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Movement #</p>
+                    </td>
+                    <td>
+                        <p>The formally-sequenced number of a subsection of a work. </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Nickname </p>
+                    </td>
+                    <td>
+                        <p>This is an alternative title for a formal work that is
+ used synonymously with that work. It is included in a TLS string if it is a
+ formal part of the Work Title. For example: Beethoven: Symphony #9 In D
+ Minor, Op. 125, "Choral"</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Opus </p>
+                    </td>
+                    <td>
+                        <p>Abbreviated as “Op.” in the TLS string, this is the
+ publishing number of the work in the composer’s canon and is included in the
+ data string if it is a formal part of the Work Title. For example: Strauss
+ (R): Symphony In F Minor, Op. 12</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Track </p>
+                    </td>
+                    <td>
+                        <p>A distinct recorded performance, delineated by a specific
+ time duration that can be quantified in a Table of Contents (<a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">TOC<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>Table of Contents. An area on CDs, DVDs, and Blu-ray discs that describes the unique track layout of the disc.</span></a>).</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Track Name</p>
+                    </td>
+                    <td>
+                        <p>A consistent format used for listing a track
+ title—composer, work title, and (where applicable) movement title—which
+ yields a single entity in the track name display. For example: Beethoven:
+ Violin Concerto In D, Op. 61 – 1. Allegro Ma Non Troppo</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Work Title</p>
+                    </td>
+                    <td>
+                        <p>For TLS purposes, the formal title of a musical work with
+ the inclusion of the composer’s Short Name prepended. Work titles come in two
+ versions:</p>
+                        <ul>
+                            <li value="1"> “text” title comprising a word or set of
+ words (“The Rite Of Spring”), or </li>
+                            <li value="2"> title based on the musical form in which it
+ was composed (Symphony #9, Sonata #1, etc.) </li>
+                        </ul>
+                        <p>When applicable, a work title can also include work
+ number, key signature, instrumental attribution, catalog number, opus number
+ and/or nickname. </p>
+                        <p>Additional information can be included in parentheses,
+ such as The Firebird (1911 Version), in the work title string. Modifiers such
+ as Book, Suite, Vol., Part, etc. are also included in the title string.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Concepts</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbsSelf">Gracenote MetaData</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Classical Music Metadata</span>
+        </div>
+        <p class="onlineFooter"><a name="kanchor73"></a>© 2000 to present. Gracenote, Inc. All rights reserved.</p>
+        <p><a href="mailto:doc_feedback@gracenote.com?subject=Gracenote Documentation Feedback" target="_blank" title="Send comments about this topic to Gracenote Technical Publications." alt="Send comments about this topic to Gracenote Technical Publications.">How can we improve this documentation?</a>
+        </p>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkBottom"><a href="../../../index.html#shared-topics/concepts/Classical Music Metadata.html">Open topic with navigation</a>
+        </p>
+    </body>
+</html>

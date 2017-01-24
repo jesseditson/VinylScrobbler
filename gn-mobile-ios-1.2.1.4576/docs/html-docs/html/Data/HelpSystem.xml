@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WebHelpSystem DefaultUrl="Content/shared-topics/front_back_matter/OOHelpSystemTitlePageOnline.html" Toc="Data/Toc.js" Index="Data/Index.js" Concepts="Data/Concepts.js" BrowseSequence="Data/BrowseSequence.js" Glossary="Data/Glossary.js" SearchDatabase="Data/Search.js" Alias="Data/Alias.xml" Synonyms="Data/Synonyms.xml" SearchFilterSet="Data/Filters.js" SkinName="GNHTML5" Skins="Default,GNHTML5-No-Index,GNHTML5" BuildTime="7/1/2016 1:15:26 PM" BuildVersion="11.1.2.31113" TargetType="WebHelp2" SkinTemplateFolder="Skin/" InPreviewMode="false" MoveOutputContentToRoot="false" MakeFileLowerCase="false" UseCustomTopicFileExtension="true" CustomTopicFileExtension="html" PreventExternalUrls="false" EnableResponsiveOutput="false" IncludeGlossarySearchResults="true" ResultsPerPage="20">
+    <CatapultSkin Version="1" SkinType="WebHelp2" Comment="HTML5 skin" Anchors="Width,Height" Width="800" Height="600" Top="0" Left="0" Bottom="0" Right="0" Tabs="TOC" DefaultTab="TOC" UseBrowserDefaultSize="True" UseDefaultBrowserSetup="True" AutoSyncTOC="true" Name="Default" />
+    <CatapultSkin Version="2" SkinType="WebHelp2" Comment="HTML5 skin" Anchors="Width,Height" Width="800" Height="600" Top="0" Left="0" Bottom="0" Right="0" Tabs="TOC" DefaultTab="TOC" UseBrowserDefaultSize="True" UseDefaultBrowserSetup="true" AutoSyncTOC="true" NavigationLinkTop="true" NavigationLinkBottom="true" RemoveImagesOnSave="true" Name="GNHTML5-No-Index">
+        <WebHelpOptions HideNavigationOnStartup="false" />
+    </CatapultSkin>
+    <CatapultSkin Version="2" SkinType="WebHelp2" Comment="HTML5 skin" Anchors="Width,Height" Width="800" Height="600" Top="0" Left="0" Bottom="0" Right="0" Tabs="TOC,Index" DefaultTab="TOC" UseBrowserDefaultSize="True" UseDefaultBrowserSetup="true" AutoSyncTOC="true" NavigationLinkTop="true" NavigationLinkBottom="true" RemoveImagesOnSave="true" Name="GNHTML5">
+        <WebHelpOptions HideNavigationOnStartup="false" />
+    </CatapultSkin>
+</WebHelpSystem>

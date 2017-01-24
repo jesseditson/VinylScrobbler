@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Concepts|Music Modules|Music Module Overview">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>MusicID-File Overview</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Resources/Stylesheets/BookStyles.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../index.html#shared-topics/concepts/MusicID-File Overview.html">Open topic with navigation</a>
+        </p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Concepts</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbsSelf">Music Modules</span><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Music Module Overview.html">Music Module Overview</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">MusicID-File Overview</span>
+        </div>
+        <h1><a name="kanchor107"></a>MusicID-File Overview</h1>
+        <p><a name="kanchor108"></a>MusicID-File provides advanced file-based identification features not included in the MusicID module. MusicID-File can perform recognition using individual files or leverage collections of files to provide advanced recognition. When an application provides decoded audio and text data for each file to the library, MusicID-File identifies each file and, if requested, identifies groups of files as albums.</p>
+        <p>At a high level, MusicID-File APIs implement the following services:</p>
+        <ul>
+            <li value="1">Identification through waveform fingerprinting and metadata</li>
+            <li value="2">Advanced processing methods  for identifying individual tracks or file groupings and collections</li>
+            <li value="3">Result and status management</li>
+        </ul>
+        <p>MusicID-File can be used with a local database, but it only performs text-matching locally. Fingerprints are not matched locally.</p>
+        <p class="info"> MusicID-File queries never return partial results. They always return full results.</p>
+        <h2><a name="kanchor109"></a>Waveform and Metadata Recognition</h2>
+        <p>The MusicID-File module utilizes both audio data and existing metadata from individual media files to produce the most accurate identification possible.</p>
+        <p>Your application needs to provide raw, decoded audio data (pulse-code modulated data) to MusicID-File, which processes it to retrieve a unique audio fingerprint. The application can also provide any metadata available for the media file, such as file tags, filename, and perhaps any application metadata. MusicID-File can use a combination of fingerprint and text lookups to determine a best-fit match for the given data.</p>
+        <p>The MusicID module also provides basic file-based media recognition using only audio fingerprints. The MusicID-File module is preferred for file-based media recognition, however, as its advanced recognition process provides significantly more accurate results.</p>
+        <h2>Advanced Processing Methods</h2>
+        <p><a name="kanchor110"></a>The MusicID-File module provides APIs that enable advanced music identification and organization. These APIs are grouped into the following three general categories - LibraryID, AlbumID, and TrackID.</p>
+        <h3>LibraryID</h3>
+        <p><a name="kanchor111"></a>LibraryID identifies the best album(s) for a large collection of tracks. It takes into account a number of factors, including metadata, location, and other submitted files when returning results. In addition, it automatically batches AlbumID calls to avoid overwhelming device and network resources. </p>
+        <p>Normal processing is 100-200 files at a time. In LibraryID, you can set the batch size to control how many files are processed at a time.  The higher the size, the more memory will be used. The lower the size, the less memory will be used and the faster results will be returned. If the number of files in a batch exceeds batch size, it will attempt to make an intelligent decision about where to break based on other factors. 
+		</p>
+        <p> All processing in LibraryID is done through callbacks (for example, fingerprinting, setting metadata, returned statuses, returned results, and so on.). The status or result callbacks provide the only mechanism for accessing Response GDOs.</p>
+        <p class="note">For object-oriented applications, for example, those written in C++, GDOs are the same thing as GnDataObjects. All object-oriented response objects are derived from GnDataObject.</p>
+        <h3>AlbumID</h3>
+        <p>AlbumID identifies the best album(s) for a group of tracks. For example, while the best match for a track would normally be the album where it originally appeared, if the submitted media files as a group are all tracks on a compilation album, then that is identified as the best match. All submitted files are viewed as a single group, regardless of location.</p>
+        <p>AlbumID assumes submitted tracks are related by a common artist or common album. Your application must be careful to only submit files it believes are related in this way. If your application cannot perform such grouping use LibraryID which performs such grouping internally</p>
+        <h3><a name="kanchor112"></a>TrackID</h3>
+        <p>TrackID identifies the best album(s) for a single track. It returns results for an individual track independent of any other tracks submitted for processing at the same time. Use TrackID if the original album a track appears on is the best or first result you want to see returned before any compilation, soundtrack, or greatest hits album the track also appears on. 
+		</p>
+        <h3><a name="kanchor113"></a>MusicID-File Best Practices</h3>
+        <ul>
+            <li value="1">
+                <p>Use LibraryID for most applications.LibraryID is designed to identify a large number of audio files. It gathers the file metadata and then groups the files using tag data.LibraryID can only return a single, best match</p>
+            </li>
+            <li value="2">
+                <p>Use TrackID or AlbumID if you want all possible results for a track. You can request AlbumID and TrackID to return a single, best album match, or all possible matches. .</p>
+            </li>
+            <li value="3">
+                <p>Use AlbumID if your tracks are already pretty well organized by album. For memory and performance reasons, you should only provide a small number of related tracks. Your application should pre-group the audio files, and submit those groups one at a time. </p>
+            </li>
+            <li value="4">Use TrackID for one off track identifications and if the original album that a track appears on is the best or first result you want to see returned. TrackID is best for identifying outliers, that is those tracks unable to be grouped by the appliction for use with AlbumID. You can provide many files at once, but the memory consumed is directly proportional to the number of files provided. o Tkeep memory down you should submit a small number of files at a time</li>
+        </ul>
+        <h3>Usage Notes</h3>
+        <ul>
+            <li value="1">
+                <p>	As stated above, TrackID and AlbumID are not designed for large sets of submitted files (more than an album's worth). Doing this could result in excessive memory use.</p>
+            </li>
+            <li value="2">
+                <p>For all three ID methods, you need to add files for processing manually, one-at-a-time. You cannot add all the files in a folder, volume, or drive in a single call.</p>
+            </li>
+        </ul>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Concepts</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbsSelf">Music Modules</span><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Music Module Overview.html">Music Module Overview</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">MusicID-File Overview</span>
+        </div>
+        <p class="onlineFooter"><a name="kanchor114"></a>© 2000 to present. Gracenote, Inc. All rights reserved.</p>
+        <p><a href="mailto:doc_feedback@gracenote.com?subject=Gracenote Documentation Feedback" target="_blank" title="Send comments about this topic to Gracenote Technical Publications." alt="Send comments about this topic to Gracenote Technical Publications.">How can we improve this documentation?</a>
+        </p>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkBottom"><a href="../../../index.html#shared-topics/concepts/MusicID-File Overview.html">Open topic with navigation</a>
+        </p>
+    </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Mobile Getting Started|Using the Mobile iOS Sample Application">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Running the Sample Applications</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Resources/Stylesheets/BookStyles.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../index.html#mobile/mobile_ios/i_Running the Sample Applications.html">Open topic with navigation</a>
+        </p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Mobile Getting Started</span><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="i_Getting Started with the iOS.html">Using the Mobile iOS Sample Application</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Building and Running the Sample Applications</span>
+        </div>
+        <h1>Building and Running the Sample Applications</h1>
+        <p>To run either of the sample applications:</p>
+        <ol>
+            <li value="1"><a name="kanchor263"></a>Unpack the Gracenote iOS <span class="GNVariablesProductName"><a name="kanchor264"></a>GNSDK for Mobile</span> package: gn-mobile-ios-&lt;version&gt;.zip</li>
+            <li value="2">Copy your license file, names as "license.txt", into the package root directory. The Xcode project expects the license file to have this name and be in this location. To use a different license file name and location you can update the project.</li>
+            <li value="3">Launch Xcode and open the project &lt;package root&gt;/mmid/GracenoteMusicId.<p>This project contains two apps that share some resources like the GNSDK Objective-C framework. Both are GNSDK sample apps, one is an Objective-C app, the other a Swift app.</p></li>
+        </ol>
+        <p>To run the Objective-C app:</p>
+        <ol>
+            <li value="1">Select target GracenoteMusicId</li>
+            <li value="2"><a name="kanchor265"></a>Set your <a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">Client ID<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>Each  customer receives a unique Client ID string from Gracenote. This string uniquely identifies each application and lets Gracenote deliver the specific features for which the application is licensed. 
+The Client ID string has the following format: 123456-789123456789012312. The first part is a six-digit Client ID, and the second part is a 17-digit Client ID Tag. </span></a> and Tag in the prefix pre-compiled header located at MusicIdObjectiveC/MusicidObjectiveC-Prefix.pch</li>
+            <li value="3"><a name="kanchor266"></a>Set the View Controller for Main_iPhone storyboard to GnViewController</li>
+            <li value="4">Clean, build, and run</li>
+        </ol>
+        <p>To run the Swift app:</p>
+        <ol>
+            <li value="1">Select target GracenoteMusicIdSwift</li>
+            <li value="2">Set your Client ID and Tag in GnViewControllerSwift.swift</li>
+            <li value="3">Set the View Controller for Main_iPhone.storyboard to GnViewControllerSwift</li>
+            <li value="4">Clean, build, and run</li>
+        </ol>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Mobile Getting Started</span><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="i_Getting Started with the iOS.html">Using the Mobile iOS Sample Application</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Building and Running the Sample Applications</span>
+        </div>
+        <p class="onlineFooter"><a name="kanchor267"></a>© 2000 to present. Gracenote, Inc. All rights reserved.</p>
+        <p><a href="mailto:doc_feedback@gracenote.com?subject=Gracenote Documentation Feedback" target="_blank" title="Send comments about this topic to Gracenote Technical Publications." alt="Send comments about this topic to Gracenote Technical Publications.">How can we improve this documentation?</a>
+        </p>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkBottom"><a href="../../../index.html#mobile/mobile_ios/i_Running the Sample Applications.html">Open topic with navigation</a>
+        </p>
+    </body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Implementing Applications (All Platforms)">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Setup and Initialization</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Resources/Stylesheets/BookStyles.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../index.html#oo-topics/oo_implementing/Setup and Initialization.html">Open topic with navigation</a>
+        </p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Implementing Applications (All Platforms)</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Setup and Initialization</span>
+        </div>
+        <h1>Setup and Initialization</h1>
+        <p><b>To get started with GNSDK development:</b>
+        </p>
+        <ol>
+            <li value="1">
+                <p><a name="kanchor278"></a>Get a <a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">Client ID<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>Each  customer receives a unique Client ID string from Gracenote. This string uniquely identifies each application and lets Gracenote deliver the specific features for which the application is licensed. 
+The Client ID string has the following format: 123456-789123456789012312. The first part is a six-digit Client ID, and the second part is a 17-digit Client ID Tag. </span></a>/Tag and License file for application authentication from Gracenote. See <a href="#auth" class="selected">Authorizing a GNSDK Application</a>.</p>
+            </li>
+            <li value="2">
+                <p>Include the GNSDK header for your platform to include all necessary libraries and headers. See <a href="#header" name="kanchor279" class="selected">Including Header Files</a>.</p>
+            </li>
+            <li value="3">
+                <p><a name="kanchor280"></a>Instantiate a <code>GnManager</code> object. See <a href="#manager" class="selected">Instantiating a GNSDK Manager Object</a>.</p>
+            </li>
+            <li value="4">
+                <p>Instantiate a <code>GnUser</code> user object.  See <a href="#user" name="kanchor281" class="selected">Instantiating a User Object</a>.</p>
+            </li>
+        </ol>
+        <h2><a name="auth"></a>Authorizing a GNSDK Application</h2>
+        <p><a name="kanchor282"></a>Gracenote uses product licensing and server-side entitlements to manage your application's access to metadata. </p>
+        <p><a name="kanchor283"></a>As a Gracenote customer, Gracenote works with you to determine the kind of products you need (such as MusicID, <a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">Playlist<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>A set of tracks from a user’s music collection, generated according to the criteria and limits defined by a playlist generator.</span></a>, and so on). Gracenote also determines the metadata your application requires for the products you license.</p>
+        <p>Gracenote uses this information to create a unique customer ID (called a Client ID/Tag), a license file, and server-side metadata entitlements specifically tailored to your application.</p>
+        <p>When developing a GNSDK application, you must include a Client ID and license file to authorize your application with Gracenote. In general, the License file enables your application to use the Gracenote products (and their corresponding GNSDK modules) that you purchased. Gracenote Media Services uses the Client ID to enable access to the metadata your application is entitled to use.</p>
+        <p>All applications are entitled to a set of core metadata based on the products that are licensed. Your application can access enriched metadata through server-side metadata entitlements. Contact your Gracenote representative for more information. </p>
+        <p class="note">Some applications require a local (embedded) database for metadata. These systems do not access Gracenote Media Services to validate metadata entitlements and access metadata. Instead, metadata entitlements are pre-applied to the local database.</p>
+        <h3>Client ID/Tag</h3>
+        <p>Each GNSDK customer receives a unique client ID/Tag string from Gracenote. This string uniquely identifies each application to Gracenote Media Services and lets Gracenote deliver the specific metadata the application requires.</p>
+        <p>A Client ID/Tag string consists of two sets of alphanumeric characters separated with a hyphen. The numbers before the hyphen constitute the 'ID' and the alphanumeric characters after, the 'Tag'. A client ID/Tag string has the following format: </p><pre xml:space="preserve">&lt;10 character client ID&gt;<b>-</b>&lt;17 character client ID tag&gt;</pre>
+        <h3><a name="kanchor284"></a>License File</h3>
+        <p>Gracenote provides a license file along with your Client ID.  The license file notifies Gracenote to enable the GNSDK products you purchased for your application. </p>
+        <p class="note"><a name="kanchor285"></a>You should secure your Gracenote client id, tag and license information. Something  similar to the way Android recommends protecting a Google Play public key from malicious hackers: <a href=" http://developer.android.com/google/play/billing/billing_best_practices.html"> http://developer.android.com/google/play/billing/billing_best_practices.html</a></p>
+        <h2><a name="header"></a>Including Header Files</h2>
+        <p>GNSDK consists of a set of shared modules. The GNSDK Manager module is required for all applications. All other modules are optional. Your application's feature requirements determine which additional modules should be used.</p>
+        <p>For convenience, all your application has to do is include a single GNSDK header file and all necessary header files and libraries will be automatically included.</p>
+        <p><b>Java</b>
+        </p><pre>import com.gracenote.gnsdk.*;</pre>
+        <p data-mc-conditions="Default.ProdMobileAnyPlatform,Default.ProdAuto,Default.ProdDesktop"><b>Objective-C</b><pre>#import &lt;GnSDKObjC/Gn.h&gt;</pre>
+        </p>
+        <p><b><a name="kanchor286"></a>Windows Phone C#</b>
+        </p><pre>using Gracenote;</pre>
+        <h2><a name="manager"></a>Instantiating a GNSDK Manager Object</h2>
+        <p>The first thing your application needs to do is initialize an SDK Manager object (<code>GnManager</code>) using the GNSDK library path and the contents of the license file you obtained from GSS. The SDK Manager object is used to monitor an application's interaction with Gracenote.</p>
+        <h3>Specifying the License File</h3>
+        <p>Your application must provide the license file when you allocate a <code>GnManager</code> object. This class' constructor  gives you the following options for submitting the license file:</p>
+        <ul>
+            <li value="1">
+                <p><b>Null-terminated string</b>—Set the input mode parameter to <code>GnLicenseInputMode.kLicenseInputModeString</code> and pass the license file as a null-terminated string (see examples below).</p>
+            </li>
+            <li value="2">
+                <p><b>Filename</b>—Set the input mode parameter to <code>GnLicenseInputMode.kLicenseInputModeFilename</code> and pass the relative filename in the string parameter.</p>
+            </li>
+        </ul>
+        <p><b>Code samples</b>
+        </p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" />Android Java</a></span>
+            <div class="MCDropDownBody dropDownBody"><pre xml:space="preserve"><a name="kanchor287"></a>private String gnsdkLicense = &lt;get license as string from asset&gt;;
+Context context = this.getApplicationContext();
+             
+// Initialize GNSDK
+gnsdk = new GnManager(context,                                      // Android Context
+                      gnsdkLicense,                                 // License as a string
+                      GnLicenseInputMode.kLicenseInputModeString);  // Input License as a string
+
+</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" />Objective-C</a></span>
+            <div class="MCDropDownBody dropDownBody"><pre xml:space="preserve">@property  (strong) GnManager *gnManager;
+NSError*   error = nil;
+NSString*  resourcePath  = [[NSBundle mainBundle] pathForResource:
+                            gnsdkLicenseFilename ofType: nil];
+NSString*   licenseString = [NSString stringWithContentsOfFile: resourcePath
+                             encoding: NSUTF8StringEncoding
+                             error: &amp;error];		
+self.gnManager = [[GnManager alloc] initWithLicense: licenseString licenseInputMode: kLicenseInputModeString];</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" />Windows Phone C#</a></span>
+            <div class="MCDropDownBody dropDownBody"><pre xml:space="preserve">/*
+* Initalize GNSDK
+*/
+string licenseString = ReadFile(App.gnLicenseFileName_);
+App.gnManager_ = new GnManager(licenseString, GnLicenseInputMode.kLicenseInputModeString);</pre>
+            </div>
+        </div>
+        <h2><a name="user"></a>Instantiating a User Object</h2>
+        <p>To make queries, every application is required to instantiate a User object (<code>GnUser</code><a name="kanchor288"></a>). Most devices will only have one user; however, on a server, for example, there could be a number of users running your application. Gracenote uses the Client ID and Client Tag to verify that the licensed and allowable users quota has not been exceeded.</p>
+        <p data-mc-conditions="Default.ProdAuto,Default.ProdMobileAnyPlatform">If an application cannot go online at user-registration, but has a local fingerprint database it can use for identification, it has the option to create and use a 'local only' User object. A User object created with online connectivity can do both local and online queries. To determine if the User object can only do local queries, your application can call the <code>GnUser</code>'s <code>IsLocalOnly</code> method.</p>
+        <p><code>GnUser</code> objects can be created 'online,' which means the Gracenote back-end creates and verifies them. Alternatively, they can be created 'local only,' which means the SDK creates and uses them locally.</p>
+        <p>For example (Java):</p><pre xml:space="preserve">// Create user for video and music
+gnUser = new GnUser(gnUserStore, clientId, clientTag, "1.0");</pre>
+        <h3><a name="kanchor289"></a>Saving the User Object to Persistent Storage</h3>
+        <p>User objects should be saved to persistent storage. If an app registers a new user on every use instead of retrieving it from storage, then the user quota maintained for the Client ID is quickly exhausted. Once the quota is reached, attempting to create new users will fail. To maintain an accurate usage profile for your application, and to ensure that the services you are entitled to are not being used unintentionally, it is important that your application registers a new user only when needed, and then stores that user for future use.</p>
+        <p>To save to persistent storage, you have the option to implement the <code>IGnUserStore</code> interface which requires you to implement two methods: <code>LoadSerializedUser</code> and <code>StoreSerializedUser</code>.</p>
+        <p class="note"><a name="kanchor290"></a>On mobile and ACR platforms (Android, iOS, Windows), the SDK provides the <code>GnUserStore</code> class, a platform-specific implementation of the <code>IGnUserStore</code> interface. Storage on these devices is implemented in platform-specific ways. On Android, for example, the User object is saved to shared preferences.</p>
+        <p>You can then pass an instance of this class as a parameter in a <code>GnUser</code> constructor and the SDK will automatically read the User object from storage and use it to create a new User ID. The SDK may also periodcally <code>SaveSerializedUser</code> when user data changes. </p>
+        <p><b>Allocating a User object code samples:</b>
+        </p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" />Android Java </a></span>
+            <div class="MCDropDownBody dropDownBody"><pre>// Provide Android Context to GnUserStore
+GnUser gnUser = new GnUser( new GnUserStore(context), clientId, clientTag, appString ); 
+</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" />Objective-C </a></span>
+            <div class="MCDropDownBody dropDownBody"><pre xml:space="preserve">@property (strong) GnUser *gnUser;
+self.gnUserStore = [[GnUserStore alloc] init];
+self.gnUser = [[GnUser alloc] initWithGnUserStoreDelegate: self.gnUserStore
+                clientId: clientID
+                clientTag: clientIDTag
+                applicationVersion: @"1.0.0.0"];</pre>
+            </div>
+        </div>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" />Windows Phone C# 			</a></span>
+            <div class="MCDropDownBody dropDownBody"><pre xml:space="preserve">
+// Create ACR User
+if (null == App.gnUser_)
+{
+   App.gnUser_ = new GnUser(new GnUserStore(App.gnClientId_),
+                 App.gnClientId_,
+                 App.gnClientIdTag_,
+                 App.applicationVersion_);
+   App.gnUser_.Options.LookupMode(GnLookupMode.kLookupModeOnline);
+}</pre>
+            </div>
+        </div>
+        <br />
+        <h3>User Object Options</h3>
+        <p>You can set/get the following options with a the <code>GnUser</code>'s <code>GnUserOptions</code> class:</p>
+        <ul>
+            <li value="1">
+                <p><b>CacheExpiration</b>—The maximum duration for which an item in the GNSDK query cache is valid.</p>
+            </li>
+            <li value="2">
+                <p><b>DeviceModel</b>—Set the device model, used for runtime statistics.</p>
+            </li>
+            <li value="3">
+                <p><b>LookupMode</b>—Options for online or local lookup. See the <a href="Setting Local and Online Lookup Modes.html">Setting Local and Online Lookup Modes</a> topic for more information.</p>
+            </li>
+            <li value="4">
+                <p><b>NetworkInterface</b>—Set a specific network interface to use with this object's connections. This can be useful for systems with multiple network interaces. Otherwise, the operating system determines the interface to use.</p>
+            </li>
+            <li value="5">
+                <p><b>NetworkLoadBalance</b>—Enable/disable distributing queries across multiple Gracenote co-location facilities.</p>
+            </li>
+            <li value="6">
+                <p><b>NetworkProxy</b>—Host name, username, and password for routing GNSDK queries through a proxy.</p> <![CDATA[ ]]></li>
+            <li value="7">
+                <p><b>NetworkTimeout</b>—The network time-out for all GNSDK queries in milliseconds. </p>
+            </li>
+            <li value="8">
+                <p><b>UserInfo</b>—Set information (location, manufacturer, OS, UID) about this user, used for runtime statistics. </p>
+            </li>
+        </ul>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Implementing Applications (All Platforms)</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Setup and Initialization</span>
+        </div>
+        <p class="onlineFooter"><a name="kanchor291"></a>© 2000 to present. Gracenote, Inc. All rights reserved.</p>
+        <p><a href="mailto:doc_feedback@gracenote.com?subject=Gracenote Documentation Feedback" target="_blank" title="Send comments about this topic to Gracenote Technical Publications." alt="Send comments about this topic to Gracenote Technical Publications.">How can we improve this documentation?</a>
+        </p>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkBottom"><a href="../../../index.html#oo-topics/oo_implementing/Setup and Initialization.html">Open topic with navigation</a>
+        </p>
+    </body>
+</html>

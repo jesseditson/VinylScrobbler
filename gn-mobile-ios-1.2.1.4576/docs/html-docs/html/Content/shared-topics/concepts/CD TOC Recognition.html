@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Concepts|Music Modules|Music Module Overview|MusicID Overview">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>CD&#160;TOC&#160;Recognition</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Resources/Stylesheets/BookStyles.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../index.html#shared-topics/concepts/CD TOC Recognition.html">Open topic with navigation</a>
+        </p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Concepts</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbsSelf">Music Modules</span><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Music Module Overview.html">Music Module Overview</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">CD TOC Recognition</span>
+        </div>
+        <h1>CD&#160;TOC&#160;Recognition</h1>
+        <p><a name="kanchor88"></a>MusicID-CD is the component of <span class="GNVariablesProductName"><a name="kanchor89"></a>GNSDK for Mobile</span> that handles recognition of audio CDs and delivery of information including artist, title, and track names. The application provides <span class="GNVariablesProductName">GNSDK for Mobile</span> with the <a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">TOC<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>Table of Contents. An area on CDs, DVDs, and Blu-ray discs that describes the unique track layout of the disc.</span></a> from an audio CD and MusicID-CD will identify the CD and provide album and track information.</p>
+        <h2>TOC Identification</h2>
+        <p>The only information that is guaranteed to be on every standard audio CD is a Table of Contents, or TOC. This is a header at the beginning of the disc giving the precise starting location of each track on the CD, so that CD players can locate the tracks and compute the track length information for their display panels.</p>
+        <p><a name="kanchor90"></a>This information is given in frames, where each frame is 1/75 of a second. Because this number is so precise, it is relatively unlikely that two unrelated CDs would have the same TOC. This lets Gracenote use the TOC as a relatively unique identifier.</p>
+        <p>The example below shows a typical TOC for a CD containing 13 tracks:</p><pre>150 26670 52757 74145 95335 117690 144300 163992 188662 209375 231320 253150 281555 337792</pre>
+        <p>The first 13 numbers represent the frames from the beginning of the disc that indicate the starting locations of the 13 tracks. The last number is the offset of the lead out, which marks the end of the CD program area.</p>
+        <h2><a name="kanchor91"></a>Multiple TOC Matches</h2>
+        <p>An album will often have numerous matching TOCs in the Gracenote database. This is because of CD manufacturing differences. More popular discs tend to have more TOCs. Gracenote maintains a catalog of multiple TOCs for many CDs, providing more reliable matching. </p>
+        <p>The following is an example of multiple TOCs for a single CD album. This particular album has 22 popular TOCs and many other less popular TOCs.</p><pre xml:space="preserve">150 26670 52757 74145 95335 117690 144300 163992 188662 209375 231320 253150 281555 337642</pre><pre xml:space="preserve">150 26670 52757 74145 95335 117690 144300 163992 188662 209375 231320 253150 281555 337792</pre><pre xml:space="preserve">182 26702 52790 74177 95367 117722 144332 164035 188695 209407 231362 253182 281587 337675</pre><pre xml:space="preserve">150 26524 52466 73860 94904 117037 143501 162982 187496 208138 230023 251697 279880 335850</pre>
+        <h2><a name="kanchor92"></a>Multiple TOCs and Fuzzy Matching</h2>
+        <p>Gracenote MusicID utilizes several methods to perform TOC matches. This combination of matching methods allows client applications to accurately recognize media in a variety of situations.</p>
+        <ul>
+            <li value="1"><a name="kanchor93"></a>Exact Match – when there is only one Product match for a queried CD TOC</li>
+            <li value="2"><a name="kanchor94"></a>Multi-Exact Match – when there are multiple Product matches for a queried CD TOC</li>
+            <li value="3">Fuzzy Match – allows identification of media that has slight known and acceptable variations from well-recognized media.</li>
+        </ul>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Concepts</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbsSelf">Music Modules</span><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="Music Module Overview.html">Music Module Overview</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">CD TOC Recognition</span>
+        </div>
+        <p class="onlineFooter"><a name="kanchor95"></a>© 2000 to present. Gracenote, Inc. All rights reserved.</p>
+        <p><a href="mailto:doc_feedback@gracenote.com?subject=Gracenote Documentation Feedback" target="_blank" title="Send comments about this topic to Gracenote Technical Publications." alt="Send comments about this topic to Gracenote Technical Publications.">How can we improve this documentation?</a>
+        </p>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkBottom"><a href="../../../index.html#shared-topics/concepts/CD TOC Recognition.html">Open topic with navigation</a>
+        </p>
+    </body>
+</html>

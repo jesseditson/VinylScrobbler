@@ -1,0 +1,1957 @@
+name<html>
+<head>
+<link rel="stylesheet" type="text/css" href="BookStyles.css">
+<style type="text/css">
+table { border:1px solid #CCC; padding:5px; background-color:#D8D8D8;}
+th {background-color : #F0F0F0; color:#003366; padding:10px; text-align:center;}
+tbody tr td { padding:10px; color:#666; background-color : #fafafb; text-align:left;}
+.pad0 { padding-left:30px;}
+.pad1 { padding-left:60px;}
+.pad2 { padding-left:90px;}
+.pad3 { padding-left:120px;}
+.pad4 { padding-left:150px;}
+.pad5 { padding-left:180px;}
+.pad6 { padding-left:210px;}
+
+code {
+   font-size: 12px;
+   font-family: "Courier New", Courier;
+
+ }
+
+code.object {
+  border: 1px solid #CCCCCC;
+  white-space:pre-wrap;
+  padding:0px;
+  font-family: "Courier New", Courier;
+  background-color: #F1EDB6;
+  color:black;
+ }
+
+ tbody tr:nth-child(odd) {
+   background-color: salmon;
+}
+</style>
+<script language="javascript">
+
+var aryTop = ['acrTop', 'acrTop1', 'acrTop2', 'acrTop3', 'acrTop4'];
+var aryAd = ['ad1', 'ad2', 'ad3', 'ad4', 'ad5', 'ad6', 'ad7'];
+
+<!-- GnVideoAlbum -->
+var aryAlb = ['alb1', 'alb2', 'alb3', 'alb4', 'alb5', 'alb6', 'alb7' , 'alb8', 'alb9', 'alb10', 'alb11', 'alb12', 'alb13', 'alb14', 'alb15', 'alb16', 'alb17', 'alb18', 'alb19', 'alb20', 'alb21', 'alb22', 'alb23', 'alb24', 'alb25', 'alb26', 'alb27', 'alb28', 'alb29', 'alb30', 'alb31', 'alb32', 'alb33'];
+
+<!-- GnTrack -->
+var aryTrk = ['trk1', 'trk2', 'trk3', 'trk4', 'trk6', 'trk7' , 'trk8', 'trk9', 'trk10', 'trk11', 'trk12', 'trk13', 'trk14', 'trk15', 'trk16', 'trk17', 'trk18', 'trk19', 'trk20', 'trk21', 'trk22', 'trk23', 'trk24', 'trk25', 'trk26', 'trk27', 'trk28', 'trk29', 'trk30', 'trk31'];
+
+<!-- GnVideoDisc -->
+var aryVD = ['vd1', 'vd2', 'vd3', 'vd4', 'vd5', 'vd6', 'vd7', 'vd8', 'vd9', 'vd10'];
+
+<!-- GnVideoSide -->
+var aryVS = ['vs1', 'vs2', 'vs3', 'vs4', 'vs5', 'vs6'];
+
+<!-- GnVideoLayer -->
+var aryVL = ['vl1', 'vl2', 'vl3', 'vl4', 'vl5', 'vl6', 'vl7', 'vl8', 'vl9', 'vl10'];
+
+<!-- GnVideoFeature -->
+var aryVF = ['vf1', 'vf2', 'vf3', 'vf4', 'vf5', 'vf6', 'vf7', 'vf8', 'vf9', 'vf10', 'vf11', 'vf12', 'vf13', 'vf14', 'vf15', 'vf16', 'vf17', 'vf18', 'vf19', 'vf20', 'vf21', 'vf22'];
+
+<!-- GnVideoChapter -->
+var aryVC = ['vc1', 'vc2', 'vc3', 'vc4', 'vc5'];
+
+
+<!-- GnArtist -->
+var aryArt = ['art1', 'art2'];
+
+<!-- GnRole -->
+var aryRole = ['role1', 'role2'];
+
+<!-- GnAudioWork -->
+var aryAW = ['aw1', 'aw2', 'aw3', 'aw4', 'aw5', 'aw6', 'aw7', 'aw8', 'aw9', 'aw10', 'aw11', 'aw12'];
+
+<!-- GnCredit -->
+var aryCr = ['cr1', 'cr2', 'cr3'];
+
+var ary1 = ['acrF1', 'acrF2', 'acrF3', 'acrF4', 'acrF5', 'acrF6', 'acrF7', 'acrF8', 'acrF9', 'acrF10', 'acrF11'];
+
+<!-- GnVideoWork -->
+var ary2 = ['vwF1', 'vwF2', 'vwF3', 'vwF4', 'vwF5', 'vwF6', 'vwF7', 'vwF8', 'vwF9', 'vwF10', 'vwF11', 'vwF15', 'vwF16', 'vwF17', 'vwF18', 'vwF19', 'vwF20', 'vwF21', 'vwF22', 'vwF23', 'vwF24', 'vwF25', 'vwF26', 'vwF28', 'vwF29', 'vwF30', 'vwF31', 'vwF32', 'vwF33', 'vwF34', 'vwF35', 'vwF36', 'vwF37', 'vwF38', 'vwF39', 'vwF43', 'vwF44', 'vwF45', 'vwF46', 'vwF47', 'vwF48', 'vwF49', 'vwF50', 'vwF51', 'vwF52', 'vwF53', 'vwF54', 'vwF55'];
+
+<!-- GnVideoCredit -->
+var ary3 = ['vcF1', 'vcF2', 'vcF3', 'vcF4', 'vcF5', 'vcF6', 'vcF7', 'vcF8', 'vcF9', 'vcF10', 'vcF11', 'vcF12', 'vcF13', 'vcF14'];
+
+var ary4 = ['vcoF1', 'vcoF2', 'vcoF3', 'vcoF4', 'vcoF5', 'vcoF6', 'vcoF7', 'vcoF8', 'vcoF9', 'vcoF10', 'vcoF11', 'vcoF12', 'vcoF13', 'vcoF14', 'vcoF15', 'vcoF21', 'vcoF22', 'vcoF23', 'vcoF24', 'vcoF25', 'vcoF26', 'vcoF27', 'vcoF28', 'vcoF29', 'vcoF31'];
+var ary6 = ['eiF1', 'eiF2', 'eiF3'];
+
+
+<!-- GnVideoSeason -->
+var ary8 = ['vsF1', 'vsF2', 'vsF3', 'vsF4', 'vsF5', 'vsF6', 'vsF7', 'vsF8', 'vsF9', 'vsF10', 'vsF11', 'vsF12', 'vsF16', 'vsF17', 'vsF18', 'vsF19', 'vsF20', 'vsF21', 'vsF22', 'vsF23', 'vsF24', 'vsF25', 'vsF26', 'vsF27', 'vsF28', 'vsF29', 'vsF30', 'vsF31', 'vsF32', 'vsF33', 'vsF34', 'vsF35', 'vsF36', 'vsF37',  'vsF40',  'vsF42', 'vsF45', 'vsF46', 'vsF47', 'vsF48'];
+
+var ary9 = ['tvaF1', 'tvaF2', 'tvaF3', 'tvaF4', 'tvaF5', 'tvaF6', 'tvaF7', 'tvaF8', 'tvaF9', 'tvaF10'];
+var ary10 = ['tvcF1', 'tvcF2', 'tvcF3', 'tvcF4', 'tvcF5', 'tvcF6', 'tvcF7', 'tvcF8', 'tvcF9', 'tvcF10', 'tvcF11', 'tvcF12', 'tvcF13', 'tvcF14', 'tvcF15'];
+var ary11 = ['tvpF1', 'tvpF2', 'tvpF3', 'tvpF4', 'tvpF5', 'tvpF6', 'tvpF7', 'tvpF8', 'tvpF9', 'tvpF10', 'tvpF11', 'tvpF12', 'tvpF13', 'tvpF14','tvpF15','tvpF16','tvpF17','tvpF18','tvpF19'];
+var ary13 = ['ratF1', 'ratF2', 'ratF3', 'ratF4', 'ratF5', 'ratF6', 'ratF7', 'ratF8', 'ratF9', 'ratF10', 'ratF11', 'ratF12', 'ratF13', 'ratF14', 'ratF15', 'ratF16', 'ratF17', 'ratF18', 'ratF19', 'ratF20', 'ratF21', 'ratF22', 'ratF23', 'ratF24', 'ratF25'];
+var ary15 = ['vtF1', 'vtF2', 'vtF3', 'vtF4', 'vtF5', 'vtF6', 'vtF7', 'vtF8'];
+
+
+<!-- GnVideoSeries -->
+var ary16 = ['vsrF1', 'vsrF2', 'vsrF3', 'vsrF4', 'vsrF5', 'vsrF6', 'vsrF7', 'vsrF8', 'vsrF9', 'vsrF10', 'vsrF11', 'vsrF12',  'vsrF16', 'vsrF17', 'vsrF18', 'vsrF20', 'vsrF21', 'vsrF22', 'vsrF23', 'vsrF24', 'vsrF25', 'vsrF26', 'vsrF27', 'vsrF28', 'vsrF29', 'vsrF30', 'vsrF31', 'vsrF32', 'vsrF33', 'vsrF34', 'vsrF35', 'vsrF36', 'vsrF37', 'vsrF38', 'vsrF39', 'vsrF40', 'vsrF41', 'vsrF42', 'vsrF43'];
+
+<!-- GnVideoProduct -->
+var ary17 = ['prF1', 'prF2', 'prF3', 'prF4', 'prF5', 'prF6', 'prF7', 'prF8', 'prF9', 'prF10', 'prF11', 'prF12', 'prF13', 'prF14','prF15', 'prF16', 'prF17', 'prF18', 'prF19', 'prF20', 'prF21', 'prF22', 'prF23', 'prF24', 'prF25', 'prF26'];
+
+var ary23 = ['cd1', 'cd2'];
+var ary25 = ['b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'b9'];
+var ary26 = ['co1', 'co2', 'co3', 'co4'];
+var ary27 = ['as1', 'as2', 'as3', 'as4'];
+
+var hide=1;
+var notHide = 0;
+
+function toggle3(ary, linkID, text, override)
+{
+   var link = document.getElementById(linkID);
+   var ele  = document.getElementById(ary[0]);
+   if (override || ele.style.display == "table-row")
+   {
+      // Collapse
+
+      // display expand object icon
+     link.innerHTML = "<img src='expandFolderIcon2.jpg'><code class='object'>"+text+"</code>";
+
+
+      // hide all rows
+      for (var i = 0; i < ary.length; i++)
+      {
+  ele = document.getElementById(ary[i]);
+          ele.style.display = "none";
+      }
+
+   } // if
+   else // Expand
+   {
+       // display collapse object icon
+       link.innerHTML = "<img src='collapseFolderIcon2.jpg    '><code class='object'>"+text+"</code>";
+
+       // show all rows
+       for (var i = 0; i < ary.length; i++)
+       {
+          ele = document.getElementById(ary[i]);
+          ele.style.display = "table-row";
+       }
+
+   } // else
+ } // toggle3
+
+</script>
+</head>
+
+<body>
+
+<table id="gnresult">
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+<tbody>
+
+
+<tr id="acrF3"  style="display:table-row;vertical-align:top">
+<td><code class="object">GnVideoWork</code></td>
+<td><code>object</code></td>
+<td><p>Audio-Video work object. A Work refers to the artistic creation and production of a Film, TV Series, or other form of video content. The same Work can be released on multiple Product formats across territories. For example, The Dark Knight Work can be released on a Blu-ray Product in multiple countries. A TV Series such as Lost is also a Work. Each individual episode comprising the Series is also a unique Work. Although the majority of Works are commercially released as a Product, not all Works have a Product counterpart. For example, a TV episode which airs on TV, but is not released on DVD or Blu-ray is considered a Work to which no Product exists.</p>
+<p>This object is not <code>null</code> if your match came from searching the video archive. Otherwise, your match
+ came from searching live TV broadcast data - check the <code>tvAiring</code> object above for your results. Talk to Gracenote Professional Services about licensing for video archive and live TV options.</p>
+</td>
+</tr>
+
+<tr id="vwF1" style="display:table-row;">
+<td   class="pad0"><code>audience</code></td>
+<td><code>String</code></td>
+<td>A supported audience type for video data, such as "Kids and Family", "African-American", or "Young Adult".  Note that this is a locale-dependent field.  </td>
+</tr>
+
+<tr id="vwF48" style="display:table-row;">
+<td  class="pad0" style="width:100px;" onClick="javascript:toggle3(ary26, 'contents', 'contents', notHide);toggle3(ary27, 'assets', 'assets', hide);" id="contents"><img src="expandFolderIcon2.jpg"><code class="object">contents</code></td>
+<td><code>GnContent</code><br><code>Enumerator</code></td>
+<td>Content (cover art, biography, review, etc.) objects.</td>
+</tr>
+<tr id="co1" style="display:none;">
+<td   class="pad1"><code>Id</code></td>
+<td><code>String</code></td>
+<td>Identifier</td>
+</tr>
+<tr id="co2" style="display:none;">
+<td   class="pad1"><code>contentType</code></td>
+<td><code>GnContentType</code></td>
+<td>Content type - cover art, biography, etc.</td>
+</tr>
+<tr id="co3" style="display:none;">
+<td   class="pad1"><code>mimeType</code></td>
+<td><code>String</code></td>
+<td>Content's mime type</td>
+</tr>
+<tr id="co4" style="display:none;">
+<td   class="pad1" onClick="javascript:toggle3(ary27, 'assets', 'assets', notHide);" id="assets"><code class="object">assets</code></td>
+<td><code>GnAsset<br> Enumerator</code></td>
+<td>Assets for content (cover art, biography, etc.).</td>
+</tr>
+
+<tr id="as1" style="display:none;">
+<td   class="pad2"><code>bytes</code></td>
+<td><code>Int</code></td>
+<td>Number of asset bytes</td>
+</tr>
+<tr id="as2" style="display:none;">
+<td  class="pad2"><code>dimension</code></td>
+<td><code>String</code></td>
+<td>Asset dimension</td>
+</tr>
+<tr id="as3" style="display:none;">
+<td   class="pad2"><code>url</code></td>
+<td><code>String</code></td>
+<td> URL that can be used to retrieve asset from Gracenote</td>
+</tr>
+<tr id="as4" style="display:none;">
+<td   class="pad2"><code>size</code></td>
+<td><code>Enum</code></td>
+<td><code>GnImageSize</code> enum. Asset pixel image size of asset, e.g., <code>kImageSize110</code> (110x110)</td>
+</tr>
+
+
+<tr id="vwF2" style="display:table-row;">
+<td  class="pad0"><code>dateOriginalRelease</code></td>
+<td><code>String</code></td>
+<td>Release date of the original AV Work (Movie or Episode), in UTC format.</td>
+</tr>
+
+<tr id="vwF3" style="display:table-row;">
+<td  class="pad0"><code>duration</code></td>
+<td><code>String</code></td>
+<td>Duration of the work. <code>durationUnit</code> indicates the time measurement used (e.g., seconds).</td>
+</tr>
+
+<tr id="vwF4" style="display:table-row;">
+<td  class="pad0"><code>durationUnits</code></td>
+<td><code>String</code></td>
+<td>The type of duration time measurement, e.g., "SEC" (seconds), "MS" (milliseconds).</td>
+</tr>
+
+
+<tr id="vwF39" style="display:table-row;">
+<td  class="pad0" onClick="javascript:toggle3(ary6, 'extIDs', 'externalIDs', notHide);" id="extIDs" ><img src="expandFolderIcon2.jpg"><code class="object">externalIDs</code></td>
+<td><code>GnExternalID</code><br><code>Enumerator</code></td>
+<td>External ID objects that identify a source external to Gracenote (e.g., NetFlix), that also have an identifier for this work.</td>
+</tr>
+
+<tr id="eiF1" style="display:none;">
+<td  class="pad1"><code>source</code></td>
+<td><code>String</code></td>
+<td>External ID source (e.g., Amazon)</td>
+</tr>
+
+<tr id="eiF2" style="display:none;">
+<td  class="pad1"><code>type</code></td>
+<td><code>String</code></td>
+<td>External ID type, such as a UPC (Univeral Product Code)</td>
+</tr>
+
+<tr id="eiF3" style="display:none;">
+<td  class="pad1"><code>value</code></td>
+<td><code>String</code></td>
+<td>External ID value.</td>
+</tr>
+
+<tr id="vwF5" style="display:table-row;">
+<td  class="pad0"><code>franchiseCount</code></td>
+<td><code>Long</code></td>
+<td>Franchise count</td>
+</tr>
+<tr id="vwF49" style="display:table-row;">
+<td  class="pad0"><code>franchiseNum</code></td>
+<td><code>Long</code></td>
+<td>Franchise number</td>
+</tr>
+
+<tr id="vwF50" style="display:table-row;">
+<td  class="pad0" onClick="javascript:toggle3(ary15, 'title', 'franchiseTitle', notHide);" id="title" ><img src="expandFolderIcon2.jpg"><code class="object">franchiseTitle</code></td>
+<td><code>GnTitle</code></td>
+<td>Title object of the matched result.</td>
+</tr>
+
+<tr id="vtF1" style="display:none;">
+<td  class="pad1"><code>display</code></td>
+<td><code>String</code></td>
+<td>Title display string. The title of the matched content, e.g. "Sienfeld" or "The Office" </td>
+</tr>
+
+<tr id="vtF2" style="display:none;">
+<td  class="pad1"><code>prefix</code></td>
+<td><code>String</code></td>
+<td>Video title prefix, e.g., "The".</td>
+</tr>
+
+<tr id="vtF3" style="display:none;">
+<td  class="pad1"><code>sortable</code></td>
+<td><code>String</code></td>
+<td>Sortable title</td>
+</tr>
+
+<tr id="vtF8" style="display:none;">
+<td  class="pad1"><code>sortableScheme</code></td>
+<td><code>String</code></td>
+<td>Sortable title scheme</td>
+</tr>
+
+<tr id="vtF4" style="display:none;">
+<td  class="pad1"><code>mainTitle</code></td>
+<td><code>String</code></td>
+<td>Main title</td>
+</tr>
+
+<tr id="vtF5" style="display:none;">
+<td  class="pad1"><code>edition</code></td>
+<td><code>String</code></td>
+<td>Title edition</td>
+</tr>
+
+<tr id="vtF6" style="display:none;">
+<td  class="pad1"><code>language</code></td>
+<td><code>String</code></td>
+<td>Title display language</td>
+</tr>
+
+<tr id="vtF7" style="display:none;">
+<td  class="pad1"><code>languageCode</code></td>
+<td><code>String</code></td>
+<td>Title display language 3 letter ISO code</td>
+</tr>
+
+
+<tr id="vwF6" style="display:table-row;">
+<td  class="pad0"><code>genre(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Genre - e.g., comedy.  Note that this is a locale-dependent field. </td>
+</tr>
+
+<tr id="vwF7" style="display:table-row;">
+<td  class="pad0"><code>gnID</code></td>
+<td><code>String</code></td>
+<td>Gracenote identifier.</td>
+</tr>
+
+<tr id="vwF8" style="display:table-row;">
+<td  class="pad0"><code>gnuID</code></td>
+<td><code>String</code></td>
+<td>Gracenote unique ID.</td>
+</tr>
+
+<tr id="vwF36" style="display:table-row;">
+<td  class="pad0"><code>isFullResult</code></td>
+<td><code>Boolean<code></td>
+<td>Indicates if this is a partial or full metadata result</td>
+</tr>
+
+<tr id="vwF9" style="display:table-row;">
+<td  class="pad0"><code>matchedProductTUI</code></td>
+<td><code>String</code></td>
+<td>TUI of matched product. A Gracenote acronym for  "title unique identifier". For example: "267348592". This and <code>tuiTag</code> are used for unique identification within the Gracenote service.</td>
+</tr>
+
+<tr id="vwF47" style="display:table-row;">
+<td  class="pad0"><code class="object">officialTitle</code></td>
+<td><code>GnTitle</code></td>
+<td>Video title object. See <code>GnVideoWork > franchiseTitle</code> for object properties</td>
+</tr>
+
+
+<tr id="vwF11" style="display:table-row;">
+<td  class="pad0"><code>origin(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Geographic location. For example: "New York City".  Note that this is a locale-dependent field.</td>
+</tr>
+
+
+
+<tr id="vwF52" style="display:table-row;">
+<td  class="pad0"><code>plotSynopsis</code></td>
+<td><code>String</code></td>
+<td>  Plot synopsis e.g., "A semi-autobiographical coming-of-age story"</td>
+</tr>
+<tr id="vwF53" style="display:table-row;">
+<td  class="pad0"><code>plotSynopsisLanguage</code></td>
+<td><code>String</code></td>
+<td>Plot synopis language, e.g., English</td>
+</tr>
+<tr id="vwF54" style="display:table-row;">
+<td  class="pad0"><code>plotTagline</code></td>
+<td><code>String</code></td>
+<td>Plot tagline, e.g., "The Third Dimension is Terror"</td>
+</tr>
+
+<tr id="vwF15" style="display:table-row;">
+<td  class="pad0"><code>productID</code></td>
+<td><code>String</code></td>
+<td>A hashed representation of the <code>tuiTag</code> property.</td>
+</tr>
+
+ <tr id="vwF43" style="display:table-row;">
+ <td  class="pad0" onClick="javascript:toggle3(aryVF, 'features', 'features', hide);toggle3(aryVC, 'chapters', 'chapters', hide);toggle3(ary17, 'products', 'products', notHide);toggle3(aryVL, 'layers', 'layers', hide);toggle3(aryVD, 'discs', 'discs', hide);toggle3(aryVS, 'sides', 'sides', hide);" id="products" ><img src="expandFolderIcon2.jpg"><code class="object">products</code></td>
+<td><code>GnVideoProduct</code><br><code>Enumerator</code></td>
+<td>Video product objects. A Product refers to the commercial release of a Film, TV Series, or video content. Products contain a unique commercial code such as a UPC, Hinban, or EAN. Products are for the most part released on a physical format, such as a DVD or Blu-ray.</td>
+</tr>
+
+<tr id="prF1" style="display:none;">
+<td  class="pad1"><code>aspectRatio</code></td>
+<td><code>String</code></td>
+<td>The aspect ratio of an image describes the proportional relationship between its width and its height commonly expressed as two numbers separated by a colon. Two common videographic aspect ratios are 4:3 (1.33:1), the universal video format of the 20th century and 16:9 (1.77:1), universal for high-definition television and European digital television. <a href="http://en.wikipedia.org/wiki/Aspect_ratio_%28image%29" target="_blank">More information...</a></td>
+</tr>
+
+<tr id="prF2" style="display:none;">
+<td  class="pad1"><code>aspectRatioType</code></td>
+<td><code>String</code></td>
+<td>For example, "STANDARD".</td>
+</tr>
+
+<tr id="prF3" style="display:none;">
+<td  class="pad1"><code>commerceType</code></td>
+<td><code>String</code></td>
+<td>Commerce type value</td>
+</tr>
+
+<tr id="prF25" style="display:none;">
+<td  class="pad1"><code class="object">contents</code></td>
+<td><code>GnContent<br>Enumerator</code></td>
+<td>Content (cover art, biography, review, etc.) objects. See <code>GnVideoWork > Contents</code> for object properties.</td>
+</tr>
+
+<tr id="prF4" style="display:none;">
+<td  class="pad1"><code>dateOriginalRelease</code></td>
+<td><code>String</code></td>
+<td>Work's original release date in UTC format.</td>
+</tr>
+
+<tr id="prF5" style="display:none;">
+<td  class="pad1"><code>dateRelease</code></td>
+<td><code>String</code></td>
+<td>Release data of this product in UTC format.</td>
+</tr>
+
+
+<tr id="prF26" style="display:none;">
+<td  class="pad1" onClick="javascript:toggle3(aryVC, 'chapters', 'chapters', hide);toggle3(aryVF, 'features', 'features', hide);toggle3(aryVL, 'layers', 'layers', hide);toggle3(aryVD, 'discs', 'discs', notHide);toggle3(aryVS, 'sides', 'sides', hide);" id="discs" ><img src="expandFolderIcon2.jpg"><code class="object">discs</code></td>
+<td><code>GnVideoDisc<br>Enumerator</code></td>
+<td>Video disc objects. A video disc can be either DVD (Digital Video Disc) or Blu-ray. DVD is an optical disc storage format, invented and developed by Philips, Sony, Toshiba, and Panasonic in 1995. DVDs offer higher storage capacity than Compact Discs while having the same dimensions. Blu-ray is an optical disc format designed to display high definition video and store large amounts of data. The name Blu-ray Disc refers to the blue laser used to read the disc, which allows information to be stored at a greater density than is possible with the longer-wavelength red laser used for DVDs. </td>
+</tr>
+
+<tr id="vd1" style="display:none;">
+<td  class="pad2"><code>gnId</code></td>
+<td><code>String</code></td>
+<td>Gracenote ID.</td>
+</tr>
+
+<tr id="vd2" style="display:none;">
+<td  class="pad2"><code>gnUId</code></td>
+<td><code>String</code></td>
+<td>Gracenote unique ID</td>
+</tr>
+
+<tr id="vd3" style="display:none;">
+<td  class="pad2"><code>matched</code></td>
+<td><code>Boolean</code></td>
+<td>Matched boolean value indicating whether this type is the one that matched the input criteria.</td>
+</tr>
+
+<tr id="vd4" style="display:none;">
+<td  class="pad2"><code>notes</code></td>
+<td><code>String</code></td>
+<td>Notes</td>
+</tr>
+
+<tr id="vd5" style="display:none;">
+<td  class="pad2"><code class="object">officialTitle</code></td>
+<td><code>GnTitle</code></td>
+<td>Official title object. See <code>GnVideoWork &gt; franchiseTitle</code> for object properties.</td>
+</tr>
+
+<tr id="vd6" style="display:none;">
+<td  class="pad2"><code>ordinal</code></td>
+<td><code>Long</code></td>
+<td>Ordinal value.</td>
+</tr>
+
+<tr id="vd7" style="display:none;">
+<td  class="pad2"><code>productId</code></td>
+<td><code>String</code></td>
+<td>Product ID aka Tag ID</td>
+</tr>
+
+<tr id="vd8" style="display:none;">
+<td  class="pad2" onClick="javascript:toggle3(aryVF, 'features', 'features', hide);toggle3(aryVC, 'chapters', 'chapters', hide);toggle3(aryVL, 'layers', 'layers', hide);toggle3(aryVS, 'sides', 'sides', notHide);" id="sides"><img src="expandFolderIcon2.jpg"><code class="object">sides</code></td>
+<td><code>GnVideoSide<br>Enumerator</code></td>
+<td>Both DVDs and Blu-ray discs can be dual side. Double-Sided discs include a single layer on each side of the disc that data can be recorded to. Double-Sided recordable DVDs come in two formats: DVD-R and DVD+R, including the rewritable DVD-RW and DVD+RW. These discs can hold about 8.75GB of data if you burn to both sides. Dual-side Blu-ray discs can store 50 GB of data (25GB on each side). </td>
+</tr>
+
+<tr id="vs1" style="display:none;">
+<td  class="pad3" onClick="javascript:toggle3(aryVF, 'features', 'features', hide);toggle3(aryVC, 'chapters', 'chapters', hide);toggle3(aryVL, 'layers', 'layers', notHide);" id="layers"><img src="expandFolderIcon2.jpg"><code class="object">layers</code></td>
+<td><code>GnVideoLayer</code></td>
+<td>Video layer. Both DVDs and Blu-ray Discs can be dual layer. These discs are only writable on one side of the disc, but contain two layers on that single side for writing data to. Dual-Layer recordable DVDs come in two formats: DVD-R DL and DVD+R DL. They can hold up to 8.5GB on the two layers. Dual-layer Blu-ray discs can store 50 GB of data (25GB on each layer).</td>
+</tr>
+
+<tr id="vl1" style="display:none;">
+<td class="pad4"><code>aspectRatio</code></td>
+<td><code>String</code></td>
+<td>Aspect ratio - describes the proportional relationship between the video's width and its height expressed as two numbers separated by a colon.</td>
+</tr>
+
+<tr id="vl2" style="display:none;">
+<td  class="pad4"><code>aspectRatioType</code></td>
+<td><code>String</code></td>
+<td>Aspect ratio type.</td>
+</tr>
+
+<tr id="vl3" style="display:none;">
+<td  class="pad4" onClick="javascript:toggle3(aryVC, 'chapters', 'chapters', hide);toggle3(aryVF, 'features', 'features', notHide);" id="features"><img src="expandFolderIcon2.jpg"><code class="object">features</code></td>
+<td><code>GnVideoFeature</code></td>
+<td>A video feature has a full-length running time usually between 60 and 120 minutes. A feature is the main component of a DVD or Blu-ray disc which may, in addition, contain extra, or bonus, video clips and features.</td>
+</tr>
+
+
+<tr id="vf1" style="display:none;">
+<td  class="pad5"><code>aspectRatio</code></td>
+<td><code>Boolean</code></td>
+<td>Aspect ratio - describes the proportional relationship between the video's width and its height expressed as two numbers separated by a colon.</td>
+</tr>
+
+<tr id="vf2" style="display:none;">
+<td  class="pad5"><code>aspectRatioType</code></td>
+<td><code>String</code></td>
+<td>Aspect ratio type, e.g., Standard.</td>
+</tr>
+
+<tr id="vf3" style="display:none;">
+<td  class="pad5" onClick="javascript:toggle3(aryVC, 'chapters', 'chapters', notHide);" id="chapters"><img src="expandFolderIcon2.jpg"><code class="object">chapters</code></td>
+<td><code>GnVideoChapter</code></td>
+<td>Video chapters.  A video feature may contain chapters for easy navigation and as bookmarks for partial viewing.</td>
+</tr>
+
+<tr id="vc1" style="display:none;">
+<td  class="pad6"><code>duration</code></td>
+<td><code>Long</code></td>
+<td>Chapter's duration value in seconds such as "3600" for a 60-minute program.</td>
+</tr>
+
+<tr id="vc2" style="display:none;">
+<td  class="pad6"><code>durationUnits</code></td>
+<td><code>Long</code></td>
+<td>Chapter's duration units value (seconds, "SEC").</td>
+</tr>
+
+<tr id="vc3" style="display:none;">
+<td  class="pad6"><code class="object">officialTitle</code></td>
+<td><code>GnTitle</code></td>
+<td>Official Title object. See <code>GnVideoWork &gt; franchiseTitle</code> for object properties.</code></td>
+</tr>
+
+<tr id="vc4" style="display:none;">
+<td  class="pad6"><code>ordinal</code></td>
+<td><code>Long</code></td>
+<td>Chapter's duration value in seconds such as "3600" for a 60-minute program.</td>
+</tr>
+
+<tr id="vc5" style="display:none;">
+<td  class="pad6"><code class="object">videoCredits</code></td>
+<td><code>GnVideoCredit<br>Enumerator</code></td>
+<td>Video credit objects. A credit lists the contribution of a person (or occasionally a company, such as a film studio) to a Video Work. See <code>GnVideoWork &gt; videoCredits</code> for object properties.</td>
+</tr>
+
+
+<tr id="vf4" style="display:none;">
+<td  class="pad5"><code>dateOriginalRelease</code></td>
+<td><code>String</code></td>
+<td>Original release date in UTC format.</td>
+</tr>
+
+<tr id="vf5" style="display:none;">
+<td  class="pad5"><code>dateRelease</code></td>
+<td><code>String</code></td>
+<td>Release date in UTC format.</td>
+</tr>
+
+<tr id="vf6" style="display:none;">
+<td  class="pad5"><code>duration</code></td>
+<td><code>String</code></td>
+<td>Duration value in seconds.</td>
+</tr>
+
+<tr id="vf7" style="display:none;">
+<td  class="pad5"><code>durationUnits</code></td>
+<td><code>String</code></td>
+<td>Duration units value (e.g., seconds, "SEC").</td>
+</tr>
+
+<tr id="vf8" style="display:none;">
+<td  class="pad5"><code>genre(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Genre.  Note that this is a locale-dependent field. </td>
+</tr>
+
+<tr id="vf9" style="display:none;">
+<td  class="pad5"><code>matched</code></td>
+<td><code>String</code></td>
+<td>Matched boolean value indicating whether this type is the one that matched the input criteria.</td>
+</tr>
+
+<tr id="vf10" style="display:none;">
+<td  class="pad5"><code>notes</code></td>
+<td><code>String</code></td>
+<td>Notes.</td>
+</tr>
+
+<tr id="vf11" style="display:none;">
+<td  class="pad5"><code class="object">officialTitle</code></td>
+<td><code>GnTitle</code></td>
+<td>Official title object. See <code>GnVideoWork &gt; franchiseTitle</code> for object properties.</td>
+</tr>
+
+<tr id="vf12" style="display:none;">
+<td  class="pad5"><code>ordinal</code></td>
+<td><code>Long</code></td>
+<td>Feature's ordinal value.</td>
+</tr>
+
+<tr id="vf13" style="display:none;">
+<td  class="pad5"><code>plotSummary</code></td>
+<td><code>String</code></td>
+<td>Plot summary.</td>
+</tr>
+
+<tr id="vf14" style="display:none;">
+<td  class="pad5"><code>plotSynopsis</code></td>
+<td><code>String</code></td>
+<td>Plot synopsis, e.g., (for Friends episode) "Monica's popularity at a karaoke club might have more to do with her revealing dress than her voice.</td>
+</tr>
+
+<tr id="vf15" style="display:none;">
+<td  class="pad5"><code>plotSynopsisLanguage</code></td>
+<td><code>String</code></td>
+<td>Plot synopsis language, e.g., English.</td>
+</tr>
+
+<tr id="vf16" style="display:none;">
+<td  class="pad5"><code>plotTagline</code></td>
+<td><code>String</code></td>
+<td> Plot tagline, e.g., "The terrifying motion picture from the terrifying No".</td>
+</tr>
+
+<tr id="vf17" style="display:none;">
+<td  class="pad5"><code class="object">rating</code></td>
+<td><code>GnRating</code></td>
+<td>Rating object. See <code><strong>GnVideoWork &gt; rating</strong></code> for object property descriptions.</td>
+</tr>
+
+<tr id="vf18" style="display:none;">
+<td  class="pad5"><code class="object">videoCredits</code></td>
+<td><code>GnVideoCredit<br>Enumerator</code></td>
+<td>Video credit objects. A credit lists the contribution of a person (or occasionally a company, such as a film studio) to a Video Work. See <code><strong>GnVideoWork &gt; videoCredits</strong></code> for object property descriptions.</td>
+</tr>
+
+<tr id="vf19" style="display:none;">
+<td  class="pad5"><code>videoFeatureType</code></td>
+<td><code>String</code></td>
+<td>Video feature type value. Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vf20" style="display:none;">
+<td  class="pad5"><code>videoProductionType</code></td>
+<td><code>String</code></td>
+<td>Video production type value. Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vf21" style="display:none;">
+<td  class="pad5"><code>videoProductionTypeId</code></td>
+<td><code>Long</code></td>
+<td>Video production ID type value.</td>
+</tr>
+
+<tr id="vf22" style="display:none;">
+<td  class="pad5"><code>works</code></td>
+<td><code>GnVideoWork<br>Enumerator</code></td>
+<td>Video work objects. See <code>GnVideoWork</code> for object properties.</td>
+</tr>
+
+<tr id="vl4" style="display:none;">
+<td  class="pad4"><code>matched</code></td>
+<td><code>Boolean</code></td>
+<td>Matched boolean value indicating whether this object is the one that matched the input criteria.</td>
+</tr>
+
+<tr id="vl5" style="display:none;">
+<td  class="pad4"><code>mediaType</code></td>
+<td><code>String</code></td>
+<td>A video media type such as Audio-CD, Blu-ray, DVD, or HD DVD. Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vl6" style="display:none;">
+<td  class="pad4"><code>ordinal</code></td>
+<td><code>String</code></td>
+<td>Ordinal value.</td>
+</tr>
+
+<tr id="vl7" style="display:none;">
+<td  class="pad4"><code>regionCode</code></td>
+<td><code>String</code></td>
+<td>Region code, e.g., FE - France</td>
+</tr>
+
+<tr id="vl8" style="display:none;">
+<td  class="pad4"><code>tvSystem</code></td>
+<td><code>String</code></td>
+<td>TV system value, e.g., NTSC.</td>
+</tr>
+
+<tr id="vl9" style="display:none;">
+<td  class="pad4"><code>videoRegion</code></td>
+<td><code>String</code></td>
+<td>Video product region value from the current type, e.g., 1. Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vl10" style="display:none;">
+<td  class="pad4"><code>videoRegionDesc</code></td>
+<td><code>String</code></td>
+<td>Video product region, e.g., USA, Canada, US Territories, Bermuda, and Cayman Islands. Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vs2" style="display:none;">
+<td  class="pad3"><code>matched</code></td>
+<td><code>Boolean</code></td>
+<td>Matched boolean value indicating whether this type is the one that matched the input criteria.</td>
+</tr>
+
+<tr id="vs3" style="display:none;">
+<td  class="pad3"><code>notes</code></td>
+<td><code>String</code></td>
+<td>Notes</td>
+</tr>
+
+<tr id="vs4" style="display:none;">
+<td  class="pad3"><code class="object">officialTitle</code></td>
+<td><code>GnTitle</code></td>
+<td>Official title object. See <code>GnVideoWork &gt; franchiseTitle</code> for object properties.</td>
+</tr>
+
+<tr id="vs5" style="display:none;">
+<td  class="pad3"><code>ordinal</code></td>
+<td><code>Long</code></td>
+<td>Ordinal value</td>
+</tr>
+
+<tr id="prF26" style="display:none;">
+<td  class="pad1" <code class="object">discs</code></td>
+<td><code>GnVideoDisc<br>Enumerator</code></td>
+<td>Video disc objects. A video disc can be either DVD (Digital Video Disc) or Blu-ray. DVD is an optical disc storage format, invented and developed by Philips, Sony, Toshiba, and Panasonic in 1995. DVDs offer higher storage capacity than Compact Discs while having the same dimensions. Blu-ray is an optical disc format designed to display high definition video and store large amounts of data. The name Blu-ray Disc refers to the blue laser used to read the disc, which allows information to be stored at a greater density than is possible with the longer-wavelength red laser used for DVDs. </td>
+</tr>
+
+
+<tr id="vd9" style="display:none;">
+<td  class="pad2"><code>tui</code></td>
+<td><code>String</code></td>
+<td>A Gracenote acronym for  "title unique identifier". For example: "267348592". This and <code>tuiTag</code> are used for unique identification within the Gracenote service./td>
+</tr>
+
+<tr id="vd10" style="display:none;">
+<td  class="pad2"><code>tuiTag</code></td>
+<td><code>String</code></td>
+<td>Tui Tag value.</td>
+</tr>
+
+
+<tr id="prF6" style="display:none;">
+<td  class="pad1"><code>duration</code></td>
+<td><code>String</code></td>
+<td>Duration of the work. <code>durationUnit</code> indicates the time measurement used (e.g., seconds).</td>
+</tr>
+
+
+
+<tr id="prF7" style="display:none;">
+<td  class="pad1"><code>durationUnits</code></td>
+<td><code>String</code></td>
+<td>The type of duration time measurement, e.g., "SEC" (seconds), "MS" (milliseconds).</td>
+</tr>
+
+<tr id="prF8" style="display:none;">
+<td  class="pad1"><code>genre</code></td>
+<td><code>String</code></td>
+<td>Genre, e.g., comedy.  Note that this is a locale-dependent field.</td>
+</tr>
+<tr id="prF9" style="display:none;">
+<td  class="pad1"><code>gnId</code></td>
+<td><code>String</code></td>
+<td>Gracenote identifier</td>
+</tr>
+<tr id="prF10" style="display:none;">
+<td  class="pad1"><code>gnUId</code></td>
+<td><code>String</code></td>
+<td>Gracenote unique identifier</td>
+</tr>
+
+<tr id="prF11" style="display:none;">
+<td  class="pad1"><code>isFullResult</code></td>
+<td><code>Boolean</code></td>
+<td>Flag indicating if response result contains full (true) or partial metadata</td>
+</tr>
+
+<tr id="prF12" style="display:none;">
+<td  class="pad1"><code>notes</code></td>
+<td><code>String</code></td>
+<td>Notes</td>
+</tr>
+
+<tr id="prF13" style="display:none;">
+<td  class="pad1"><code>packageLanguage</code></td>
+<td><code>String</code></td>
+<td>Package language ISO code, e.g., "eng".</td>
+</tr>
+<tr id="prF14" style="display:none;">
+<td  class="pad1"><code>packageLanguageDisplay</code></td>
+<td><code>String</code></td>
+<td>Package display language, e.g., "English"</td>
+</tr>
+
+<tr id="prF15" style="display:none;">
+<td  class="pad1"><code>productId</code></td>
+<td><code>String</code></td>
+<td>A hashed representation of the <code>tuiTag</code> property.</td>
+</tr>
+
+<tr id="prF16" style="display:none;">
+<td  class="pad1"><code>tui</code></td>
+<td><code>String</code></td>
+<td>A Gracenote acronym for  "title unique identifier". For example: "267348592". This and <code>tuiTag</code> are used for unique identification within the Gracenote service.</td>
+</tr>
+
+<tr id="prF17" style="display:none;">
+<td  class="pad1"><code>tuiTag</code></td>
+<td><code>String</code></td>
+<td>For example: "343DFA0AAF615988C9F4AB1ECB383D00".</td>
+</tr>
+
+<tr id="prF18" style="display:none;">
+<td  class="pad1"><code>videoProductionType</code></td>
+<td><code>String</code></td>
+<td>The kind of production for the AV Work, e.g., "Animation", "Documentary", etc.</td>
+</tr>
+<tr id="prF19" style="display:none;">
+<td  class="pad1"><code>videoProductionTypeId</code></td>
+<td><code>String</code></td>
+<td> Video production type identifier value</td>
+</tr>
+<tr id="prF20" style="display:none;">
+<td  class="pad1"><code>videoRegion</code></td>
+<td><code>String</code></td>
+<td> Video product region value, e.g, 1</td>
+</tr>
+<tr id="prF21" style="display:none;">
+<td  class="pad1"><code>videoRegionDesc</code></td>
+<td><code>String</code></td>
+<td>Video product region description, e.g., USA, Canada, US Territories, Bermuda, and Cayman Islands</td>
+</tr>
+
+
+<tr id="prF22" style="display:none;">
+<td  class="pad1"><code class="object">officialTitle</code></td>
+<td><code>GnTitle</code></td>
+<td>A video title object. See <code>GnVideoWork > franchiseTitle</code> for object property descriptions.</td>
+</tr>
+
+
+<tr id="prF23" style="display:none;">
+<td  class="pad1"><code class="object">externalIDs</code></td>
+<td><code>GnExternalID</code><br><code>Enumerator</code></td>
+<td>External ID objects. External IDs are 3rd party IDs used to cross link this metadata to 3rd party services. See <code><strong>GnVideoWork &gt; externalIDs</strong></code> for object property descriptions.</td>
+</tr>
+
+<tr id="prF24" style="display:none;">
+<td  class="pad1"><code class="object">rating</code></td>
+<td><code>GnVideoRating</code></td>
+<td>Rating object. See <code><strong>GnVideoWork &gt; rating</strong></code> for object property descriptions.</td>
+</tr>
+
+<tr id="vwF44" style="display:table-row;">
+<td  class="pad0" onClick="javascript:toggle3(ary13, 'ratings', 'rating', notHide);" id="ratings" ><img src="expandFolderIcon2.jpg"><code class="object">rating</code></td>
+<td><code>GnRating</code></td>
+<td><code>GnRating</code> object</td>
+</tr>
+
+<tr id="ratF1" style="display:none;">
+<td  class="pad1"><code>rating</code></td>
+<td><code>String</code></td>
+<td>Actual rating value, e.g., "PG-13". Note that this is a locale-dependent field.</td>
+</tr>
+<tr id="ratF2" style="display:none;">
+<td  class="pad1"><code>ratingBBFC</code></td>
+<td><code>String</code></td>
+<td>A BBFC (British Board of Film Classification) rating type value.</td>
+</tr>
+<tr id="ratF3" style="display:none;">
+<td  class="pad1"><code>ratingCanadianTV</code></td>
+<td><code>String</code></td>
+<td>A Canadian TV rating type value.</td>
+</tr>
+<tr id="ratF4" style="display:none;">
+<td  class="pad1"><code>ratingCBFC</code></td>
+<td><code>String</code></td>
+<td>A CBFC (Central Board of Film Certification) rating type value.</td>
+</tr>
+<tr id="ratF5" style="display:none;">
+<td  class="pad1"><code>ratingCHVRS</code></td>
+<td><code>String</code></td>
+<td>A CHVRS (Canadian Home Video Rating System) rating</td>
+</tr>
+<tr id="ratF6" style="display:none;">
+<td  class="pad1"><code>ratingDesc</code></td>
+<td><code>String</code></td>
+<td>Rating description. Note that this is a locale-dependent field.</td>
+</tr>
+<tr id="ratF7" style="display:none;">
+<td  class="pad1"><code>ratingDJCTQ</code></td>
+<td><code>String</code></td>
+<td>A DJTCQ (Dept of Justice, Rating, Titles and Qualification) (Brazil) rating</td>
+</tr>
+<tr id="ratF8" style="display:none;">
+<td  class="pad1"><code>ratingDVDParental</code></td>
+<td><code>String</code></td>
+<td>A DVD Parental rating.</td>
+</tr>
+<tr id="ratF9" style="display:none;">
+<td  class="pad1"><code>ratingEIRIN</code></td>
+<td><code>String</code></td>
+<td>A EIRIN (Japan) rating.</td>
+</tr>
+<tr id="ratF10" style="display:none;">
+<td  class="pad1"><code>ratingFAB</code></td>
+<td><code>String</code></td>
+<td>A FAB (Film Advisory Board) rating.</td>
+</tr>
+<tr id="ratF11" style="display:none;">
+<td  class="pad1"><code>ratingFinnish</code></td>
+<td><code>String</code></td>
+<td>AA Finnish rating type value.</td>
+</tr>
+<tr id="ratF12" style="display:none;">
+<td  class="pad1"><code>ratingFrance</code></td>
+<td><code>String</code></td>
+<td>A French rating.</td>
+</tr>
+<tr id="ratF13" style="display:none;">
+<td  class="pad1"><code>ratingFSK</code></td>
+<td><code>String</code></td>
+<td>A FSK (German) rating.</td>
+</tr>
+<tr id="ratF14" style="display:none;">
+<td  class="pad1"><code>ratingHongKong</code></td>
+<td><code>String</code></td>
+<td>A Hong Kong rating.</td>
+</tr>
+<tr id="ratF15" style="display:none;">
+<td  class="pad1"><code>ratingINCAA</code></td>
+<td><code>String</code></td>
+<td>A INCAA (Argentina) rating.</td>
+</tr>
+<tr id="ratF16" style="display:none;">
+<td  class="pad1"><code>ratingItaly</code></td>
+<td><code>String</code></td>
+<td>An Italian rating.</td>
+</tr>
+<tr id="ratF17" style="display:none;">
+<td  class="pad1"><code>ratingKMRB</code></td>
+<td><code>String</code></td>
+<td>A KMRB (Korean) rating.</td>
+</tr>
+<tr id="ratF18" style="display:none;">
+<td  class="pad1"><code>ratingMPAA</code></td>
+<td><code>String</code></td>
+<td>A MPAA (Motion Picture Assoc.) rating.</td>
+</tr>
+<tr id="ratF19" style="display:none;">
+<td  class="pad1"><code>ratingMPAATV</code></td>
+<td><code>String</code></td>
+<td>A MPAA (Motion Picture Assoc.) TV rating.</td>
+</tr>
+<tr id="ratF20" style="display:none;">
+<td  class="pad1"><code>ratingOFLC</code></td>
+<td><code>String</code></td>
+<td>A OFLC (Australia) TV rating type value.</td>
+</tr>
+<tr id="ratF21" style="display:none;">
+<td  class="pad1"><code>ratingQuebec</code></td>
+<td><code>String</code></td>
+<td>A Quebecois rating.</td>
+</tr>
+<tr id="ratF22" style="display:none;">
+<td  class="pad1"><code>ratingReason</code></td>
+<td><code>String</code></td>
+<td>Reason for rating, e.g., "Intense Sequences of Violence and Some Menace."</td>
+</tr>
+<tr id="ratF23" style="display:none;">
+<td  class="pad1"><code>ratingSpain</code></td>
+<td><code>String</code></td>
+<td>A Spanish rating.</td>
+</tr>
+
+<tr id="ratF24" style="display:none;">
+<td  class="pad1"><code>ratingType</code></td>
+<td><code>String</code></td>
+<td>Type of ratings system, e.g., "MPAA". Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="ratF25" style="display:none;">
+<td  class="pad1"><code>ratingTypeId</code></td>
+<td><code>String</code></td>
+<td>Rating type Id. Note that this is a locale-dependent field.</td>
+</tr>
+
+
+<tr id="vwF17" style="display:table-row;">
+<td  class="pad0"><code>reputation</code></td>
+<td><code>String</code></td>
+<td>A supported film reputation type for video data, such as "Classic", "Chick Flick", or "Cult". This is a critical or popular "value" that is assigned to a work, usually long after the work was released, though some works may qualify shortly after release (e.g., "instant classic" or "blockbuster
+release").  Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vwF18" style="display:table-row;">
+<td  class="pad0"><code>scenario</code></td>
+<td><code>String</code></td>
+<td>A supported scenario for video data, such as "Action", "Comedy", and "Drama".  Note that this is a locale-dependent field. </td>
+</tr>
+
+
+
+
+<tr id="vwF19" style="display:table-row;">
+<td  class="pad0"><code>seasonCount</code></td>
+<td><code>String</code></td>
+<td>The number of seasons.</td>
+</tr>
+
+<tr id="vwF20" style="display:table-row;">
+<td  class="pad0"><code>seasonEpisode</code></td>
+<td><code>String</code></td>
+<td>The work's episode number in the season.</td>
+</tr>
+
+<tr id="vwF21" style="display:table-row;">
+<td  class="pad0"><code>seasonEpisodeCount</code></td>
+<td><code>String</code></td>
+<td>The total number of episodes in the season.</td>
+</tr>
+
+<tr id="vwF22" style="display:table-row;">
+<td  class="pad0"><code>seasonNumber</code></td>
+<td><code>String</code></td>
+<td>The season number.</td>
+</tr>
+
+<tr id="vwF45" style="display:table-row;">
+<td  class="pad0" onClick="javascript:toggle3(ary8, 'seasons', 'seasons', notHide);" id="seasons" ><img src="expandFolderIcon2.jpg"><code class="object">seasons</code></td>
+<td><code>GnVideoSeason</code><br><code>Enumerator</code></td>
+<td>Video season objects. A Season is an ordered collection of Works, typically representing a season of a TV series. For example: CSI: Miami (Season One), CSI: Miami (Season Two), CSI: Miami (Season Three).</td>
+</tr>
+
+
+<tr id="vsF1" style="display:none;">
+<td  class="pad1"><code>audience</code></td>
+<td><code>String</code></td>
+<td>A supported audience type for video data, such as "Kids and Family", "African-American", or "Young Adult".</td>
+</tr>
+
+<tr id="vsF44" style="display:none;">
+<td  class="pad1"><code class="object">contents</code></td>
+<td><code>GnContent<br>Enumerator</code></td>
+<td>Content (cover art, biography, review, etc.) objects. See <code>GnVideoWork &gt; contents</code> for object properties.</td>
+</tr>
+
+<tr id="vsF2" style="display:none;">
+<td  class="pad1"><code>dateOriginalRelease</code></td>
+<td><code>String</code></td>
+<td>Original release date in UTC format.</td>
+</tr>
+
+<tr id="vsF3" style="display:none;">
+<td  class="pad1"><code>duration</code></td>
+<td><code>String</code></td>
+<td>A string representation of integer time units, e.g. "3600000".</td>
+</tr>
+
+<tr id="vsF4" style="display:none;">
+<td  class="pad1"><code>durationUnits</code></td>
+<td><code>String</code></td>
+<td>The duration time units, e.g. "ms" (milliseconds). </td>
+</tr>
+
+
+<tr id="vsF40" style="display:none;">
+<td  class="pad1"><code class="object">externalIDs</code></td>
+<td><code>GnExternalId<br>Enumerator</code></td>
+<td>External ID objects. External IDs are 3rd party IDs used to cross link this metadata to 3rd party services. See <code><strong>GnVideoWork &gt; externalIDs</strong></code> for object property descriptions.</td></tr>
+
+<tr id="vsF5" style="display:none;">
+<td  class="pad1"><code>franchiseCount</code></td>
+<td><code>Long</code></td>
+<td>Franchise count </td>
+</tr>
+<tr id="vsF6" style="display:none;">
+<td  class="pad1"><code>franchiseNum</code></td>
+<td><code>Long</code></td>
+<td>Franchise numnber</td>
+</tr>
+<tr id="vsF7" style="display:none;">
+<td  class="pad1"><code class="object">franchiseTitle</code></td>
+<td><code>GnTitle</code></td>
+<td>Franchise title object. See <code>GnVideoWork > franchiseTitle</code> for object properties. </td>
+</tr>
+
+<tr id="vsF8" style="display:none;">
+<td  class="pad1"><code>genre(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Genre.  Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vsF9" style="display:none;">
+<td  class="pad1"><code>gnId</code></td>
+<td><code>String</code></td>
+<td>Gracenote identifier.</td>
+</tr>
+
+<tr id="vsF10" style="display:none;">
+<td  class="pad1"><code>gnUId</code></td>
+<td><code>String</code></td>
+<td>Gracenote unique identifier</td>
+</tr>
+
+<tr id="vsF11" style="display:none;">
+<td  class="pad1"><code>isFullResult</code></td>
+<td><code>Boolean</code></td>
+<td>Flag indicating if response result contains full (true) or partial metadata.</td>
+</tr>
+
+<tr id="vsF45" style="display:none;">
+<td  class="pad1"><code class="object">officialTitle</code></td>
+<td><code>GnTitle</code></td>
+<td>Offical title object. See <code></code> for object properties. </td>
+</tr>
+
+
+<tr id="vsF12" style="display:none;">
+<td  class="pad1"><code>origin(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Show's primary geographic location, e.g., New York City.  Note that this is a locale-dependent field. </td>
+</tr>
+
+
+
+<tr id="vsF16" style="display:none;">
+<td  class="pad1"><code>plotSynopsis</code></td>
+<td><code>String</code></td>
+<td>Plot sypnosis, e.g., for Friends episode:."Monica's popularity at a karaoke club might have more to do with her revealing dress than her voice"</td>
+</tr>
+<tr id="vsF17" style="display:none;">
+<td  class="pad1"><code>plotSynopsisLanguage</code></td>
+<td><code>String</code></td>
+<td>Plot sypnosis language, e.g., English</td>
+</tr>
+<tr id="vsF18" style="display:none;">
+<td  class="pad1"><code>plotTagline</code></td>
+<td><code>String</code></td>
+<td>Plot tagline, e.g., "An adventure as big as life itself." </td>
+</tr>
+
+<tr id="vsF19" style="display:none;">
+<td  class="pad1"><code>productID</code></td>
+<td><code>String</code></td>
+<td>A hashed representation of the <code>tuiTag</code> property.</td>
+</tr>
+
+<tr id="vsF46" style="display:none;">
+<td  class="pad1"><code class="object">products</code></td>
+<td><code>GnVideoProduct<br>Enumerator</code></td>
+<td>Video product objects.  Product refers to the commercial release of a Film, TV Series, or video content. Products contain a unique commercial code such as a UPC, Hinban, or EAN. Products are for the most part released on a physical format, such as a DVD or Blu-ray. See <code>GnVideoWork &gt; products</code> for object properties.</td>
+</tr>
+
+<tr id="vsF20" style="display:none;">
+<td  class="pad1"><code class="object">rating</code></td>
+<td><code>GnRating</code></td>
+<td>Rating object. See <code><strong>GnVideoWork &gt; rating</strong></code> for object property descriptions.</td>
+</tr>
+
+<tr id="vsF21" style="display:none;">
+<td  class="pad1"><code>reputation</code></td>
+<td><code>String</code></td>
+<td>A supported film reputation type for video data, such as "Classic", "Chick Flick", and "Cult". </td>
+</tr>
+
+<tr id="vsF22" style="display:none;">
+<td  class="pad1"><code>scenario</code></td>
+<td><code>String</code></td>
+<td>A supported scenario for video data, such as "Action", "Comedy", and "Drama".</td>
+</tr>
+
+<tr id="vsF23" style="display:none;">
+<td  class="pad1"><code>seasonCount</code></td>
+<td><code>String</code></td>
+<td>The total number of seasons.</td>
+</tr>
+
+<tr id="vsF24" style="display:none;">
+<td  class="pad1"><code>seasonNumber</code></td>
+<td><code>String</code></td>
+<td>The season number.</td>
+</tr>
+
+<tr id="vsF25" style="display:none;">
+<td  class="pad1"><code>serialType</code></td>
+<td><code>String</code></td>
+<td>A supported video serial type, such as Series or Episode.  Note that this is a locale-dependent field.</td>
+</tr>
+
+
+<tr id="vsF42" style="display:none;">
+<td  class="pad1"><code class="object">series</code></td>
+<td><code>GnVideoSeries</code></td>
+<td>A video series object. See <code><strong>GnVideoWork &gt; series</strong></code> for object property descriptions.</td>
+</tr>
+
+<tr id="vsF26" style="display:none;">
+<td  class="pad1"><code>settingEnvironment</code></td>
+<td><code>String</code></td>
+<td>The physical environment captured in the work. These do not refer to specific locations, but rather general (or generic) locations. For example: Prison, High School, Skyscraper, Desert, etc.  Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vsF27" style="display:none;">
+<td  class="pad1"><code>settingTimePeriod</code></td>
+<td><code>String</code></td>
+<td>A supported historical time setting for video data, such as "Elizabethan Era 1558-1603", or "Jazz Age 1919-1929".  Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vsF28" style="display:none;">
+<td  class="pad1"><code>source</code></td>
+<td><code>String</code></td>
+<td>A supported story concept source for video data, such as "Fairy Tales and Nursery Rhymes".</td>
+</tr>
+
+<tr id="vsF29" style="display:none;">
+<td  class="pad1"><code>storyType</code></td>
+<td><code>String</code></td>
+<td>A supported overall story type for video data, such as "Love Story". Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vsF30" style="display:none;">
+<td  class="pad1"><code>style</code></td>
+<td><code>String</code></td>
+<td>A supported film style type for video data, such as "Film Noir".</td>
+</tr>
+
+
+<tr id="vsF31" style="display:none;">
+<td  class="pad1"><code>topic</code></td>
+<td><code>String</code></td>
+<td>A supported film topic for video data, such as "Racing" or "Teen Angst". Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vsF32" style="display:none;">
+<td  class="pad1"><code>tui</code></td>
+<td><code>String</code></td>
+<td>A Gracenote acronym for  "title unique identifier". For example: "267348592". This and <code>tuiTag</code> are used for unique identification within the Gracenote service.</td>
+</tr>
+
+<tr id="vsF33" style="display:none;">
+<td  class="pad1"><code>tuiTag</code></td>
+<td><code>String</code></td>
+<td>A hashed representation of the <code>tui</code> property. For example: "343DFA0AAF615988C9F4AB1ECB383D00".</td>
+</tr>
+
+<tr id="vsF47" style="display:none;">
+<td  class="pad1"><code class="object">videoCredits</code></td>
+<td><code>GnVideoCredit<br>Enumerator</code></td>
+<td>Video credit objects. A credit lists the contribution of a person (or occasionally a company, such as a film studio) to a Video Work. See <code>GnVideoWork &gt; videoCredits</code> for object properties.</td>
+</tr>
+
+<tr id="vsF34" style="display:none;">
+<td  class="pad1"><code>videoMood</code></td>
+<td><code>String</code></td>
+<td>The work's mood, e.g., "Playful".</td>
+</tr>
+
+<tr id="vsF35" style="display:none;">
+<td  class="pad1"><code>videoProductionType</code></td>
+<td><code>String</code></td>
+<td>The kind of production for the AV Work, e.g., "Animation", "Documentary", etc.</td>
+</tr>
+<tr id="vsF36" style="display:none;">
+<td  class="pad1"><code>videoProductionTypeId</code></td>
+<td><code>String</code></td>
+<td>Video production type identifier.</td>
+</tr>
+
+<tr id="vsF48" style="display:none;">
+<td  class="pad1"><code class="object">works</code></td>
+<td><code>GnVideoWork<br>Enumerator</code></td>
+<td>Video work objects. See <code>GnVideoWork</code> for object properties. These objects contain season episodes.</td>
+</tr>
+
+<tr id="vsF37" style="display:none;">
+<td  class="pad1"><code>workType</code></td>
+<td><code>String</code></td>
+<td>A supported work type for video data, such as "Musical" or "Image". Note that this is a locale-dependent field.</td>
+</tr>
+<tr id="vwF23" style="display:table-row;">
+<td  class="pad0"><code>serialType</code></td>
+<td><code>String</code></td>
+<td>A supported video serial type, such as a Series or Episode. </td>
+</tr>
+
+
+ <tr id="vwF46" style="display:table-row;">
+<td  class="pad0" onClick="javascript:toggle3(ary16, 'series', 'series', notHide);" id="series" ><img src="expandFolderIcon2.jpg"><code class="object">series</code></td>
+<td><code>GnVideoSeries</code></td>
+<td>A Series is a collection of related Works, typically in sequence, and often comprised of Seasons (generally for TV series), for example: CSI: Miami, CSI: Vegas, CSI: Crime Scene Investigation.</td>
+</tr>
+
+<tr id="vsrF1" style="display:none;">
+<td  class="pad1"><code>audience</code></td>
+<td><code>String</code></td>
+<td>A supported audience type for video data, such as "Kids and Family", "African-American", or "Young Adult".</td>
+</tr>
+
+
+<tr id="vsrF35" style="display:none;">
+<td class="pad1"><code class="object">contents</code></td>
+<td><code>GnContent</code><br>Enumerator</td>
+<td>Content (cover art, biography, review, etc.) objects.  See <code>GnVideoWork &gt; Contents</code> for object properties.</td>
+</tr>
+
+<tr id="vsrF2" style="display:none;">
+<td  class="pad1"><code>dateOriginalRelease</code></td>
+<td><code>String</code></td>
+<td>Date, in UTC format, of original release.</td>
+</tr>
+
+<tr id="vsrF3" style="display:none;">
+<td  class="pad1"><code>duration</code></td>
+<td><code>String</code></td>
+<td>A string representation of integer time units, e.g. "3600000".</td>
+</tr>
+
+<tr id="vsrF4" style="display:none;">
+<td  class="pad1"><code>durationUnits</code></td>
+<td><code>String</code></td>
+<td>The duration time units, e.g. "ms" (milliseconds). </td>
+</tr>
+
+
+<tr id="vsrF36" style="display:none;">
+<td  class="pad1"><code class="object">externalIds</code></td>
+<td><code>GnExternalId<br>Enumerator</code></td>
+<td>External ID objects. External IDs are 3rd party IDs used to cross link this metadata to 3rd party services. See <code><strong>GnVideoWork &gt; externalIDs</strong></code> for object property descriptions.</td></tr>
+
+<tr id="vsrF5" style="display:none;">
+<td  class="pad1"><code>franchiseCount</code></td>
+<td><code>Long</code></td>
+<td>Franchise count </td>
+</tr>
+<tr id="vsrF6" style="display:none;">
+<td  class="pad1"><code>franchiseNum</code></td>
+<td><code>Long</code></td>
+<td>Franchise numnber</td>
+</tr>
+<tr id="vsrF7" style="display:none;">
+<td  class="pad1"><code class="object">franchiseTitle</code></td>
+<td><code>GnTitle</code></td>
+<td>Franchise title object. See <code>GnVideoWork > franchiseTitle</code> for object properties.</td>
+</tr>
+
+<tr id="vsrF8" style="display:none;">
+<td  class="pad1"><code>genre(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Genre. Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vsrF9" style="display:none;">
+<td  class="pad1"><code>gnId</code></td>
+<td><code>String</code></td>
+<td>Gracenote identifier.</td>
+</tr>
+
+<tr id="vsrF10" style="display:none;">
+<td  class="pad1"><code>gnUId</code></td>
+<td><code>String</code></td>
+<td>&nbsp;</td>
+</tr>
+
+<tr id="vsrF11" style="display:none;">
+<td  class="pad1"><code>isFullResult</code></td>
+<td><code>Boolean</code></td>
+<td>Flag indicating if response result contains full (true) or partial metadata.</td>
+</tr>
+
+
+<tr id="vsrF39" style="display:none;">
+<td  class="pad1"><code class="object">officialTitle</code></td>
+<td><code>GnTitle</code></td>
+<td>The work's title object. See <code>GnVideoWork > franchiseTitle</code> for object properties.</td>
+</tr>
+
+<tr id="vsrF12" style="display:none;">
+<td  class="pad1"><code>origin(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Show's primary geographic location, e.g., New York City. Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vsrF16" style="display:none;">
+<td  class="pad1"><code>plotSynopsis</code></td>
+<td><code>String</code></td>
+<td>Plot synopsis, e.g., "A semi-autobiographical coming-of-age story"</td>
+</tr>
+<tr id="vsrF17" style="display:none;">
+<td  class="pad1"><code>plotSynopsisLanguage</code></td>
+<td><code>String</code></td>
+<td>Plot synopsis language, e.g., English</td>
+</tr>
+
+<tr id="vsrF42" style="display:none;">
+<td  class="pad1"><code>plotTagline</code></td>
+<td><code>String</code></td>
+<td>Plot tagline, e.g., "If you forgot what terror was like...its back"</td>
+</tr>
+
+<tr id="vsrF18" style="display:none;">
+<td  class="pad1"><code>productId</code></td>
+<td><code>String</code></td>
+<td>A hashed representation of the <code>tui</code> property. For example: "343DFA0AAF615988C9F4AB1ECB383D00".</td>
+</tr>
+
+
+<tr id="vsrF41" style="display:none;">
+<td  class="pad1"><code class="object">products</code></td>
+<td><code>GnVideoProduct<br>Enumerator</code></td>
+<td>Video product objects.  Product refers to the commercial release of a Film, TV Series, or video content. Products contain a unique commercial code such as a UPC, Hinban, or EAN. Products are for the most part released on a physical format, such as a DVD or Blu-ray. See <code><strong>GnVideoWork &gt; products</strong></code> for object property descriptions.</td>
+</tr>
+
+<tr id="vsrF37" style="display:none;">
+<td  class="pad1"><code class="object">rating</code></td>
+<td><code>GnRating</code></td>
+<td>Rating object. See <code><strong>GnVideoWork &gt; ratings</strong></code> for object property descriptions.</td>
+</tr>
+
+<tr id="vsrF20" style="display:none;">
+<td  class="pad1"><code>reputation</code></td>
+<td><code>String</code></td>
+<td>A supported film reputation type for video data, such as "Classic", "Chick Flick", and "Cult". </td>
+</tr>
+
+<tr id="vsrF21" style="display:none;">
+<td  class="pad1"><code>scenario</code></td>
+<td><code>String</code></td>
+<td>A supported scenario for video data, such as "Action", "Comedy", and "Drama".</td>
+</tr>
+
+<tr id="vsrF38" style="display:none;">
+<td  class="pad1"><code class="object">seasons</code></td>
+<td><code>GnVideoSeason<br>Enumerator</code></td>
+<td>Video season objects. A Season is an ordered collection of Works, typically representing a season of a TV series. See <code><strong>GnVideoWork &gt; seasons</strong></code> for object property descriptions.</td>
+</tr>
+
+
+<tr id="vsrF22" style="display:none;">
+<td  class="pad1"><code>serialType</code></td>
+<td><code>String</code></td>
+<td>A supported video serial type, such as Series or Episode.</td>
+</tr>
+
+<tr id="vsrF23" style="display:none;">
+<td  class="pad1"><code>settingEnvironment</code></td>
+<td><code>String</code></td>
+<td>The physical environment captured in the work. These do not refer to specific locations, but rather general (or generic) locations. For example: Prison, High School, Skyscraper, Desert, etc.  Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vsrF24" style="display:none;">
+<td  class="pad1"><code>settingTimePeriod</code></td>
+<td><code>String</code></td>
+<td>A supported historical time setting for video data, such as "Elizabethan Era 1558-1603", or "Jazz Age 1919-1929".  Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vsrF25" style="display:none;">
+<td  class="pad1"><code>source</code></td>
+<td><code>String</code></td>
+<td>A supported story concept source for video data, such as "Fairy Tales and Nursery Rhymes".</td>
+</tr>
+
+<tr id="vsrF26" style="display:none;">
+<td  class="pad1"><code>storyType</code></td>
+<td><code>String</code></td>
+<td>A supported overall story type for video data, such as "Love Story".  Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vsrF27" style="display:none;">
+<td  class="pad1"><code>style</code></td>
+<td><code>String</code></td>
+<td>A supported film style type for video data, such as "Film Noir".</td>
+</tr>
+
+<tr id="vsrF28" style="display:none;">
+<td  class="pad1"><code>topic</code></td>
+<td><code>String</code></td>
+<td>A supported film topic for video data, such as "Racing" or "Teen Angst". Note that this is a locale-dependent field. </td>
+</tr>
+
+<tr id="vsrF29" style="display:none;">
+<td  class="pad1"><code>tui</code></td>
+<td><code>String</code></td>
+<td>A Gracenote acronym for  "title unique identifier". For example: "267348592". This and <code>tuiTag</code> are used for unique identification within the Gracenote service.</td>
+</tr>
+
+<tr id="vsrF30" style="display:none;">
+<td  class="pad1"><code>tuiTag</code></td>
+<td><code>String</code></td>
+<td>A hashed representation of the <code>tui</code> property. For example: "343DFA0AAF615988C9F4AB1ECB383D00".</td>
+</tr>
+
+
+<tr id="vsrF40" style="display:none;">
+<td  class="pad1"><code class="object">videoCredits</code></td>
+<td><code>GnVideoCreedit<br>Enumerator</code></td>
+<td>Video credit objects. A credit lists the contribution of a person (or occasionally a company, such as a film studio) to a Video Work. See <code>GnVideoWork &gt; credits</code> for object property descriptions.</td>
+</tr>
+
+ <tr id="vsrF31" style="display:none;">
+<td  class="pad1"><code>videoMood</code></td>
+<td><code>String</code></td>
+<td>The work's mood, e.g., "Playful".</td>
+</tr>
+ <tr id="vsrF32" style="display:none;">
+<td  class="pad1"><code>videoProductionType</code></td>
+<td><code>String</code></td>
+<td>Production type, e.g., Animation.</td>
+</tr>
+ <tr id="vsrF33" style="display:none;">
+<td  class="pad1"><code>videoProductionTypeId</code></td>
+<td><code>String</code></td>
+<td>Production type identifier</td>
+</tr>
+
+
+<tr id="vsrF43" style="display:none;">
+<td  class="pad1"><code class="object">works</code></td>
+<td><code>GnVideoWork<br>Enumerator</code></td>
+<td>Video work objects. See <code><strong>GnVideoWork</strong></code> for object property descriptions. For a series, these works will contain specials or extras. For specific TV episodes, you would have to iterate over a season's works.</td>
+</tr>
+
+
+<tr id="vsrF34" style="display:none;">
+<td  class="pad1"><code>workType</code></td>
+<td><code>String</code></td>
+<td>A supported work type for video data, such as "Musical" or "Image".</td>
+</tr>
+
+<tr id="vwF24" style="display:table-row;">
+<td  class="pad0"><code>seriesEpisode</code></td>
+<td><code>String</code></td>
+<td>The episode's number in the series.</td>
+</tr>
+
+<tr id="vwF25" style="display:table-row;">
+<td  class="pad0"><code>seriesEpisodeCount</code></td>
+<td><code>String</code></td>
+<td>The number of episodes in the series.</td>
+</tr>
+
+<tr id="vwF26" style="display:table-row;">
+<td  class="pad0"><code class="object">seriesTitle</code></td>
+<td><code>GnTitle</code></td>
+<td>The series title, e.g., "Mad Men". See <code>GnVideoWork > franchiseTitle</code> for object properties.</td>
+</tr>
+
+
+<tr id="vwF28" style="display:table-row;">
+<td  class="pad0"><code>settingEnvironment</code></td>
+<td><code>String</code></td>
+<td>The physical environment captured in the work. These do not refer to specific locations, but rather general (or generic) locations. For example: Prison, High School, Skyscraper, Desert, etc. Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vwF29" style="display:table-row;">
+<td  class="pad0"><code>settingTimePeriod</code></td>
+<td><code>String</code></td>
+<td>A supported historical time setting for video data, such as "Elizabethan Era 1558-1603", or "Jazz Age 1919-1929".  Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vwF30" style="display:table-row;">
+<td  class="pad0"><code>source</code></td>
+<td><code>String</code></td>
+<td>A supported story concept source for video data, such as "Fairy Tales and Nursery Rhymes". </td>
+</tr>
+
+<tr id="vwF31" style="display:table-row;">
+<td  class="pad0"><code>storyType</code></td>
+<td><code>String</code></td>
+<td>A supported overall story type for video data, such as "Love Story". Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vwF32" style="display:table-row;">
+<td  class="pad0"><code>style</code></td>
+<td><code>String</code></td>
+<td>A supported film style type for video data, such as "Film Noir".</td>
+</tr>
+
+
+<tr id="vwF33" style="display:table-row;">
+<td  class="pad0"><code>topic</code></td>
+<td><code>String</code></td>
+<td>A supported film topic for video data, such as "Racing" or "Teen Angst". Note that this is a locale-dependent field. </td>
+</tr>
+
+<tr id="vwF34" style="display:table-row;">
+<td  class="pad0"><code>tui</code></td>
+<td><code>String</code></td>
+<td>A Gracenote acronym for  "title unique identifier". For example: "267348592". This and <code>tuiTag</code> are used for unique identification within the Gracenote service.</td>
+</tr>
+
+<tr id="vwF55" style="display:table-row;">
+<td  class="pad0"><code>tuiMatchProduct</code></td>
+<td><code>String</code></td>
+<td>Second TUI, if it exists.</td>
+</tr>
+
+<tr id="vwF35" style="display:table-row;">
+<td  class="pad0"><code>tuiTag</code></td>
+<td><code>String</code></td>
+<td>A hashed representation for the <code>tui</code> field. For example: "343DFA0AAF615988C9F4AB1ECB383D00".</td>
+</tr>
+
+<tr id="vwF38" style="display:table-row;">
+<td  class="pad0" onClick="javascript:toggle3(ary3, 'credits', 'videoCredits', notHide);toggle3(ary25, 'brand', 'officialName', hide);toggle3(ary4, 'contributor', 'contributor', hide);toggle3(ary8, 'seasons', 'seasons', hide);" id="credits" ><img src="expandFolderIcon2.jpg"><code class="object">videoCredits</code></td>
+<td><code>GnVideoCredit<br>Enumerator</code></td>
+<td>Video credit objects. A credit lists the contribution of a person (or occasionally a company, such as a film studio) to a Video Work.</td>
+</tr>
+
+<tr id="vcF9" style="display:none;">
+<td  class="pad1"><code>artistType(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Artist type, e.g., "Female Solo - Solo Vocal".  Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vcF1" style="display:none;">
+<td  class="pad1"><code>characterName</code></td>
+<td><code>String</code></td>
+<td>The character's name on the show.</td>
+</tr>
+<tr id="vcF5" style="display:none;">
+<td  class="pad1" style="width:120px;" onClick="javascript:toggle3(ary4, 'contributor', 'contributor', notHide);" id="contributor" ><code> contributor</code></td>
+<td><code>GnContributor</code></td>
+<td>A Contributor refers to any person who plays a role in a Work. Actors, Directors, Producers, Narrators, and Crew are all consider a Contributor. Popular recurring Characters such as Batman, Harry Potter, or Spider-man are also considered Contributors </td>
+</tr>
+
+<tr id="vcoF21" style="display:none;">
+<td  class="pad2"><code>artitstType</code></td>
+<td><code>String</code></td>
+<td>Contributor's artist type.</td>
+</tr>
+
+<tr id="vcoF1" style="display:none;">
+<td  class="pad2"><code>biography</code></td>
+<td><code>GnContent</code></td>
+<td>Content object. See <code>GnVideoWork &gt; contents</code> for object properties.</td>
+</tr>
+
+<tr id="vcoF2" style="display:none;">
+<td  class="pad2"><code>biographyVideo</code></td>
+<td><code>String</code></td>
+<td>Contributor's biography when received from a video response.</td>
+</tr>
+
+ <tr id="vcoF3" style="display:none;">
+<td  class="pad2"><code>birthDate</code></td>
+<td><code>String</code></td>
+<td>The contributor's birth date in UTC format.</td>
+</tr>
+
+<tr id="vcoF4" style="display:none;">
+<td  class="pad2"><code>birthPlace</code></td>
+<td><code>String</code></td>
+<td>The contributor's birth place.</td>
+</tr>
+
+<tr id="vcoF22" style="display:none;">
+<td  class="pad2"><code class="object">collaborator</code></td>
+<td><code>GnContributor</code></td>
+<td>Contributor that collaborated with this contributor in the context of the returned result.  See <code>GnVideoWork &gt; videoCredits &gt; Contributor</code> for object properties.</td>
+</tr>
+
+<tr id="vcoF23" style="display:none;">
+<td  class="pad2"><code>collaboratorResult</code></td>
+<td><code>Boolean</code></td>
+<td>Flag indicating if this is a collaborator result</td>
+</tr>
+
+<tr id="vcoF24" style="display:none;">
+<td  class="pad2"><code class="object">contents</code></td>
+<td><code>GnContent<br>Enumerator</code></td>
+<td>Content (cover art, biography, review, etc.) objects. See <code>GnVideoWork &gt; Contents</code> for object properties.</td>
+</tr>
+
+<tr id="vcoF5" style="display:none;">
+<td  class="pad2"><code>deathDate</code></td>
+<td><code>String</code></td>
+<td>The contributor's date of death in UTC format.</td>
+</tr>
+
+<tr id="vcoF6" style="display:none;">
+<td  class="pad2"><code>deathPlace</code></td>
+<td><code>String</code></td>
+<td>The place where the contributor died.</td>
+</tr>
+<tr id="vcoF25" style="display:none;">
+<td  class="pad2"><code>era(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Contributor's era.  Note that this is a locale-dependent field.</td>
+</tr>
+<tr id="vcoF15" style="display:none;">
+<td  class="pad2"><code class="object">externalIds</code></td>
+<td><code>GnExternalId<br>Enumerator</code></td>
+<td>External ID objects. External IDs are 3rd party IDs used to cross link this metadata to 3rd party services.
+See <code><strong>GnVideoWork &gt; externalIDs</strong></code> for object property descriptions.</td>
+</tr>
+<tr id="vcoF26" style="display:none;">
+<td  class="pad2"><code>genre(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Contributor's genre.  Note that this is a locale-dependent field.</td>
+</tr>
+<tr id="vcoF31" style="display:none;">
+<td  class="pad2"><code>origin(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Contributor's origin, e.g., New York City.  Note that this is a locale-dependent field.</td>
+</tr>
+<tr id="vcoF27" style="display:none;">
+<td  class="pad2"><code>gnId</code></td>
+<td><code>String</code></td>
+<td>Gracenote identifier</td>
+</tr>
+<tr id="vcoF28" style="display:none;">
+<td  class="pad2"><code>gnUId</code></td>
+<td><code>String</code></td>
+<td>Contributor's Gracenote unique Id</td>
+</tr>
+<tr id="vcoF29" style="display:none;">
+<td  class="pad2"><code class="object">image</code></td>
+<td><code>GnContent</code></td>
+<td>Contributor's image content object. See <code>GnVideoWork &gt; contents</code> for object properties.</td>
+</tr>
+
+
+<tr id="vcoF14" style="display:none;">
+<td  class="pad2"><code>isFullResult</code></td>
+<td><code>BOOL</code></td>
+<td>Indicates if this is a partial or full metadata result.</td>
+</tr>
+
+<tr id="vcoF7" style="display:none;">
+<td  class="pad2"><code>mediaSpace</code></td>
+<td><code>String</code></td>
+<td>The kind of media, such as VIDEO. Note that this is a locale-dependent field.</td>
+</tr>
+
+
+
+<tr id="vcoF9" style="display:none;">
+<td  class="pad2"><code class="object">name</code></td>
+<td><code>GnName</code></td>
+<td>Contributor name object. See <code>GnVideoWork &gt; videoCredits &gt; officialName</code> for object properties</td>
+</tr>
+
+<tr id="vcoF10" style="display:none;">
+<td  class="pad2"><code class="object">namesOfficial</code></td>
+<td><code>GnName<br>Enumerator</code> </td>
+<td>Official name objects. See <code>GnVideoWork &gt; videoCredits &gt; officialName</code> for object properties</td>
+</tr>
+
+<tr id="vcoF11" style="display:none;">
+<td  class="pad2"><code class="object">namesRegional</code></td>
+<td><code>GnName<br>Enumerator</code></td>
+<td>Regional name objects. See <code>GnVideoWork &gt; videoCredits &gt; officialName</code> for object properties</td>
+</tr>
+
+<tr id="vcoF8" style="display:none;">
+<td  class="pad2"><code>productId</code></td>
+<td><code>String</code></td>
+<td>Product ID.</td>
+</tr>
+
+<tr id="vcoF12" style="display:none;">
+<td  class="pad2"><code>tui</code></td>
+<td><code>String</code></td>
+<td>A Gracenote acronym for  "title unique identifier". For example: "267348592". This and <code>tuiTag</code> are used for unique identification within the Gracenote service.</td>
+</tr>
+
+<tr id="vcoF13" style="display:none;">
+<td  class="pad2"><code>tuiTag</code></td>
+<td><code>String</code></td>
+<td>For example: "343DFA0AAF615988C9F4AB1ECB383D00".</td>
+</tr>
+
+
+<tr id="vcF10" style="display:none;">
+<td  class="pad1"><code>era(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Artist era.  Note that this is a locale-dependent field.</td>
+</tr>
+<tr id="vcF11" style="display:none;">
+<td  class="pad1"><code>genre(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Genre, e.g., comedy.  Note that this is a locale-dependent field.</td>
+</tr>
+
+<tr id="vcF12" style="display:none;">
+<td  class="pad1" onClick="javascript:toggle3(ary25, 'brand', 'officialName', notHide);" id="brand" ><img src="expandFolderIcon2.jpg"><code class="object">officialName</code></td>
+<td><code>GnName</code></td>
+<td>Name class</td>
+</tr>
+
+<tr id="b1" style="display:none;">
+<td  class="pad2"><code>display</code></td>
+<td><code>String</code></td>
+<td>Display name </td>
+</tr>
+
+<tr id="b2" style="display:none;">
+<td  class="pad2"><code>prefix</code></td>
+<td><code>String</code></td>
+<td>Name prefix, e.g., "The".</td>
+</tr>
+
+<tr id="b3" style="display:none;">
+<td  class="pad2"><code>sortable</code></td>
+<td><code>String</code></td>
+<td>Sortable title</td>
+</tr>
+
+<tr id="b4" style="display:none;">
+<td  class="pad2"><code>sortableScheme</code></td>
+<td><code>String</code></td>
+<td>Sortable title scheme</td>
+</tr>
+
+<tr id="b5" style="display:none;">
+<td  class="pad2"><code>family</code></td>
+<td><code>String</code></td>
+<td>Family name</td>
+</tr>
+
+<tr id="b6" style="display:none;">
+<td  class="pad2"><code>given</code></td>
+<td><code>String</code></td>
+<td>Given name</td>
+</tr>
+
+<tr id="b7" style="display:none;">
+<td  class="pad2"><code>globalId</code></td>
+<td><code>String</code></td>
+<td>Name global ID - used for transcriptions</td>
+</tr>
+
+<tr id="b8" style="display:none;">
+<td  class="pad2"><code>language</code></td>
+<td><code>String</code></td>
+<td>Name display language</td>
+</tr>
+
+<tr id="b9" style="display:none;">
+<td  class="pad2"><code>languageCode</code></td>
+<td><code>String</code></td>
+<td>Name display language 3 letter ISO code</td>
+</tr>
+
+
+
+
+
+<tr id="vcF13" style="display:none;">
+<td  class="pad1"><code>origin(GnDataLevel level)</code></td>
+<td><code>String</code></td>
+<td>Geographic location, e.g., "New York City".  Note that this is a locale-dependent field.</td>
+</tr>
+<tr id="vcF14" style="display:none;">
+<td  class="pad1"><code>rank</code></td>
+<td><code>String</code></td>
+<td>Role's rank in importance</td>
+</tr>
+
+<tr id="vcF2" style="display:none;">
+<td  class="pad1"><code>role</code></td>
+<td><code>String</code></td>
+<td>The type of role, e.g., "Actor".</td>
+</tr>
+
+<tr id="vcF3" style="display:none;">
+<td  class="pad1"><code>roleBilling</code></td>
+<td><code>String</code></td>
+<td>A number identifying the role's listing in the credits.</td>
+</tr>
+
+<tr id="vcF4" style="display:none;">
+<td  class="pad1"><code>roleId</code></td>
+<td><code>String</code></td>
+<td>Role ID</td>
+</tr>
+
+
+<tr id="vcF6" style="display:none;">
+<td  class="pad1"><code class="object">seasons</code></td>
+<td><code>GnVideoSeason</code><br><code>Enumerator</code></td>
+<td>Video season objects. A Season is an ordered collection of Works, typically representing a season of a TV series. See <code><strong>GnVideoWork &gt; seasons</strong></code> for object property descriptions.</td>
+</tr>
+
+<tr id="vcF7" style="display:none;">
+<td  class="pad1"><code class="object">series</code></td>
+<td><code>GnVideoSeries</code><br><code>Enumerator</code></td>
+<td>Video series objects. A Series is a collection of related Works, typically in sequence, and often comprised of Seasons (generally for TV series). See <code><strong>GnVideoWork &gt; series</strong></code> for object property descriptions.</td>
+</tr>
+
+<tr id="vcF8" style="display:none;">
+<td  class="pad1"><code class="object">works</code></td>
+<td><code>GnVideoWork</code><br><code>Enumerator</code></td>
+<td>Video work objects. See <code><strong>GnVideoWork</strong></code> for object property descriptions.</td>
+</tr>
+
+
+<tr id="vwF10" style="display:table-row;">
+<td  class="pad0"><code>videoMood</code></td>
+<td><code>String</code></td>
+<td>The work's mood, e.g., "Playful".</td>
+</tr>
+
+<tr id="vwF16" style="display:table-row;">
+<td  class="pad0"><code>videoProductionType</code></td>
+<td><code>String</code></td>
+<td>The kind of production for the AV Work, e.g., "Animation", "Documentary", etc.</td>
+</tr>
+
+<tr id="vwF51" style="display:table-row;">
+<td  class="pad0"><code>videoProductionTypeId</code></td>
+<td><code>Long</code></td>
+<td>Video production type ID</td>
+</tr>
+
+
+<tr id="vwF37" style="display:table-row;">
+<td  class="pad0"><code>workType</code></td>
+<td><code>String</code></td>
+<td>A supported work type for video data, such as "Musical" or "Image". </td>
+</tr>
+
+
+</tbody>
+</table>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+

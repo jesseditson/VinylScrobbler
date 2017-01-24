@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../../../" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="non-print" data-mc-toc-path="Implementing Applications (All Platforms)">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Loading a Locale</title>
+        <link href="../../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Resources/Stylesheets/BookStyles.css" rel="stylesheet" />
+        <script src="../../../Resources/Scripts/custom.modernizr.js">
+        </script>
+        <script src="../../../Resources/Scripts/jquery.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/require.config.js">
+        </script>
+        <script src="../../../Resources/Scripts/foundation.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/plugins.min.js">
+        </script>
+        <script src="../../../Resources/Scripts/MadCapAll.js">
+        </script>
+    </head>
+    <body>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkTop"><a href="../../../index.html#oo-topics/oo_implementing/Loading a Locale.html">Open topic with navigation</a>
+        </p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Implementing Applications (All Platforms)</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Loading a Locale</span>
+        </div>
+        <h1><a name="kanchor292"></a>Loading a Locale</h1>
+        <p>GNSDK provides <i>locales</i><a name="kanchor293"></a> as a convenient way to group locale-dependent metadata specific to a region (such as Europe) and language that should be returned from the Gracenote Service. A locale is defined by a group (such as Music), a language, a region and a descriptor (indicating level of metadata detail), which are identifiers to a specific set of lists in the Gracenote Service.</p>
+        <p>Using locales is relatively straightforward for most applications to implement. However, it is not as flexible or complicated as accessing lists directly - most locale processing is handled in the background and is not configurable. For most applications though, using locales is more than sufficient. Your application should only access lists directly if it has a specific reason or use case for doing so.</p>
+        <p>To load a locale, allocate a <code>GnLocale</code> object with one of the class constructors. The <code>GnLocale</code> constructors take parameters indicating the following:</p>
+        <ul>
+            <li value="1">
+                <p><b>Group</b><a name="kanchor294"></a> - Locale group type such as Music, <a href="javascript:void(0);" class="MCTextPopup MCTextPopupHotSpot MCTextPopup_Open MCTextPopupHotSpot_ MCTextPopupHotSpot_Popup #text #textPopup">Playlist<span class="MCTextPopupBody popupBody"><span class="MCTextPopupArrow"></span>A set of tracks from a user’s music collection, generated according to the criteria and limits defined by a playlist generator.</span></a>, EPG or Video that can be easily tied to the application's use case</p>
+            </li>
+            <li value="2">
+                <p><b><a name="kanchor295"></a>Region</b> - Region the application is operating in, such as US, China, Japan, Europe, and so on, possibly specified by the user configuration</p>
+            </li>
+            <li value="3">
+                <p><b><a name="kanchor296"></a>Language</b> - Language the application uses, possibly specified by the user configuration</p>
+            </li>
+            <li value="4">
+                <p><b><a name="kanchor297"></a>Descriptor</b> - Granularity of returned Gracenote metadata, either Simplified or Detailed. Applies only to genres. If you want more, finer-grained genres, then use Detailed; otherwise, if storage or bandwidth need to be minimized and/or you can live with less granular genres, use Simplified.</p>
+            </li>
+            <li value="5">
+                <p><b><a name="kanchor298"></a>Status callback (optional)</b> - One of the constructors takes a <code>GnStatusEventsListener</code> callback object</p>
+            </li>
+        </ul>
+        <p>Once a locale is loaded it can be set as the group default. The GNSDK automatically associates certain
+returned response objects, allowing Gracenote descriptive data,
+such as genres, to be returned according to the locale's region and language.</p>
+        <p class="note">Locales have the following space requirements: 2MB for a music only locale, 6MB for a music and playlist locale. Loading a locale can be lengthy, so your application may want to perform this operation on a background thread to avoid stalling the main thread.</p>
+        <p>For example:</p>
+        <ul>
+            <li value="1">A locale defined for the USA of English/ US/Detailed returns detailed content from a list written in English for a North American audience.</li>
+            <li value="2">A locale defined for Spain of Spanish/Global/Simplified returns list metadata of a less-detailed nature, written in Spanish for a global Spanish-speaking audience (European, Central American, and South American).</li>
+        </ul>
+        <p class="note">To cancel a Locale load at any time, set the "canceller" provided in any IGnStatusEvents
+delegate method. No cancel method is provided on GnLocale object because loading can happen on object
+construction.</p>
+        <div class="MCDropDown MCDropDown_Open dropDown"><span class="MCDropDownHead dropDownHead"><a href="javascript:void(0);" class="MCDropDownHotSpot dropDownHotspot MCDropDownHotSpot_" name="kanchor299"><img class="MCDropDown_Image_Icon" src="../../../Skins/Default/Stylesheets/Images/transparent.gif" height="11" width="16" alt="Closed" data-mc-alt2="Open" /><b>Windows Phone C#</b></a></span>
+            <div class="MCDropDownBody dropDownBody"><pre>
+GnLocale locale = 
+         new GnLocale(GnLocaleGroup.kLocaleGroupMusic, 
+                      GnLanguage.kLanguageEnglish,
+                      GnRegion.kRegionGlobal,
+                      GnDescriptor.kDescriptorDefault,
+                      App.mGnUser,
+                      null
+                 );
+
+locale.SetGroupDefault();</pre>
+            </div>
+        </div>
+        <h2><a name="kanchor300"></a>Locale-Dependent Data</h2>
+        <p>The following metadata fields require having a locale loaded:</p>
+        <ul>
+            <li value="1">artist type - levels 1-2</li>
+            <li value="2">audience</li>
+            <li value="3">era - levels 1-3</li>
+            <li value="4">genre - levels 1-3</li>
+            <li value="5">mood - levels 1-2</li>
+            <li value="6">origin - levels 1-4</li>
+            <li value="7">tempo - levels 1-3</li>
+            <li value="8">rating</li>
+            <li value="9">rating description</li>
+            <li value="10">rating type</li>
+            <li value="11">rating type ID</li>
+            <li value="12">reputation</li>
+            <li value="13">scenario</li>
+            <li value="14">role</li>
+            <li value="15">role category</li>
+            <li value="16">serial type</li>
+            <li value="17">setting environment</li>
+            <li value="18">setting time period</li>
+            <li value="19">story type</li>
+            <li value="20">entity type</li>
+            <li value="21">composition form</li>
+            <li value="22">instrumentation</li>
+            <li value="23">package display language</li>
+            <li value="24"><a name="kanchor301"></a>EPG level categories</li>
+            <li value="25">video feature type</li>
+            <li value="26">video production type</li>
+            <li value="27">video media type</li>
+            <li value="28">video region</li>
+            <li value="29">video region description</li>
+            <li value="30">video topic</li>
+            <li value="31">video work type</li>
+        </ul>
+        <h2>Default Regions and Descriptors</h2>
+        <p>When loading a locale, your application provides inputs specifying group, language, region, and descriptor. Region and descriptor can be set to “default.”</p>
+        <p>When no locales are present in the local database, or no local database is enabled, and the application is configured for online access, GNSDK uses the Global region when the default region is specified, and the Detailed descriptor when the default descriptor is specified.</p>
+        <p>Otherwise, when “default” is specified, GNSDK filters the local database and loads a locale matching the group and language (and the region and descriptor, if they are not specified as default). Complete locales (those with all sub-components present) are preferred over incomplete locales. If, after filtering, the local database contains multiple equally complete locales, a default locale is chosen using the defaults shown in the table below:</p>
+        <table>
+            <thead>
+                <tr style="text-align:center; bgcolor:#D3D3D3">
+                    <th><a name="kanchor302"></a>Regional GDB</th>
+                    <th>Available Locales</th>
+                    <th>Default Locale</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>North America (NA)</td>
+                    <td>US and Latin America</td>
+                    <td>US</td>
+                </tr>
+                <tr>
+                    <td>Latin America (LA)</td>
+                    <td>Latin America</td>
+                    <td>Latin America </td>
+                </tr>
+                <tr>
+                    <td>Korea (KR)</td>
+                    <td>Korea</td>
+                    <td>Korea</td>
+                </tr>
+                <tr>
+                    <td>Japan (JP) </td>
+                    <td>Japan</td>
+                    <td>Japan</td>
+                </tr>
+                <tr>
+                    <td>Global (GL)</td>
+                    <td>Global, Japan, US, China, Taiwan, Korea, Europe, and Latin America</td>
+                    <td>Global</td>
+                </tr>
+                <tr>
+                    <td>Europe (EU)</td>
+                    <td>Europe</td>
+                    <td>Europe</td>
+                </tr>
+                <tr>
+                    <td>China (CN)</td>
+                    <td>China and Taiwan</td>
+                    <td>China</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>If no locales are present after filtering the local database, an error is returned.</p>
+        <p>Default regions and descriptors can be used to write generic code for loading a locale. For example, consider an application targeted for multiple devices: one with a small screen, where the Simplified locales are desired; and one with a large screen, where more detail can be displayed to the user, and the Detailed locales are desired. The application code can be written to generically load locales with the “default” descriptor, and each application can be deployed with a local database containing simplified locales (small-screen version), or detailed locales (large-screen version). GNSDK loads the appropriate locales based on the contents of the local database.</p>
+        <h2><a name="kanchor303"></a>Locale Groups</h2>
+        <p><a name="kanchor304"></a>Setting the locale for a group causes the given locale to apply to a particular media group - Music, Playlist, Video or EPG. For example, setting a locale for the Music group applies the locale to all music-related objects. When a locale is loaded, all lists necessary for the locale group are loaded into memory. For example, setting the locale for the Playlist group causes all lists needed to generate playlists to be loaded.</p>
+        <p>Once a locale has been loaded, you must call the <code>GnLocale</code>'s <code>SetGroupDefault</code> method before retrieving locale-dependent values.</p>
+        <h3><a name="kanchor305"></a>Multi-Threaded Access</h3>
+        <p>Since locales and lists can be accessed concurrently, your application has the option to perform such actions as generating a Playlist or obtaining result display strings using multiple threads.</p>
+        <p>Typically, an application loads all required locales at start up, or when the user changes preferred region or language. To speed up loading multiple locales, your application can load each locale in its own thread.</p>
+        <h3>Updating Locales and Lists</h3>
+        <p><a name="kanchor306"></a>GNSDK supports storing locales and their associated lists locally, which improves access times and performance. Your application must enable a database module (such as SQLite) to implement local storage. For more information,  See <a href="Enabling and Using GNSDK Storage .html" class="MCXref xref">"Enabling and Using GNSDK Storage"</a> .</p>
+        <h4><a name="kanchor307"></a>Update Notification</h4>
+        <p>Periodically, your application may need to update any locale lists that are stored locally. As a best practice, Gracenote recommends registering a locale update notification callback or, if you are using lists directly, a lists update nortification callback. To do this, you need to code an <code>IGnSystemEvents</code> delegate that implements the locale or list update methods—<code>LocaleUpdateNeeded</code> or <code>ListUpdateNeeded</code>—and provide that delegate as a parameter to the <code>GnManager</code>'s <code>EventHandler</code> method. When GNSDK internally detects that a locale or list is out of date, it will call the appropriate callback. Detection occurs when a requested list value is not found. This is done automatically without the need for user application input. Note, however, that if your application does not request locale-dependent metadata or missing locale-dependent data, no detection will occur. </p>
+        <p class="note">Updates require the user lookup mode option to be set to online lookup - <code>kLookupModeOnline</code>(default) or online lookup only—<code>kLookupModeOnlineCacheOnly</code>. This allows the SDK to retreive locales from the Gracenote Service. You may need to toggle this option value for the update process.<MadCap:conditionalText data-mc-conditions="Default.ProdAuto,Default.ProdDesktop,Default.ProdMobileAnyPlatform"> For more information about setting the user option, <a href="Setting Local and Online Lookup Modes.html" class="MCXref xref">"Setting Local and Online Lookup Modes"</a>.</MadCap:conditionalText></p>
+        <p>Once your app receives a notification, it can choose to immediately do the update or do it later. Gracenote recommends doing it immediately as this allows the current locale/list value request to be fulfilled, though there is a delay for the length of time it takes to complete the update process.</p>
+        <p class="note">The GNSDK does not set an internal state or persistant flag indicating an update is required; your application is responsibile for managing the deferring of updates beyond the notification callback.</p>
+        <h2><a name="kanchor308"></a>Locale Behavior</h2>
+        <p>How locales are stored, accessed and updated depends on how you have configured your storage and lookup options as shown in the following table. <MadCap:conditionalText data-mc-conditions="Default.ProdMobileAnyPlatform,Default.ProdAuto,Default.ProdDesktop">For information on configuring lookup modes see <a href="Setting Local and Online Lookup Modes.html" class="MCXref xref">"Setting Local and Online Lookup Modes"</a>.</MadCap:conditionalText></p>
+        <table>
+            <thead>
+                <tr style="bgcolor:#D3D3D3;">
+                    <th style="text-align:center;"><a name="kanchor309"></a>Storage Provider Initialized</th>
+                    <th style="text-align:center;">GnLookupMode Enum</th>
+                    <th style="text-align:center;">Behavior</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Either</td>
+                    <td><code>kLookupModeOnlineNoCache</code>
+                    </td>
+                    <td><a name="kanchor310"></a>Locales are always downloaded and stored in RAM, not local storage.</td>
+                </tr>
+                <tr>
+                    <td>Not initialized</td>
+                    <td>
+                        <br /><code>kLookupModeOnline</code>
+                    </td>
+                    <td>Locales are always downloaded and stored in RAM, not local storage.</td>
+                </tr>
+                <tr>
+                    <td>Initialized</td>
+                    <td><code>kLookupModeOnline</code>
+                    </td>
+                    <td>If downloaded, locales are read from local storage. Downloaded locales are written immediately to local storage.</td>
+                </tr>
+                <tr>
+                    <td>Not Initialized</td>
+                    <td><code>kLookupModeOnlineNoCacheRead</code>
+                    </td>
+                    <td>Locales are always downloaded and stored in RAM.</td>
+                </tr>
+                <tr>
+                    <td>Initialized</td>
+                    <td><code>kLookupModeOnlineNoCacheRead</code>
+                    </td>
+                    <td>Locales are always downloaded and stored in RAM and local storage. Locale data is always read from RAM, not local storage.</td>
+                </tr>
+                <tr>
+                    <td>Initialized</td>
+                    <td><code>kLookupModeOnlineCacheOnly</code>
+                        <br /><code>kLookupModeLocal</code>
+                    </td>
+                    <td>Locale data is read from local storage. If requested data is not in locale storage the load attempt fails. Local storage is updated when new versions become available. The application developer is responsible for providing that mechanism.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="note">Locale behavior may not change if the lookup mode is changed after the locale is loaded. For example, if a locale is loaded when the lookup mode is <code>kLookupModeOnline</code>, locale data will be read from local storage even if the lookup mode is changed.</p>
+        <h2><a name="kanchor311"></a>Best Practices</h2>
+        <table style="border:0px">
+            <thead>
+                <tr style="bgcolor:#D3D3D3;">
+                    <th style="text-align:center;">Practice</th>
+                    <th style="text-align:center;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Applications should use locales.</td>
+                    <td>Locales are simpler and more convenient than accessing lists directly. An application should only use lists if there are specific circumstances or use cases that require it.</td>
+                </tr>
+                <tr>
+                    <td>Apps should register a locale/list update notification callback and, when invoked, immediately update locales/lists.</td>
+                    <td>See the <i><b>Update Notification</b></i> section above.</td>
+                </tr>
+                <tr>
+                    <td>Applications can deploy with pre-populated list stores and reduce startup time.</td>
+                    <td>
+                        <p>On startup, a typical application loads locale(s). If the requested locale is not cached, the required lists are downloaded from the Gracenote Service and written to local storage. This procedure can take time.</p>
+                        <p>Customers should consider creating their own list stores that are deployed with the application to decrease the initial startup time and perform a locale update in a background thread once the application is up and running.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Use multiple threads when loading or updating multiple locales.</td>
+                    <td>Loading locales in multiple threads allows lists to be fetched concurrently, reducing overall load time.</td>
+                </tr>
+                <tr>
+                    <td>Update locales in a background thread.</td>
+                    <td>
+                        <p>Locales can be updated while the application performs normal processing. The SDK automatically switches to using new lists as they are updated. </p>
+                        <p class="note">If the application is using the GNSDK Manager Lists interface directly and the application holds a list handle, that list is not released from memory and the SDK will continue to use it.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Set a persistence flag when updating. If interrupted, repeat update.</td>
+                    <td>
+                        <p>If the online update procedure is interrupted (such as network connection/power loss) then it must be repeated to prevent mismatches between locale required lists. </p>
+                        <p>Your application should set a <i>persistence</i> flag before starting an update procedure. If the flag is still set upon startup, the application should initiate an update. You should clear the flag after the update has completed.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Call the <code>GnStoreOps</code>' <code>Compact</code> method after updating lists or locales.</td>
+                    <td>
+                        <p>As records are added and deleted from locale storage, some storage solutions, such as SQLite, can leave empty space in the storage files, artificially bloating them. You can call the <code>GnStoreOps</code>' <code>Compact</code> method to remove these. </p>
+                        <p class="note">The update procedure is not guaranteed to remove an old version of a list from storage immediately because there could still be list element references which must be honored until they are released. Therefore, your application should call the <code>GnStoreOps</code>' <code>Compact</code> method during startup or shutdown after an update has finished.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Local only applications should set the user handle option for lookup mode to local only.</td>
+                    <td>
+                        <p>If your application wishes to only use the Locales in pre-populated Locales storage, then it must set the user handle lookup mode to local. </p>
+                        <p>For example (C++)</p><pre>/* Set lookup mode (all queries done with this user will inherit the lookup mode) */
+user.Options().LookupMode(kLookupModeLocal);</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td>To simplify the implementation of multi-region applications, use the default region and descriptor.</td>
+                    <td>
+                        <p>The Locale subsystem can infer a region and descriptor from the Locale store that can be used in place of the region and descriptor deaults when loading a locale. This can simplify implementing an application intended to be deployed in different regions with its own region specific pre-populated Locale store.</p>
+                        <p class="note">If you are deploying your app to multiple regions with a pre-populated Locale store containing locales for all target regions then you should use <code>kRegionDefault</code> and <code>kDescriptorDefault</code> when loading a locale. In this case, the same region and descriptor are used based on defaults hardcoded into the SDK.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><span class="MCBreadcrumbsSelf">Implementing Applications (All Platforms)</span><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Loading a Locale</span>
+        </div>
+        <p class="onlineFooter"><a name="kanchor312"></a>© 2000 to present. Gracenote, Inc. All rights reserved.</p>
+        <p><a href="mailto:doc_feedback@gracenote.com?subject=Gracenote Documentation Feedback" target="_blank" title="Send comments about this topic to Gracenote Technical Publications." alt="Send comments about this topic to Gracenote Technical Publications.">How can we improve this documentation?</a>
+        </p>
+        <p class="MCWebHelpFramesetLink MCWebHelpFramesetLinkBottom"><a href="../../../index.html#oo-topics/oo_implementing/Loading a Locale.html">Open topic with navigation</a>
+        </p>
+    </body>
+</html>
