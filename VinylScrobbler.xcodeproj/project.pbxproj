@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F309A6371E46769E001E2CAE /* LastfmAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F309A6361E46769E001E2CAE /* LastfmAPI.swift */; };
+		F309A63A1E4677A9001E2CAE /* RecordingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F309A6391E4677A9001E2CAE /* RecordingView.xib */; };
+		F309A63D1E4678C7001E2CAE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F309A63C1E4678C7001E2CAE /* LoginViewController.swift */; };
+		F309A63F1E4678FB001E2CAE /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F309A63E1E4678FB001E2CAE /* LoginView.xib */; };
 		F31F2D361E305E800034F8F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31F2D351E305E800034F8F7 /* AppDelegate.swift */; };
-		F31F2D381E305E800034F8F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31F2D371E305E800034F8F7 /* ViewController.swift */; };
+		F31F2D381E305E800034F8F7 /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31F2D371E305E800034F8F7 /* RecordingViewController.swift */; };
 		F31F2D3B1E305E800034F8F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31F2D391E305E800034F8F7 /* Main.storyboard */; };
 		F31F2D3D1E305E800034F8F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F31F2D3C1E305E800034F8F7 /* Assets.xcassets */; };
 		F31F2D401E305E800034F8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31F2D3E1E305E800034F8F7 /* LaunchScreen.storyboard */; };
 		F31F2D4B1E305E800034F8F7 /* VinylScrobblerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31F2D4A1E305E800034F8F7 /* VinylScrobblerTests.swift */; };
 		F31F2D571E305FE10034F8F7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F31F2D561E305FE10034F8F7 /* AVFoundation.framework */; };
-		F31F2D591E3077670034F8F7 /* GnSDKObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F31F2D581E3077670034F8F7 /* GnSDKObjC.framework */; };
+		F37485B21E46944C00E04EB9 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37485B11E46944C00E04EB9 /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,9 +32,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F309A6361E46769E001E2CAE /* LastfmAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LastfmAPI.swift; path = Classes/LastfmAPI.swift; sourceTree = "<group>"; };
+		F309A6391E4677A9001E2CAE /* RecordingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RecordingView.xib; path = Views/RecordingView.xib; sourceTree = "<group>"; };
+		F309A63C1E4678C7001E2CAE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ViewControllers/LoginViewController.swift; sourceTree = "<group>"; };
+		F309A63E1E4678FB001E2CAE /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginView.xib; path = Views/LoginView.xib; sourceTree = "<group>"; };
 		F31F2D321E305E800034F8F7 /* VinylScrobbler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VinylScrobbler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31F2D351E305E800034F8F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F31F2D371E305E800034F8F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F31F2D371E305E800034F8F7 /* RecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecordingViewController.swift; path = ViewControllers/RecordingViewController.swift; sourceTree = "<group>"; };
 		F31F2D3A1E305E800034F8F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F31F2D3C1E305E800034F8F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F31F2D3F1E305E800034F8F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -39,8 +47,7 @@
 		F31F2D4A1E305E800034F8F7 /* VinylScrobblerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VinylScrobblerTests.swift; sourceTree = "<group>"; };
 		F31F2D4C1E305E800034F8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F31F2D561E305FE10034F8F7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		F31F2D581E3077670034F8F7 /* GnSDKObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GnSDKObjC.framework; path = "gn-mobile-ios-1.2.1.4576/mmid/GnSDKObjC.framework"; sourceTree = "<group>"; };
-		F31F2D5A1E3077870034F8F7 /* VinylScrobbler-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VinylScrobbler-Bridging-Header.h"; sourceTree = "<group>"; };
+		F37485B11E46944C00E04EB9 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "Packages/SwiftyJSON-3.1.4/Source/SwiftyJSON.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +55,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F31F2D591E3077670034F8F7 /* GnSDKObjC.framework in Frameworks */,
 				F31F2D571E305FE10034F8F7 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,14 +69,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F309A6351E467674001E2CAE /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F309A6361E46769E001E2CAE /* LastfmAPI.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		F309A6381E46772D001E2CAE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F31F2D371E305E800034F8F7 /* RecordingViewController.swift */,
+				F309A63C1E4678C7001E2CAE /* LoginViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F309A63B1E4677B3001E2CAE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F309A6391E4677A9001E2CAE /* RecordingView.xib */,
+				F309A63E1E4678FB001E2CAE /* LoginView.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		F309A6401E46798C001E2CAE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		F31F2D291E305E800034F8F7 = {
 			isa = PBXGroup;
 			children = (
 				F31F2D341E305E800034F8F7 /* VinylScrobbler */,
 				F31F2D491E305E800034F8F7 /* VinylScrobblerTests */,
 				F31F2D331E305E800034F8F7 /* Products */,
+				F37485B01E46943300E04EB9 /* Packages */,
 				F31F2D551E305FE10034F8F7 /* Frameworks */,
-				F31F2D5A1E3077870034F8F7 /* VinylScrobbler-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,8 +125,11 @@
 		F31F2D341E305E800034F8F7 /* VinylScrobbler */ = {
 			isa = PBXGroup;
 			children = (
+				F309A6401E46798C001E2CAE /* Extensions */,
+				F309A6351E467674001E2CAE /* Classes */,
+				F309A6381E46772D001E2CAE /* ViewControllers */,
+				F309A63B1E4677B3001E2CAE /* Views */,
 				F31F2D351E305E800034F8F7 /* AppDelegate.swift */,
-				F31F2D371E305E800034F8F7 /* ViewController.swift */,
 				F31F2D391E305E800034F8F7 /* Main.storyboard */,
 				F31F2D3C1E305E800034F8F7 /* Assets.xcassets */,
 				F31F2D3E1E305E800034F8F7 /* LaunchScreen.storyboard */,
@@ -108,10 +150,17 @@
 		F31F2D551E305FE10034F8F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F31F2D581E3077670034F8F7 /* GnSDKObjC.framework */,
 				F31F2D561E305FE10034F8F7 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F37485B01E46943300E04EB9 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				F37485B11E46944C00E04EB9 /* SwiftyJSON.swift */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +251,8 @@
 			files = (
 				F31F2D401E305E800034F8F7 /* LaunchScreen.storyboard in Resources */,
 				F31F2D3D1E305E800034F8F7 /* Assets.xcassets in Resources */,
+				F309A63A1E4677A9001E2CAE /* RecordingView.xib in Resources */,
+				F309A63F1E4678FB001E2CAE /* LoginView.xib in Resources */,
 				F31F2D3B1E305E800034F8F7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,7 +271,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F31F2D381E305E800034F8F7 /* ViewController.swift in Sources */,
+				F31F2D381E305E800034F8F7 /* RecordingViewController.swift in Sources */,
+				F309A6371E46769E001E2CAE /* LastfmAPI.swift in Sources */,
+				F309A63D1E4678C7001E2CAE /* LoginViewController.swift in Sources */,
+				F37485B21E46944C00E04EB9 /* SwiftyJSON.swift in Sources */,
 				F31F2D361E305E800034F8F7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,10 +321,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7,
-				);
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -291,6 +341,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -308,13 +359,13 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 armv7s";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -322,10 +373,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7,
-				);
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -347,6 +394,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -357,12 +405,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -374,13 +422,12 @@
 				DEVELOPMENT_TEAM = 9E22QU7D5A;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/gn-mobile-ios-1.2.1.4576/mmid",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = VinylScrobbler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jesseditson.VinylScrobbler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "VinylScrobbler-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -394,13 +441,12 @@
 				DEVELOPMENT_TEAM = 9E22QU7D5A;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/gn-mobile-ios-1.2.1.4576/mmid",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = VinylScrobbler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jesseditson.VinylScrobbler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "VinylScrobbler-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -411,6 +457,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 9E22QU7D5A;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
 				INFOPLIST_FILE = VinylScrobblerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jesseditson.VinylScrobblerTests;
@@ -426,6 +473,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 9E22QU7D5A;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
 				INFOPLIST_FILE = VinylScrobblerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jesseditson.VinylScrobblerTests;
