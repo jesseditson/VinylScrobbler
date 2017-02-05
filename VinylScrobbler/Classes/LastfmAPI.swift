@@ -39,6 +39,12 @@ class LastfmAPI: NSObject {
         }
     }
     
+    func logout() {
+        self.jwt = nil
+        UserDefaults.standard.setValue(nil, forKey: "VS_JWT")
+        self.authenticated = false
+    }
+    
     func POSTRequest(path: String, body: JSON, onComplete: @escaping ServiceResponse) throws {
         if let u = URL(string: path, relativeTo: baseURL) {
             var request = URLRequest(url: u)

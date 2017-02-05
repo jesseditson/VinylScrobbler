@@ -13,17 +13,21 @@ import CoreAudio
 
 class RecordingViewController: UIViewController {
     
+    @IBOutlet var dbIndicator: UIProgressView!
+    @IBOutlet var recordingButton: UIButton!
+    
     var monitor: AVAudioRecorder!
     var recorder: AVAudioRecorder!
     var levelTimer = Timer()
     var sliceTimer = Timer()
     var lowPassResults: Double = 0.0
-    var minPowerLevel: Float = -9
+    var minPowerPercent: Float = 0.6
     var minSampleLength: Int = 10
     var sampleLength: Double = 15.0
     var recordingStartDate: Date? = nil
     var priorLevel: Float? = nil
     var sliceURL: URL!
+    var monitorURL: URL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,18 +65,18 @@ class RecordingViewController: UIViewController {
         let fm = FileManager.init()
         let documents = try fm.url(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: true)
         
-        let url = documents.appendingPathComponent("monitorBuffer.caf")
+        monitorURL = documents.appendingPathComponent("monitorBuffer.caf")
         
         // make a dictionary to hold the recording settings so we can instantiate our AVAudioRecorder
         let recordSettings: [String: Any] = [AVFormatIDKey:kAudioFormatAppleIMA4,
                                              AVSampleRateKey:44100.0,
                                              AVNumberOfChannelsKey:2,AVEncoderBitRateKey:12800,
                                              AVLinearPCMBitDepthKey:16,
-                                             AVEncoderAudioQualityKey:AVAudioQuality.low.rawValue
+                                             AVEncoderAudioQualityKey:AVAudioQuality.medium.rawValue
         ]
         
         //Instantiate an AVAudioRecorder
-        monitor = try AVAudioRecorder(url: url, settings: recordSettings)
+        monitor = try AVAudioRecorder(url: monitorURL, settings: recordSettings)
         
         monitor.prepareToRecord()
         monitor.isMeteringEnabled = true
@@ -81,7 +85,7 @@ class RecordingViewController: UIViewController {
         monitor.record()
         
         //instantiate a timer to be called with whatever frequency we want to grab metering values
-        self.levelTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(RecordingViewController.levelTimerCallback), userInfo: nil, repeats: true)
+        self.levelTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(RecordingViewController.levelTimerCallback), userInfo: nil, repeats: true)
     }
     
     func startRecording() throws {
@@ -135,14 +139,55 @@ class RecordingViewController: UIViewController {
         monitor.updateMeters()
         
         let powerLevel = monitor.averagePower(forChannel: 0)
-        if let pl = priorLevel {
-            if powerLevel > minPowerLevel && pl >= minPowerLevel {
+        let percent = 1-(powerLevel / -160) // -160-0
+        
+        
+        if let priorLevel = self.priorLevel {
+            let priorPercent = 1-(priorLevel / -160)
+            if percent > minPowerPercent && priorPercent <= minPowerPercent {
                 // transition from silence to noise - start sampling
-            } else if pl <= minPowerLevel && powerLevel > minPowerLevel {
+                print("BEGIN RECORDING")
+            } else if priorPercent >= minPowerPercent && percent < minPowerPercent {
                 // transition from noise to silence - stop the current sample if it's recording
+                print("STOP RECORDING")
             }
+            print("\(priorLevel) -> \(powerLevel)")
+            print("\(priorPercent) -> \(percent)")
         }
-        priorLevel = powerLevel
+        self.priorLevel = powerLevel
+        self.dbIndicator.progress = percent
+    }
+    
+    @IBAction func logout() {
+        monitor.stop()
+        LastfmAPI.sharedInstance.logout()
+        self.performSegue(withIdentifier: "showLoggedOut", sender: nil)
+    }
+    
+    @IBAction func toggleRecording() {
+        if monitor.isRecording {
+            monitor.stop()
+            recordingButton.setTitle("record", for: .normal)
+        } else {
+            do {
+                try self.beginMonitoring()
+            } catch let error {
+                print("ERROR! \(error.localizedDescription)")
+            }
+            recordingButton.setTitle("stop", for: .normal)
+        }
+    }
+    
+    @IBAction func play() {
+        if monitor.isRecording {
+            self.toggleRecording()
+        }
+        do {
+            let player = try AVAudioPlayer(contentsOf: monitorURL)
+            player.play()
+        } catch let error {
+            print("ERROR! \(error.localizedDescription)")
+        }
     }
     
     override func didReceiveMemoryWarning() {

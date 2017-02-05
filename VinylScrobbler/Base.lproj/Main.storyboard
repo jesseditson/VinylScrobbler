@@ -23,7 +23,11 @@
         <!--Recording View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="RecordingViewController" id="BYZ-38-t0r" customClass="RecordingViewController" customModule="VinylScrobbler" customModuleProvider="target" sceneMemberID="viewController"/>
+                <viewController storyboardIdentifier="RecordingViewController" id="BYZ-38-t0r" customClass="RecordingViewController" customModule="VinylScrobbler" customModuleProvider="target" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="Ukf-cA-Z9a" kind="show" identifier="showLoggedOut" id="Jr7-W8-rYL"/>
+                    </connections>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="135" y="144"/>
