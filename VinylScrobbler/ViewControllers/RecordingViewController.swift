@@ -15,16 +15,16 @@ class RecordingViewController: UIViewController {
     
     @IBOutlet var dbIndicator: UIProgressView!
     @IBOutlet var recordingButton: UIButton!
+    @IBOutlet var routeLabel: UILabel!
     
+    var audioSession: AVAudioSession!
     var monitor: AVAudioRecorder!
     var recorder: AVAudioRecorder!
     var levelTimer = Timer()
     var sliceTimer = Timer()
-    var lowPassResults: Double = 0.0
-    var minPowerPercent: Float = 0.6
-    var minSampleLength: Int = 10
+    var minPowerPercent: Float = 0.5
+    var minSampleLength: Double = 10.0
     var sampleLength: Double = 15.0
-    var recordingStartDate: Date? = nil
     var priorLevel: Float? = nil
     var sliceURL: URL!
     var monitorURL: URL!
@@ -35,24 +35,31 @@ class RecordingViewController: UIViewController {
         do {
             
             //make an AudioSession, set it to PlayAndRecord and make it active
-            let audioSession:AVAudioSession = AVAudioSession.sharedInstance()
-            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: [ .mixWithOthers ])
             try audioSession.setActive(true)
-            //        var inputSource: AVAudioSessionDataSourceDescription
-            //        for input in audioSession.availableInputs! {
-            //            if let sources = input.dataSources {
-            //                for source in sources {
-            //                    print(source)
-            //                }
-            //            }
-            //        }
-            //        try audioSession.setInputDataSource(AVAudioSessionDataSourceDescription)
+            // play through the speaker, hopefully indicating that we want to receive input from our headphone jack
+            try audioSession.overrideOutputAudioPort(.speaker)
+            try audioSession.setMode(AVAudioSessionModeMeasurement)
+            
+//            var inputSource: AVAudioSessionPortDescription
+            for input in audioSession.availableInputs! {
+                print(input)
+//                inputSource = input
+                if let sources = input.dataSources {
+                    for source in sources {
+                        print(source)
+                    }
+                }
+            }
+//            try audioSession.setPreferredInput(inputSource)
+//            try audioSession.setInputDataSource(AVAudioSessionDataSourceDescription)
             
             //set up the URL for the audio file
             let fm = FileManager.init()
             let documents = try fm.url(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: true)
             
-            sliceURL =  documents.appendingPathComponent("recordingBuffer.caf")
+            sliceURL = documents.appendingPathComponent("recordingBuffer.caf")
             
             try self.beginMonitoring()
         } catch let error {
@@ -66,6 +73,8 @@ class RecordingViewController: UIViewController {
         let documents = try fm.url(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: true)
         
         monitorURL = documents.appendingPathComponent("monitorBuffer.caf")
+        
+        try FileManager.default.removeItem(at: monitorURL)
         
         // make a dictionary to hold the recording settings so we can instantiate our AVAudioRecorder
         let recordSettings: [String: Any] = [AVFormatIDKey:kAudioFormatAppleIMA4,
@@ -88,30 +97,34 @@ class RecordingViewController: UIViewController {
         self.levelTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(RecordingViewController.levelTimerCallback), userInfo: nil, repeats: true)
     }
     
-    func startRecording() throws {
+    func startRecording() {
         // make a dictionary to hold the recording settings so we can instantiate our AVAudioRecorder
         let recordSettings: [String: Any] = [AVFormatIDKey:kAudioFormatAppleIMA4,
                                              AVSampleRateKey:44100.0,
                                              AVNumberOfChannelsKey:2,AVEncoderBitRateKey:12800,
                                              AVLinearPCMBitDepthKey:16,
-                                             AVEncoderAudioQualityKey:AVAudioQuality.medium.rawValue
+                                             AVEncoderAudioQualityKey:AVAudioQuality.high.rawValue
         ]
         
         //Instantiate an AVAudioRecorder
-        recorder = try AVAudioRecorder(url: sliceURL, settings: recordSettings)
+        do {
+            try FileManager.default.removeItem(at: sliceURL)
+            recorder = try AVAudioRecorder(url: sliceURL, settings: recordSettings)
+        } catch let error {
+            print("ERROR! \(error.localizedDescription)")
+        }
         
         recorder.prepareToRecord()
         recorder.isMeteringEnabled = true
         
         //start recording
         recorder.record(forDuration: sampleLength)
-        recordingStartDate = Date()
         
         self.sliceTimer = Timer.scheduledTimer(timeInterval: sampleLength, target: self, selector: #selector(RecordingViewController.sliceComplete), userInfo: nil, repeats: false)
     }
     
     func stopRecording() {
-        if recorder.isRecording {
+        if recorder != nil && recorder.isRecording {
             recorder.stop()
             sliceTimer.invalidate()
             processSlice()
@@ -124,17 +137,36 @@ class RecordingViewController: UIViewController {
     
     func processSlice() {
         // check to see if we've recorded enough
-        if let sd = recordingStartDate {
-            let currentCal = NSCalendar.current
-            let recordingLength = currentCal.component(.second, from: sd)
-            if recordingLength > minSampleLength {
-                
+        let asset = AVURLAsset(url: sliceURL)
+        let recordingLength = asset.duration.seconds
+        
+        print("recorded \(recordingLength) seconds of audio (need \(minSampleLength))")
+        if recordingLength > minSampleLength {
+            let filePath = sliceURL.absoluteString
+            do {
+                try LastfmAPI.sharedInstance.identify(path: filePath, onComplete: { (json, error) in
+                    if error != nil {
+                        print("ERROR \(error!.localizedDescription)")
+                    } else {
+                        print(json.stringValue)
+                    }
+                })
+            } catch let error {
+                print("ERROR! \(error.localizedDescription)")
             }
         }
     }
     
     //This selector/function is called every time our timer (levelTime) fires
     func levelTimerCallback() {
+        // update a label with our current route
+        if let input = audioSession.currentRoute.inputs.first {
+            var routeText = "\(input.portType) \(input.portName)"
+            if let datasource = input.selectedDataSource?.dataSourceName {
+                routeText = "\(routeText) \(datasource)"
+            }
+            self.routeLabel.text = routeText
+        }
         //we have to update meters before we can get the metering values
         monitor.updateMeters()
         
@@ -147,15 +179,17 @@ class RecordingViewController: UIViewController {
             if percent > minPowerPercent && priorPercent <= minPowerPercent {
                 // transition from silence to noise - start sampling
                 print("BEGIN RECORDING")
+                self.startRecording()
             } else if priorPercent >= minPowerPercent && percent < minPowerPercent {
                 // transition from noise to silence - stop the current sample if it's recording
                 print("STOP RECORDING")
+                self.stopRecording()
             }
-            print("\(priorLevel) -> \(powerLevel)")
-            print("\(priorPercent) -> \(percent)")
+//            print("\(priorLevel) -> \(powerLevel)")
+//            print("\(priorPercent) -> \(percent)")
         }
         self.priorLevel = powerLevel
-        self.dbIndicator.progress = percent
+        self.dbIndicator.progress = percent - minPowerPercent
     }
     
     @IBAction func logout() {
@@ -189,12 +223,5 @@ class RecordingViewController: UIViewController {
             print("ERROR! \(error.localizedDescription)")
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
 }
 
