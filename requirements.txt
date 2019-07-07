@@ -1,0 +1,10 @@
+argh==0.26.2
+gunicorn==19.9.0
+pathtools==0.1.2
+protobuf==3.0.0b3
+PyAudio==0.2.11
+pydub==0.23.1
+python-dateutil==2.7.3
+PyYAML==3.13
+six==1.11.0
+watchdog==0.9.0
