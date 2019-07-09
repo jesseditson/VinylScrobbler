@@ -3,7 +3,7 @@ import json
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
 import dejavu_client
-from dejavu_client.recognize import FileRecognizer
+from dejavu.recognize import FileRecognizer
 app = Flask(__name__)
 
 ALLOWED_EXTENSIONS = set(["wav"])
