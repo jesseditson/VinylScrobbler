@@ -21,3 +21,9 @@ htmlcov/
 .coverage
 .coverage.*
 *,cover
+
+# secrets
+credentials.json
+
+# data
+library

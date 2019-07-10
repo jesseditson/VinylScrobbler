@@ -1,14 +1,24 @@
 import os
 import json
-from flask import Flask, request, jsonify
+from functools import wraps
+from flask import Response, Flask, request, jsonify, url_for, session, redirect
 from werkzeug.utils import secure_filename
 import dejavu_client
 from dejavu.recognize import FileRecognizer
+import discogs_client
 app = Flask(__name__)
+
+discogs = discogs_client.Client(
+    'LongPlay/0.1',
+    consumer_key='ZcXhVSsbcMSIRqRFvwrV',
+    consumer_secret='MKJEfqPdnGTQDgwwzAAgmULEnwTfYvIx'
+)
 
 ALLOWED_EXTENSIONS = set(["wav"])
 UPLOAD_FOLDER = '/tmp'
 
+app.secret_key = 'secret key'
+app.config['SESSION_TYPE'] = 'filesystem'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
@@ -60,6 +70,75 @@ def upload_file():  # check if the post request has the file part
         file.save(file_path)
         song = dejavu_client.recognize(FileRecognizer, file_path)
         return json.dumps(song)
+
+
+# Discogs API
+
+def discogs_authenticated(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        creds = session.get('discogs_token')
+        if creds is None:
+            return redirect(
+                url_for(
+                    'login',
+                    next=request.args.get('next') or request.referer or None
+                ))
+        oauth_token, oauth_token_secret = creds
+        discogs.set_token(oauth_token, oauth_token_secret)
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+@app.route('/login')
+def login():
+    callback_url = 'http://localhost:8000%s' % url_for(
+        'oauth_callback',
+        next=request.args.get('next') or request.referer or None)
+    request_token, request_secret, authorize_url = discogs.get_authorize_url(
+        callback_url=callback_url)
+    return redirect(authorize_url)
+
+
+@app.route('/discogs/callback')
+def oauth_callback():
+    next_url = request.args.get('next') or url_for('discogs_albums')
+    verifier = request.args.get('oauth_verifier')
+    if verifier is None:
+        raise InvalidUsage(
+            'You denied the request to sign in.', status_code=401)
+    token, secret = discogs.get_access_token(verifier)
+    session['discogs_token'] = (
+        token,
+        secret
+    )
+    return redirect(next_url)
+
+
+def release_to_json(release):
+    return {
+        "title": release.title,
+        "artist": release.artists[0].name,
+        "tracks": [{"title": track.title} for track in release.tracklist],
+    }
+
+
+@app.route('/albums')
+@discogs_authenticated
+def discogs_albums():
+    me = discogs.identity()
+    list = me.collection_folders[0].releases
+    page = int(request.args.get('page') or 1)
+    list.per_page = 10
+    list.sort = "added"
+    res = json.dumps({"albums": [
+        release_to_json(item.release) for item in
+        list.page(page)
+    ]})
+    return Response(res,
+                    mimetype="application/json",
+                    headers={"Content-Disposition":
+                             "attachment;filename=page-%i.json" % page})
 
 
 if __name__ == '__main__':
