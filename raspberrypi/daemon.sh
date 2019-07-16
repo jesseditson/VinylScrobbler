@@ -11,7 +11,7 @@
 ### END INIT INFO
 
 # PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-DAEMON="python /root/pi/checkouts/VinylScrobbler/master/raspberrypi/capture-audio.py"
+DAEMON="python /home/pi/checkouts/VinylScrobbler/master/raspberrypi/capture-audio.py > /tmp/vinyl-scrobbler-$(date +\"%Y%m%d-%k%M\").log"
 NAME=vinyl-scrobbler
 DESC="Vinyl Scrobbler"
 
