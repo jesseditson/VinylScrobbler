@@ -3,9 +3,12 @@ import json
 from functools import wraps
 from flask import Response, Flask, request, jsonify, url_for, session, redirect
 from werkzeug.utils import secure_filename
-import dejavu_client
+from dejavu import Dejavu
+from dejavu_config import CONFIG
 from dejavu.recognize import FileRecognizer
 import discogs_client
+
+djv = Dejavu(CONFIG)
 app = Flask(__name__)
 
 discogs = discogs_client.Client(
@@ -68,7 +71,7 @@ def upload_file():  # check if the post request has the file part
         filename = secure_filename(file.filename)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
-        song = dejavu_client.recognize(FileRecognizer, file_path)
+        song = djv.recognize(FileRecognizer, file_path)
         return json.dumps(song)
 
 

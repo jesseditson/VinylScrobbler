@@ -19,8 +19,8 @@ for filename in os.listdir(folder):
                     try:
                         yt = YouTube(track["video_url"])
                         yt.streams.filter(only_audio=True).first().download(
-                            output_path="library",
-                            filename="%s_%s_%s.mp4" % name_tuple)
+                            output_path="downloads/%s_%s" % name_tuple,
+                            filename="%s.mp4" % track["title"])
                         track["audio_file"] = "%s_%s_%s.mp4" % name_tuple
                         with open(filepath, 'w') as file:
                             file.write(json.dumps(data))
