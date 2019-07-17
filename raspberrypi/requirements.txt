@@ -1,2 +1,2 @@
 PyAudio
-git+https://github.com/acrcloud/acrcloud_sdk_python/#egg=pyacrcloud&subdirectory=raspberrypi/python2.7
+git+https://github.com/jesseditson/acrcloud_sdk_python.git@rpi_recognize_by_file_27_err#egg=pyacrcloud&subdirectory=raspberrypi/python2.7
