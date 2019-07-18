@@ -1,5 +1,5 @@
 import pyaudio
-from acrcloud.recognizer import ACRCloudRecognizer, ACRCloudRecognizeType
+from match_file_acrcloud import recognize
 import wave
 
 # ACRCloud wants PCM 16 bit, mono 8000 Hz
@@ -8,7 +8,7 @@ form_1 = pyaudio.paInt16  # 16-bit resolution
 chans = 1  # 1 channel
 samp_rate = 44100  # 44.1kHz sampling rate
 chunk = 4096  # 2^12 samples for buffer
-record_secs = 10  # seconds to record
+record_secs = 30  # seconds to record
 
 audio = pyaudio.PyAudio()  # create pyaudio instantiation
 
@@ -47,18 +47,4 @@ wf.setframerate(samp_rate)
 wf.writeframes(b''.join(frames))
 wf.close()
 
-config = {
-    'host': 'identify-us-west-2.acrcloud.com',
-    'access_key': 'b7b74d5e2064676da61a8e563d5256c7',
-    'access_secret': 'hhOxrt5HQS20JRmBA6DsbbKSdfkT2miDv1Zo8j3Z',
-    'debug': True,
-    'timeout': 10,
-    'recognize_type': ACRCloudRecognizeType.ACR_OPT_REC_AUDIO
-}
-
-acrcloud = ACRCloudRecognizer(config)
-
-matches = acrcloud.recognize_by_file('tmp.wav', 0)
-# matches = acrcloud.recognize(stream)
-
-print("matches: %s" % matches)
+recognize('tmp.wav')
