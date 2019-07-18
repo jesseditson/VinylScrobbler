@@ -53,7 +53,7 @@ config = {
     'access_secret': 'hhOxrt5HQS20JRmBA6DsbbKSdfkT2miDv1Zo8j3Z',
     'debug': True,
     'timeout': 10,
-    'recognize_type': ACRCloudRecognizeType.ACR_OPT_REC_BOTH
+    'recognize_type': ACRCloudRecognizeType.ACR_OPT_REC_AUDIO
 }
 
 acrcloud = ACRCloudRecognizer(config)
